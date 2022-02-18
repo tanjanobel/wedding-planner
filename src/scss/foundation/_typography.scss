@@ -1,0 +1,70 @@
+h2,
+.h2 {
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  word-spacing: .2em;
+}
+
+h3,
+.h3 {
+  font-weight: 700;
+}
+
+h4,
+.h4 {
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+h5,
+.h5 {
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+h6,
+.h6 {
+  font-weight: 600;
+}
+
+a:focus {
+  outline: 0;
+}
+
+/// Mixin to apply fluid values to a given property depending on optinal min and max widths\
+/// Warning: You shall not use the value 0, nor use different units for the given params
+///
+/// @param {String} $property - The CSS property which should have a fluid value
+/// @param {Number} $min-val - The minimum value $property should have at $min-vw
+/// @param {Number} $max-val - The maximum value $property should have at $max-vw
+/// @param {Number} $min-vw [map-get($breakpoints, phone)] - Minimum width at which $min-val is applied
+/// @param {Number} $max-vw [map-get($breakpoints, wide)] - Maximum width at which $max-val is applied
+/// @example scss
+///   @include fluid(font-size, 12px, 24px)
+///   @include fluid(padding, 10px, 20px, map-get($breakpoints, tablet), map-get($breakpoints, desktop))
+@mixin fluid(
+  $property,
+  $min-val,
+  $max-val,
+  $min-vw: map-get($breakpoints, phone),
+  $max-vw: map-get($breakpoints, wide)
+) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-val);
+  $u4: unit($max-val);
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      #{$property}: $min-val;
+      @media screen and (min-width: $min-vw) {
+        #{$property}: calc(#{$min-val} + #{strip-unit($max-val - $min-val)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        #{$property}: $max-val;
+      }
+    }
+  }
+}

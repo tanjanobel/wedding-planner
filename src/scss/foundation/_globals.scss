@@ -1,0 +1,94 @@
+// Import $breakpoints
+@import "breakpoint";
+
+// Import conreal colors
+@import "colors";
+
+// Import default variables
+@import "../../../node_modules/foundation-sites/scss/global";
+
+// Generate color class for each entry in foundation-palette
+// We have to do this after the global import as we need color-pick-contrast()
+@each $name, $color in $foundation-palette {
+  .#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+    color: color-pick-contrast($color, (map-get($foundation-palette, white), map-get($foundation-palette, black)));
+  }
+}
+
+// Replace foundation defaults with conreal defaults
+
+// Make all buttons have a 'pointer' cursor
+$global-button-cursor: pointer;
+
+// Sizes for buttons.
+// @type Map
+$button-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 0.87rem,
+  large: 1.05rem,
+) !default;
+
+// Margin around buttons.
+// @type List
+$button-margin: 0 0 0 0 !default;
+
+// Margin for button groups.
+// @type Number
+$buttongroup-margin: 0 !default;
+
+// Background color of disabled text inputs.
+// @type Color
+$input-background-disabled: color(lightest-gray) !default;
+
+// Box shadow inside text inputs when not focused.
+// @type Shadow
+$input-shadow: none !default;
+
+// Box shadow outside text inputs when focused.
+// @type Shadow
+$input-shadow-focus: none !default;
+
+// Default color for help text.
+// @type Color
+$helptext-color: color(dark-gray) !default;
+
+// Default shadow
+$prototype-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !default;
+
+
+$header-styles: (
+  small: (
+    'h1': ('font-size': 24),
+    'h2': ('font-size': 20),
+    'h3': ('font-size': 19),
+    'h4': ('font-size': 17),
+    'h5': ('font-size': 17),
+    'h6': ('font-size': 16),
+  ),
+  phablet: (
+    'h1': ('font-size': 48),
+    'h2': ('font-size': 33),
+    'h3': ('font-size': 23),
+    'h4': ('font-size': 17),
+    'h5': ('font-size': 17),
+    'h6': ('font-size': 16),
+  ),
+);
+
+// Additional responsive classes for .expanded
+$button-responsive-expanded: true;
+
+// Default padding inside a modal.
+// @type Number
+$reveal-padding: 4*$global-padding !default;
+
+// If `true`, all elements will have transparent backgrounds when printed, to save on ink.
+// @type Boolean
+$print-transparent-backgrounds: false !default;
+$print-hrefs: false !default;
