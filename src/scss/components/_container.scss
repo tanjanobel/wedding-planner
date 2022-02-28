@@ -1,0 +1,39 @@
+$containers: (
+  tiny: 800px,
+  small: 960px,
+  default: 1200px,
+  large: 1400px,
+  full: 100%,
+) !default;
+
+// Left/Right padding in containers
+$container-padding: (
+  small: 12px,
+  phablet: 24px
+) !default;
+
+.container {
+  margin: 0 auto;
+
+  @each $name, $padding in $container-padding {
+    @include breakpoint($name) {
+      padding: 0 $padding;
+    }
+  }
+
+  @each $name, $width in $containers {
+    @if $name == "default" {
+      max-width: $width;
+    }
+
+    @else {
+      &.#{$name} {
+        max-width: $width;
+      }
+    }
+  }
+
+  &.full {
+    padding: 0;
+  }
+}
