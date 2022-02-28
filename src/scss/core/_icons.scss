@@ -1,0 +1,39 @@
+$icon-margin: 0.5 !default;
+
+$icons: (
+  small: 1em,
+  default: 1.2em,
+  medium: 1.6em,
+  large: 2.2em,
+) !default;
+
+.icon {
+  display: inline-block;
+  line-height: 1em;
+  vertical-align: middle;
+
+  &:not(:first-child) {
+    margin-left: $icon-margin * map-get($icons, default);
+  }
+
+  &:not(:last-child) {
+    margin-right: $icon-margin * map-get($icons, default);
+  }
+
+  @each $name, $dimension in $icons {
+    @if ($name != "default") {
+      &.#{$name} {
+        height: $dimension;
+        width: $dimension;
+
+        &:not(:first-child) {
+          margin-left: $icon-margin * $dimension;
+        }
+
+        &:not(:last-child) {
+          margin-right: $icon-margin * $dimension;
+        }
+      }
+    }
+  }
+}

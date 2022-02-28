@@ -1,0 +1,44 @@
+$breakpoints: (
+  small: 0,
+  phone: 320px,
+  phablet: 480px,
+  tablet: 768px,
+  laptop: 992px,
+  desktop: 1200px,
+  screen: 1400px,
+  wide: 1600px,
+) !default;
+
+$breakpoint-classes: (small phone phablet tablet laptop desktop screen wide) !default;
+
+$print-breakpoint: desktop !default;
+
+// Foundation needs the breakpoints medium and large internally for various components
+// So we map them to our own set
+$breakpoints: map-merge($breakpoints, (
+  medium: map-get($breakpoints, tablet),
+  large: map-get($breakpoints, desktop)
+));
+
+// The xygrid has different gutters based on breakpoints. We have to change them too
+$grid-margin-gutters: (
+  small: 20px,
+  phone: 30px
+) !default;
+
+// Write breakpoints as json in body::before in order to let js parse it
+$json: '{';
+$first: true;
+@each $target, $px in $breakpoints {
+  @if $first == false {
+    $json: $json + ', ';
+  }
+  $json: $json + '"#{$target}": #{str-slice($px + '', 1, -3)}';
+  $first: false;
+}
+$json: $json + '}';
+
+body::before {
+  content: $json;
+  display: none;
+}

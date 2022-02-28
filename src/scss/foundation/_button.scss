@@ -1,0 +1,17 @@
+$button-hollow-hover-color: color(dark-gray);
+$button-hollow-hover-border-color: color(dark-gray);
+
+button:focus {
+  outline: 0;
+}
+
+.button {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button.hollow:hover {
+  border-color: $button-hollow-hover-color !important;
+  color: $button-hollow-hover-border-color !important;
+}
