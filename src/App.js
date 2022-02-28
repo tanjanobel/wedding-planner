@@ -3,8 +3,10 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <section className="section">
+      <div className="section__container container large">
+      </div>
+    </section>
   );
 }
 

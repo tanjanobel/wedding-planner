@@ -1,0 +1,30 @@
+.section {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &__container {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+    @include breakpoint(tablet) {
+      padding-bottom: 4rem;
+      padding-top: 4rem;
+    }
+
+    @include breakpoint(laptop) {
+      padding-bottom: 6rem;
+      padding-top: 6rem;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 1rem;
+    position: relative;
+    text-align: center;
+
+    @include breakpoint(phablet) {
+      margin-bottom: 3rem;
+    }
+  }
+}
