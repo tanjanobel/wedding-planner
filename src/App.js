@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.scss';
+import Header from "./components/Header";
 
 function App() {
   return (
-    <section className="section">
-      <div className="section__container container large">
-      </div>
-    </section>
+    <>
+      <Header />
+      <section className="section">
+        <div className="section__container container large">
+        </div>
+      </section>
+    </>
   );
 }
 

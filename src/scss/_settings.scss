@@ -1,11 +1,18 @@
 @import "foundation/globals";
 
-/* Container sizes */
-$containers: (
-  tiny: 800px,
-  small: 960px,
-  medium: 1200px,
-  large: 1400px,
-  default: 1800px,
-  full: 100%,
-) !default;
+$foundation-palette: map-merge(
+    $foundation-palette,
+    (
+      primary: #c48f88,
+      secondary: #8c8c77,
+      third: #3f4a35,
+      dark-gray: #f3f3f3,
+      beige: #e0d4ca,
+      black: #171717,
+      text-color: $black,
+    )
+);
+
+// Font settings
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+$body-font-family: "Poppins", sans-serif;
