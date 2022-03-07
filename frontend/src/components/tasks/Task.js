@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
+import moment from "moment";
 
 
 const Task = () => {
@@ -27,6 +28,7 @@ const Task = () => {
           className="card"
           key={task.id}
           id={task.id}
+
           title={task.title}
         >
           <div className="card__meta">
@@ -63,7 +65,7 @@ const Task = () => {
             {
               task.due_date ? (
                 <p className="card__text">
-                  Fällig am: {task.due_date}</p>
+                  Fällig am: {moment(task.due_date).format("DD.MM.YYYY")}</p>
               ) : null
             }
           </div>
