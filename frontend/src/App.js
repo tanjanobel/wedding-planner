@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import Header from "./components/Header";
 import Task from "./components/tasks/Task";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
