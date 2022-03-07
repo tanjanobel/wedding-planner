@@ -1,15 +1,19 @@
 import React from 'react';
 import './App.scss';
 import Header from "./components/Header";
+import Task from "./components/tasks/Task";
 
 function App() {
   return (
     <>
       <Header />
-      <section className="section">
-        <div className="section__container container large">
-        </div>
-      </section>
+      <main className="main">
+        <section className="section">
+          <div className="section__container container medium">
+            <Task />
+          </div>
+        </section>
+      </main>
     </>
   );
 }
