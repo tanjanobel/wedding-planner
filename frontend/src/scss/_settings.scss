@@ -13,6 +13,11 @@ $foundation-palette: map-merge(
     )
 );
 
+// Global settings
+$body-background-color: rgba(color(beige), 0.2);
+$footer-height: 100px;
+$header-height: 100px;
+
 // Font settings
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 $heading-font-family: "Poppins", sans-serif;

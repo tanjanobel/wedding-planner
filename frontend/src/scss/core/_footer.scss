@@ -3,7 +3,7 @@
   font-size: rem-calc(14px);
 
   @include breakpoint(tablet) {
-    height: 100px;
+    height: $footer-height;
   }
 
   a {

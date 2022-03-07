@@ -14,7 +14,7 @@
     height: 60px;
 
     @include breakpoint(tablet) {
-      height: 100px;
+      height: $header-height;
     }
 
     & > .container {

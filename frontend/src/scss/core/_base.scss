@@ -3,9 +3,13 @@ html {
 }
 
 body {
-  background-color: rgba(color(beige), 0.2);
+  background-color: $body-background-color;
   color: color(text-color);
   font-family: $body-font-family;
   overflow-x: hidden;
   position: relative;
+}
+
+main {
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
