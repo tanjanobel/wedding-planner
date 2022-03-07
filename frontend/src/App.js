@@ -9,11 +9,7 @@ function App() {
     <>
       <Header />
       <main className="main">
-        <section className="section">
-          <div className="section__container container medium">
-            <Task />
-          </div>
-        </section>
+        <Task />
       </main>
       <Footer />
     </>

@@ -3,12 +3,20 @@
   font-size: rem-calc(14px);
   text-transform: none;
 
-  &:first-of-type {
-    margin-right: 0.5 * $global-margin;
-  }
+  &.clear {
+  padding: 0;
 
-  &.clear.primary {
-    @include button-clear-style($color: color(primary), $hover-lightness: -30%);
+    &:first-of-type {
+      padding-right: $global-padding;
+    }
+
+    &.primary {
+      @include button-clear-style($color: color(primary), $hover-lightness: -30%);
+
+      svg {
+        fill: color(primary);
+      }
+    }
   }
 
   &.primary.filled {
