@@ -1,0 +1,38 @@
+.footer {
+  color: color(dark-gray);
+  font-size: rem-calc(14px);
+
+  @include breakpoint(tablet) {
+    height: 100px;
+  }
+
+  a {
+    color: color(dark-gray);
+  }
+
+  &__nav {
+    order: -1;
+
+    @include breakpoint(tablet) {
+      order: 0
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+
+      li {
+        display: inline-block;
+        padding-right: $global-padding;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+  }
+}
