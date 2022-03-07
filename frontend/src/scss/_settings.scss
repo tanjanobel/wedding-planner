@@ -3,16 +3,17 @@
 $foundation-palette: map-merge(
     $foundation-palette,
     (
-      primary: #c48f88,
+      primary: #c1a1a1,
       secondary: #8c8c77,
       third: #3f4a35,
-      dark-gray: #f3f3f3,
+      dark-gray: #6b7280,
       beige: #e0d4ca,
       black: #171717,
-      text-color: $black,
+      text-color: #111827,
     )
 );
 
 // Font settings
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+$heading-font-family: "Poppins", sans-serif;
 $body-font-family: "Poppins", sans-serif;
