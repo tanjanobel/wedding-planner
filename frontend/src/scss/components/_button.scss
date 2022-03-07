@@ -1,0 +1,17 @@
+.button {
+  border-radius: 6px;
+  font-size: rem-calc(14px);
+  text-transform: none;
+
+  &:first-of-type {
+    margin-right: 0.5 * $global-margin;
+  }
+
+  &.clear.primary {
+    @include button-clear-style($color: color(primary), $hover-lightness: -30%);
+  }
+
+  &.primary.filled {
+    @include button-style($background: color(primary), $background-hover: auto,  $color: auto);
+  }
+}
