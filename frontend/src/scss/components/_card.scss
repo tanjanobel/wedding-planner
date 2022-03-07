@@ -1,0 +1,74 @@
+.card {
+  background-color: color(white);
+  border: 1px solid color(lighter-gray);
+  border-radius: 5px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  font-family: $body-font-family;
+  margin-bottom: $global-margin;
+  padding: $global-padding;
+
+  @include breakpoint(tablet) {
+    flex-direction: row;
+    padding: 2 * $global-padding;
+  }
+
+  &__meta {
+    padding-bottom: $global-padding;
+
+    @include breakpoint(tablet) {
+      align-items: center;
+      display: flex;
+      flex: 0 0 40px;
+      padding-bottom: 0;
+      width: 40px;
+    }
+  }
+
+  &__buttons {
+    @include breakpoint(tablet) {
+      align-items: flex-end;
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: flex-end;
+    }
+  }
+
+  &__body {
+    padding-bottom: $global-padding;
+
+    @include breakpoint(tablet) {
+      flex: 1 1 auto;
+      padding: 0 2 * $global-padding;
+    }
+  }
+
+  &__heading {
+    font-family: $heading-font-family;
+    font-size: rem-calc(16px);
+    font-weight: 600;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(18px);
+    }
+  }
+
+  &__text {
+    color: color(dark-gray);
+    font-size: 14px;
+    margin-bottom: 0.5 * $global-margin;
+  }
+
+  &__status {
+    fill: color(primary);
+
+    &.icon {
+      height: 1.5rem;
+
+      @include breakpoint(tablet) {
+        height: 2rem;
+      }
+    }
+  }
+}
