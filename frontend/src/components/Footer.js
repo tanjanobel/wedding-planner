@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
 
@@ -15,10 +16,10 @@ const Footer = () => {
           <nav className="footer__nav cell small-12 tablet-6 text-center tablet-text-right">
             <ul className="footer__meta">
               <li>
-                <a className="footer__link" href="/#">Impressum</a>
+                <Link to="/impressum" className="footer__link">Impressum</Link>
               </li>
               <li>
-                <a className="footer__link" href="/#">Datenschutz</a>
+                <Link to="/datenschutz" className="footer__link">Datenschutz</Link>
               </li>
             </ul>
           </nav>
