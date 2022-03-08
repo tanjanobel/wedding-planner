@@ -1,17 +1,31 @@
-import React from 'react';
-import './App.scss';
-import Header from "./components/Header";
-import Task from "./components/tasks/Task";
-import Footer from "./components/Footer";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.scss";
+import Dashboard from "./pages/Dashboard";
+import Layout from "./components/Layout";
+import Guests from "./pages/Guests";
+import Budget from "./pages/Budget";
+import Wedding from "./pages/Wedding";
+import Tasks from "./pages/Tasks";
+import Datenschutz from "./pages/Datenschutz";
+import Impressum from "./pages/Impressum";
 
 function App() {
   return (
     <>
-      <Header />
-      <main className="main">
-        <Task />
-      </main>
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="guests" element={<Guests />} />
+            <Route path="budget" element={<Budget />} />
+            <Route path="wedding" element={<Wedding />} />
+            <Route path="impressum" element={<Impressum />} />
+            <Route path="datenschutz" element={<Datenschutz />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
