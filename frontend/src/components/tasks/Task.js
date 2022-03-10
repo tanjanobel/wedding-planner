@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import moment from "moment";
@@ -24,12 +25,12 @@ const Task = () => {
   return (
     <>
       <div className="card__button text-right padding-bottom-2">
-        <a href="/#" className="button filled primary">
+        <Link to="/tasks/add" className="button filled primary">
           <svg className="icon medium">
             <use href={sprite + "#plus"}/>
           </svg>
           <span>Aufgabe hinzufügen</span>
-        </a>
+        </Link>
       </div>
       <div className="card__container">
         {tasks && tasks.map(task =>
