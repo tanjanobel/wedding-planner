@@ -9,6 +9,7 @@ import Wedding from "./pages/Wedding";
 import Tasks from "./pages/Tasks";
 import Datenschutz from "./pages/Datenschutz";
 import Impressum from "./pages/Impressum";
+import AddTask from "./components/tasks/AddTask";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="tasks" element={<Tasks />} />
+            <Route path="tasks/add" element={<AddTask />} />
             <Route path="guests" element={<Guests />} />
             <Route path="budget" element={<Budget />} />
             <Route path="wedding" element={<Wedding />} />
