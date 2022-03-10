@@ -29,7 +29,6 @@ class Task(models.Model):
     due_date = models.DateField(
         blank=True,
         null=True,
-        default="Kein Enddatum",
         verbose_name="Fällig am",
     )
     budget = models.DecimalField(
