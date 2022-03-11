@@ -7,7 +7,7 @@ const AddTask = () => {
     status: "Offen",
     title: "",
     description: "",
-    duedate: new Date(),
+    duedate: "",
     budget: "",
   });
 
