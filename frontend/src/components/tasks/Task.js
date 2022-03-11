@@ -73,9 +73,9 @@ const Task = () => {
                 ) : null
               }
               {
-                task.due_date ? (
+                task.duedate ? (
                   <p className="card__text">
-                    Fällig am: {moment(task.due_date).format("DD.MM.YYYY")}</p>
+                    Fällig am: {moment(task.duedate).format("DD.MM.YYYY")}</p>
                 ) : null
               }
             </div>

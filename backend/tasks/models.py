@@ -26,7 +26,7 @@ class Task(models.Model):
         blank=True,
         verbose_name="Notizen",
     )
-    due_date = models.DateField(
+    duedate = models.DateField(
         blank=True,
         null=True,
         verbose_name="Fällig am",
@@ -53,7 +53,7 @@ class Task(models.Model):
     class Meta:
         verbose_name = "Aufgabe"
         verbose_name_plural = "Aufgaben"
-        ordering = ["due_date"]
+        ordering = ["duedate"]
 
     def __str__(self):
         return self.title
