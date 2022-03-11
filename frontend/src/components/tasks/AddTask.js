@@ -1,4 +1,5 @@
 import {useState} from "react";
+
 import axios from "axios";
 
 const AddTask = () => {
@@ -6,8 +7,7 @@ const AddTask = () => {
     status: "Offen",
     title: "",
     description: "",
-    // dueDate: new Date(),
-    dueDate: "2022-08-02",
+    duedate: new Date(),
     budget: "",
   });
 
@@ -24,13 +24,15 @@ const AddTask = () => {
       status: task.status,
       title: task.title,
       description: task.description,
-      dueDate: task.dueDate,
+      duedate: task.duedate,
       budget: task.budget,
     };
 
     axios
       .post("/api/tasks/", taskData)
       .then((response) => {
+        console.log(response.status);
+        console.log(response.data);
         if (response.status === 201) {
           window.location = "/tasks"
         }
@@ -73,7 +75,6 @@ const AddTask = () => {
         <input
           type="date"
           name="duedate"
-          value={task.dueDate}
           onChange={handleChange}
         />
       </label>
