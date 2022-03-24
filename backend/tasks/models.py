@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.utils import timezone
 
@@ -11,7 +12,11 @@ class Task(models.Model):
         (IN_ARBEIT, "In Arbeit"),
         (ERLEDIGT, "Erledigt"),
     ]
-
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
     status = models.CharField(
         max_length=32,
         choices=STATUS,
