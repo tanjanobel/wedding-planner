@@ -10,6 +10,7 @@ import Tasks from "./pages/Tasks";
 import Datenschutz from "./pages/Datenschutz";
 import Impressum from "./pages/Impressum";
 import AddTask from "./components/tasks/AddTask";
+import EditTask from "./components/tasks/EditTask";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="tasks" element={<Tasks />} />
             <Route path="tasks/add" element={<AddTask />} />
+            <Route path="tasks/:id" element={<EditTask />} />
             <Route path="guests" element={<Guests />} />
             <Route path="budget" element={<Budget />} />
             <Route path="wedding" element={<Wedding />} />
