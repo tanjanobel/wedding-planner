@@ -1,0 +1,35 @@
+.flashmessage {
+  align-items: center;
+  background-color: color(white);
+  display: flex;
+  flex: 1 1 100%;
+  margin-bottom: $global-margin;
+
+  &--success {
+    border-top: 4px solid color(success);
+    padding: $global-padding;
+
+    .flashmessage__icon {
+      fill: color(success);
+    }
+  }
+
+  &--error {
+    border-top: 4px solid color(alert);
+    padding: $global-padding;
+
+    .flashmessage__icon {
+      fill: color(alert);
+    }
+  }
+
+  &__icon {
+    flex: 0 0 20px;
+    height: 20px;
+  }
+
+  &__text {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+  }
+}
