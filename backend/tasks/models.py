@@ -15,7 +15,8 @@ class Task(models.Model):
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
-        editable=False
+        editable=False,
+        unique=True,
     )
     status = models.CharField(
         max_length=32,
