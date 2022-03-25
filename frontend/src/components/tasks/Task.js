@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import moment from "moment";
+import Flashmessage from "../Flashmessage";
 
 
 const Task = () => {
   const [tasks, setTasks] = useState("");
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     getTasks()
@@ -22,8 +24,21 @@ const Task = () => {
       .catch((err) => console.log(err));
   };
 
+  const deleteTask = (id) => {
+    axios
+      .delete(`/api/tasks/${id}/`)
+      .then((response) => {
+        setDeleted(true);
+        getTasks();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
+      {deleted && (
+        <Flashmessage className="success" icon="#done" text="Aufgabe erfolgreich gelöscht." />
+      )}
       <div className="card__button text-right padding-bottom-2">
         <Link to="/tasks/add" className="button filled primary">
           <svg className="icon medium">
@@ -81,18 +96,23 @@ const Task = () => {
             </div>
             <div className="card__buttons">
               <div className="button-group">
-                <a href="/#" className="button clear small medium-gray">
+                <button
+                  className="button clear small medium-gray"
+                  onClick={() => deleteTask(task.id)}
+                >
                   <svg className='icon small'>
                     <use href={sprite + "#trash"}/>
                   </svg>
                   <span>Löschen</span>
-                </a>
-                <a href="/#" className="button clear small medium-gray">
+                </button>
+                <Link to={`/tasks/${task.id}`}
+                  className="button clear small medium-gray"
+                >
                   <svg className='icon small'>
                     <use href={sprite + "#edit"}/>
                   </svg>
                   <span>Bearbeiten</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
