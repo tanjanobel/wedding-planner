@@ -97,7 +97,7 @@ const Task = () => {
             <div className="card__buttons">
               <div className="button-group">
                 <button
-                  className="button clear small medium-gray"
+                  className="button clear small black"
                   onClick={() => deleteTask(task.id)}
                 >
                   <svg className='icon small'>
@@ -106,7 +106,7 @@ const Task = () => {
                   <span>Löschen</span>
                 </button>
                 <Link to={`/tasks/${task.id}`}
-                  className="button clear small medium-gray"
+                  className="button clear small black"
                 >
                   <svg className='icon small'>
                     <use href={sprite + "#edit"}/>

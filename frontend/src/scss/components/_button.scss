@@ -1,5 +1,4 @@
 .button {
-  border-radius: 6px;
   font-size: rem-calc(14px);
   text-transform: none;
 
@@ -36,6 +35,16 @@
   }
 
   &.primary.filled {
-    @include button-style($background: color(primary), $background-hover: auto,  $color: auto);
+    @include button-style($background: color(primary), $background-hover: #fa4b51,  $color: color(white));
+
+    svg {
+      fill: color(white);
+    }
+  }
+
+  &.white {
+    &:hover {
+      background-color: #fcfcfc;
+    }
   }
 }

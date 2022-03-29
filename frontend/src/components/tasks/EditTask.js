@@ -123,7 +123,7 @@ const EditTask = () => {
       </label>
       <div className="form__footer">
         <div className="button-group">
-          <Link to="/tasks" className="button primary hollow">Abbrechen</Link>
+          <Link to="/tasks" className="button white">Abbrechen</Link>
           <button
             type="submit"
             className="button primary filled"

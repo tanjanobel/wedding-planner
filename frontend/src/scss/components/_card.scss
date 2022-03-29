@@ -1,7 +1,6 @@
 .card {
   background-color: color(white);
   border: 1px solid color(lighter-gray);
-  border-radius: 5px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -45,7 +44,7 @@
   }
 
   &__heading {
-    font-family: $heading-font-family;
+    font-family: $body-font-family;
     font-size: rem-calc(16px);
     font-weight: 600;
 
@@ -55,7 +54,7 @@
   }
 
   &__text {
-    color: color(dark-gray);
+    color: color(black);
     font-size: 14px;
     margin-bottom: 0.5 * $global-margin;
   }
