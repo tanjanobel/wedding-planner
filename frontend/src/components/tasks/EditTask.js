@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 import axios from "axios";
 
@@ -77,6 +77,7 @@ const EditTask = () => {
       <label>
         Status
         <select
+          className="form-select"
           name="status"
           onChange={handleTaskChange}
         >
@@ -120,13 +121,18 @@ const EditTask = () => {
           onChange={handleTaskChange}
         />
       </label>
-      <button
-        type="submit"
-        className="button primary filled"
-        onClick={updateTask}
-      >
-        Aufgabe speichern
-      </button>
+      <div className="form__footer">
+        <div className="button-group">
+          <Link to="/tasks" className="button primary hollow">Abbrechen</Link>
+          <button
+            type="submit"
+            className="button primary filled"
+            onClick={updateTask}
+          >
+            Speichern
+          </button>
+        </div>
+      </div>
     </form>
   )
 }

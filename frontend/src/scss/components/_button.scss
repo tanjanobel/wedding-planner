@@ -3,6 +3,15 @@
   font-size: rem-calc(14px);
   text-transform: none;
 
+  &-group {
+    a,
+    button {
+      &:last-child {
+        margin-left: $global-margin;
+      }
+    }
+  }
+
   &.clear {
   padding: 0;
 
@@ -16,6 +25,13 @@
       svg {
         fill: color(primary);
       }
+    }
+  }
+
+  &.hollow {
+    &.primary {
+      border: 1px solid color(primary);
+      color: color(primary);
     }
   }
 

@@ -1,0 +1,12 @@
+.form {
+  &__footer {
+    padding-top: $global-padding;
+    text-align: right;
+  }
+
+  &-select {
+    display: flex;
+    flex: 0 0 auto;
+    width: auto;
+  }
+}

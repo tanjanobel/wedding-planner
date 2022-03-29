@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const AddTask = () => {
   const [task, setTask] = useState({
@@ -45,6 +46,7 @@ const AddTask = () => {
       <label>
         Status
         <select
+          className="form-select"
           name="status"
           onChange={handleChange}
         >
@@ -87,12 +89,17 @@ const AddTask = () => {
           onChange={handleChange}
         />
       </label>
-      <button
-        type="submit"
-        className="button primary filled"
-      >
-        Aufgabe hinzufügen
-      </button>
+      <div className="form__footer text-right">
+        <div className="button-group">
+          <Link to="/tasks" className="button primary hollow">Abbrechen</Link>
+          <button
+            type="submit"
+            className="button primary filled"
+          >
+            Speichern
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
