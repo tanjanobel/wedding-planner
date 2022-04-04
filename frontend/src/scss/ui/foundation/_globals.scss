@@ -1,32 +1,46 @@
-// Import $breakpoints
+// Import breakpoints
 @import "breakpoint";
 
-// Import conreal colors
+// Import z-index
+@import "z-index";
+
+// Import colors
 @import "colors";
 
 // Import default variables
-@import "../../../node_modules/foundation-sites/scss/global";
+@import "foundation-sites/scss/global";
+
+// Container widths
+$containers: (
+  tiny: 800px,
+  small: 960px,
+  default: 1200px,
+  large: 1400px,
+  full: 100%,
+) !default;
 
 // Generate color class for each entry in foundation-palette
-// We have to do this after the global import as we need color-pick-contrast()
 @each $name, $color in $foundation-palette {
-  .#{$name} {
+  .#{"" + $name} {
     color: $color;
   }
 
-  .bg-#{$name} {
+  .bg-#{"" + $name} {
     background-color: $color;
-    color: color-pick-contrast($color, (map-get($foundation-palette, white), map-get($foundation-palette, black)));
+    color: color-pick-contrast($color, (color(white), color(black)));
+  }
+
+  .bg-#{"" + $name}-contrast {
+    color: color-pick-contrast($color, (color(white), color(black)));
   }
 }
 
-// Replace foundation defaults with conreal defaults
+// Replace foundation defaults with project defaults
 
 // Make all buttons have a 'pointer' cursor
 $global-button-cursor: pointer;
 
 // Sizes for buttons.
-// @type Map
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
@@ -35,32 +49,44 @@ $button-sizes: (
 ) !default;
 
 // Margin around buttons.
-// @type List
 $button-margin: 0 0 0 0 !default;
 
 // Margin for button groups.
-// @type Number
 $buttongroup-margin: 0 !default;
 
 // Background color of disabled text inputs.
-// @type Color
 $input-background-disabled: color(lightest-gray) !default;
 
 // Box shadow inside text inputs when not focused.
-// @type Shadow
 $input-shadow: none !default;
 
 // Box shadow outside text inputs when focused.
-// @type Shadow
 $input-shadow-focus: none !default;
 
 // Default color for help text.
-// @type Color
 $helptext-color: color(dark-gray) !default;
 
 // Default shadow
 $prototype-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !default;
 
+// z-index settings
+$offcanvas-overlay-zindex: map-get($z-index, offcanvas-overlay);
+$offcanvas-push-zindex: map-get($z-index, offcanvas-push);
+$offcanvas-overlap-zindex: map-get($z-index, offcanvas-overlap);
+$offcanvas-reveal-zindex: map-get($z-index, offcanvas-revea);
+$orbit-control-zindex: map-get($z-index, orbit-control);
+$reveal-zindex: map-get($z-index, reveal);
+$prototype-position-z-index: map-get($z-index, prototype-position);
+
+// Separator settings
+$prototype-separator-height: 2px !default;
+$prototype-separator-width: 75px !default;
+$prototype-separator-background: color(primary) !default;
+
+// Breadcrumbs settings
+$breadcrumbs-item-font-size: rem-calc(12) !default;
+$breadcrumbs-item-color: color(dark-gray) !default;
+$breadcrumbs-item-uppercase: false !default;
 
 $header-styles: (
   small: (
@@ -79,16 +105,14 @@ $header-styles: (
     'h5': ('font-size': 17),
     'h6': ('font-size': 16),
   ),
-);
+) !default;
 
 // Additional responsive classes for .expanded
-$button-responsive-expanded: true;
+$button-responsive-expanded: true !default;
 
 // Default padding inside a modal.
-// @type Number
-$reveal-padding: 4*$global-padding !default;
+$reveal-padding: 4 * $global-padding !default;
 
 // If `true`, all elements will have transparent backgrounds when printed, to save on ink.
-// @type Boolean
 $print-transparent-backgrounds: false !default;
 $print-hrefs: false !default;

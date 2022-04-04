@@ -99,6 +99,8 @@ const EditTask = () => {
         Notiz
         <textarea
           name="description"
+          cols="40"
+          rows="5"
           value={currentTask.description}
           onChange={handleTaskChange}
         />
@@ -123,10 +125,10 @@ const EditTask = () => {
       </label>
       <div className="form__footer">
         <div className="button-group">
-          <Link to="/tasks" className="button white">Abbrechen</Link>
+          <Link to="/tasks" className="button secondary">Abbrechen</Link>
           <button
             type="submit"
-            className="button primary filled"
+            className="button primary"
             onClick={updateTask}
           >
             Speichern

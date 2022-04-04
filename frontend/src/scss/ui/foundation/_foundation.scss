@@ -2,11 +2,7 @@
 @import "globals";
 
 // Import foundation
-// (We can import everything, compilation is done via mixins below)
-@import "../../../node_modules/foundation-sites/scss/foundation";
-
-// Import Web-UI extensions
-@import "button";
+@import "foundation-sites/scss/foundation";
 
 // We pick all foundation components
 // We use flexbox mode (ie 10+)
@@ -19,6 +15,7 @@ $global-flexbox: true !global;
 @include foundation-button;
 @include foundation-badge;
 @include foundation-breadcrumbs;
+@include foundation-button-group;
 @include foundation-callout;
 @include foundation-card;
 @include foundation-close-button;
@@ -41,16 +38,11 @@ $global-flexbox: true !global;
 @include foundation-flex-classes;
 @include foundation-prototype-classes;
 @include foundation-accordion;
-@include foundation-top-bar;
 @include foundation-accordion-menu;
 
-// Import Third Party
-//@import "owl.carousel/src/scss/owl.carousel";
-
 // Foundation overrides
+@import "button";
 @import "typography";
-@import "slider";
-@import "reveal";
 
 // Fix font cutting in select
 select {

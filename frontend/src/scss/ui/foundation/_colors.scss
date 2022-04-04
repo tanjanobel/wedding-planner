@@ -1,0 +1,41 @@
+@import "foundation-sites/scss/util/color";
+
+$light-gray: #ccc !default;
+$medium-gray: #999 !default;
+$dark-gray: #666 !default;
+$black: #000 !default;
+$white: #fff !default;
+
+$foundation-palette: (
+  primary: #b81e27,
+  secondary: #24303b,
+  info: #3396dc,
+  success: #1faa33,
+  warning: #f9aa00,
+  alert: #dc3434,
+  "white": $white,
+  lightest-gray: #f8f8f8,
+  lighter-gray: #e5e5e5,
+  light-gray: $light-gray,
+  medium-gray: $medium-gray,
+  dark-gray: $dark-gray,
+  darker-gray: #333,
+  darkest-gray: #191919,
+  "black": $black,
+) !default;
+
+$global-color-pick-contrast-tolerance: 5 !default;
+$contrast-warnings: false;
+
+// Shorthand function to access color from foundation-palette
+@function color($color) {
+  @if ($color == white) {
+    @return get-color("white");
+  }
+
+  @if ($color == black) {
+    @return get-color("black");
+  }
+
+  @return get-color($color);
+}

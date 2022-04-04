@@ -1,0 +1,11 @@
+@import "foundation/globals";
+
+// Container sizes
+$containers: (
+  tiny: 800px,
+  small: 960px,
+  medium: 1200px,
+  large: 1400px,
+  default: 1800px,
+  full: 100%,
+) !default;

@@ -1,13 +1,11 @@
-// Import specific Foundation components
-@import "./scss/foundation/foundation";
-
 // Import settings
 @import "./scss/settings";
 
-// Import base
-@import "./scss/core/base";
+// Import base styles
+@import "./scss/ui/app";
 
 // Import core
+@import "./scss/core/base";
 @import "./scss/core/footer";
 @import "./scss/core/header";
 @import "./scss/core/icons";

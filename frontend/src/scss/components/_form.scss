@@ -1,7 +1,8 @@
 .form {
   &__footer {
+    display: flex;
+    justify-content: flex-end;
     padding-top: $global-padding;
-    text-align: right;
   }
 
   &-select {

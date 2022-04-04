@@ -1,0 +1,61 @@
+h2,
+.h2 {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  word-spacing: 0.2em;
+}
+
+h3,
+.h3 {
+  font-weight: 700;
+}
+
+h4,
+.h4 {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h5,
+.h5 {
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h6,
+.h6 {
+  font-weight: 600;
+}
+
+a:focus {
+  outline: 0;
+}
+
+@mixin fluid(
+  $property,
+  $min-val,
+  $max-val,
+  $min-vw: map-get($breakpoints, phone),
+  $max-vw: map-get($breakpoints, wide)
+) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-val);
+  $u4: unit($max-val);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      #{$property}: $min-val;
+
+      @media screen and (min-width: $min-vw) {
+        #{$property}: calc(#{$min-val} + #{strip-unit($max-val - $min-val)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        #{$property}: $max-val;
+      }
+    }
+  }
+}

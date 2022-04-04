@@ -1,25 +1,31 @@
-@import "foundation/globals";
+// Import base ui colors
+@import "ui/foundation/colors";
 
 $foundation-palette: map-merge(
-    $foundation-palette,
-    (
-      primary: #ff5a5f,
-      secondary: #8c8c77,
-      third: #3f4a35,
-      dark-gray: #6b7280,
-      beige: #e0d4ca,
-      black: #303030,
-      text-color: #303030,
-    )
+  $foundation-palette,
+  (
+    primary: #ff5a5f,
+    secondary: #fff,
+    dark-gray: #f3f3f3,
+    beige: #e0d4ca,
+    "black": #303030,
+    text-color: $black,
+  )
 );
 
-// Global settings
-$body-background-color: #f3f4f7;
-$footer-height: 100px;
-$header-height: 100px;
+// Import base ui settings
+@import "ui/settings";
 
 // Font settings
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
 $heading-font-family: "Playfair Display", serif;
 $body-font-family: "Poppins", sans-serif;
+
+// Global settings
+$body-background-color: #f3f4f7;
+$footer-height: 100px;
+$header-height: 100px;
+$input-border: 1px solid color(lighter-gray);
+
+

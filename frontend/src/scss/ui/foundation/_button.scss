@@ -1,0 +1,13 @@
+button:focus {
+  outline: 0;
+}
+
+.button {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button-group {
+  flex-grow: 0;
+}

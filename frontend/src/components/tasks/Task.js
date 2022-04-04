@@ -40,8 +40,8 @@ const Task = () => {
         <Flashmessage className="success" icon="#done" text="Aufgabe erfolgreich gelöscht." />
       )}
       <div className="card__button text-right padding-bottom-2">
-        <Link to="/tasks/add" className="button filled primary">
-          <svg className="icon medium">
+        <Link to="/tasks/add" className="button primary">
+          <svg className="icon small">
             <use href={sprite + "#plus"}/>
           </svg>
           <span>Aufgabe hinzufügen</span>
@@ -95,25 +95,24 @@ const Task = () => {
               }
             </div>
             <div className="card__buttons">
-              <div className="button-group">
-                <button
-                  className="button clear small black"
-                  onClick={() => deleteTask(task.id)}
-                >
-                  <svg className='icon small'>
-                    <use href={sprite + "#trash"}/>
-                  </svg>
-                  <span>Löschen</span>
-                </button>
-                <Link to={`/tasks/${task.id}`}
-                  className="button clear small black"
-                >
-                  <svg className='icon small'>
-                    <use href={sprite + "#edit"}/>
-                  </svg>
-                  <span>Bearbeiten</span>
-                </Link>
-              </div>
+              <button
+                className="card__button button clear black"
+                onClick={() => deleteTask(task.id)}
+              >
+                <svg className='icon small'>
+                  <use href={sprite + "#trash"}/>
+                </svg>
+                <span>Löschen</span>
+              </button>
+              <Link
+                to={`/tasks/${task.id}`}
+                className="card__button button clear black"
+              >
+                <svg className='icon small'>
+                  <use href={sprite + "#edit"}/>
+                </svg>
+                <span>Bearbeiten</span>
+              </Link>
             </div>
           </div>
         )}

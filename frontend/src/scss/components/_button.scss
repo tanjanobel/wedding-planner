@@ -1,5 +1,4 @@
 .button {
-  font-size: rem-calc(14px);
   text-transform: none;
 
   &-group {
@@ -11,30 +10,7 @@
     }
   }
 
-  &.clear {
-  padding: 0;
-
-    &:first-of-type {
-      padding-right: $global-padding;
-    }
-
-    &.primary {
-      @include button-clear-style($color: color(primary), $hover-lightness: -30%);
-
-      svg {
-        fill: color(primary);
-      }
-    }
-  }
-
-  &.hollow {
-    &.primary {
-      border: 1px solid color(primary);
-      color: color(primary);
-    }
-  }
-
-  &.primary.filled {
+  &.primary {
     @include button-style($background: color(primary), $background-hover: #fa4b51,  $color: color(white));
 
     svg {
@@ -42,9 +18,16 @@
     }
   }
 
-  &.white {
+  &.secondary {
+    border: 1px solid color(lighter-gray);
+
     &:hover {
       background-color: #fcfcfc;
     }
   }
+
+  &.clear {
+    line-height: inherit;
+  }
 }
+
