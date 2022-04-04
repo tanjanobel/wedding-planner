@@ -100,13 +100,21 @@
   }
 
   &__logo {
+    display: table;
+    table-layout: fixed;
+    text-align: left;
+
     img {
-      max-height: 40px;
+      height: 40px;
 
       @include breakpoint(tablet) {
-        flex: 0 0 300px;
-        max-height: 60px;
+        height: 60px;
       }
+    }
+
+    @include breakpoint(tablet) {
+      flex: 0 0 300px;
+      max-height: 60px;
     }
   }
 
@@ -167,10 +175,11 @@
 
   &__link {
     color: color(black);
-    display: inline-block;
+    display: table-cell;
     letter-spacing: 1px;
     position: relative;
     transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+    vertical-align: middle;
 
     &::after {
       background-color: color(primary);
