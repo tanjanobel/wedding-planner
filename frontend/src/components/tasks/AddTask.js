@@ -1,9 +1,11 @@
-import {useState} from "react";
-
+import React, {useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import sprite from "../../icons/wedding-planner-sprite.svg";
 
 const AddTask = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
   const [task, setTask] = useState({
     status: "Offen",
     title: "",
@@ -20,6 +22,7 @@ const AddTask = () => {
   };
 
   const handleSubmit = (e) => {
+    setErrors([]);
     e.preventDefault();
     const taskData = {
       status: task.status,
@@ -32,13 +35,18 @@ const AddTask = () => {
     axios
       .post("/api/tasks/", taskData)
       .then((response) => {
-        console.log(response.status);
-        console.log(response.data);
+        if (response.status === 400) {
+          console.log(response.data);
+          setErrors(response.data);
+        }
         if (response.status === 201) {
-          window.location = "/tasks"
+          navigate("/tasks");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrors(error.response.data);
+      })
   };
 
   return (
@@ -55,7 +63,7 @@ const AddTask = () => {
           <option>Erledigt</option>
         </select>
       </label>
-      <label>
+      <label htmlFor="title">
         Titel (Pflichtfeld)
         <input
           type="text"
@@ -63,6 +71,17 @@ const AddTask = () => {
           value={task.title}
           onChange={handleChange}
         />
+        {errors['title']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Notiz
@@ -73,14 +92,37 @@ const AddTask = () => {
           value={task.description}
           onChange={handleChange}
         />
+        {errors['description']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Fällig am
         <input
           type="date"
           name="duedate"
+          value={task.duedate}
           onChange={handleChange}
         />
+        {errors['duedate']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Budget
@@ -90,6 +132,17 @@ const AddTask = () => {
           value={task.budget}
           onChange={handleChange}
         />
+        {errors['budget']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <div className="form__footer text-right">
         <div className="button-group">

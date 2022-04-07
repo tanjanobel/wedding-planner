@@ -1,9 +1,11 @@
-import {useEffect, useRef, useState} from "react";
-import {Link, useParams} from "react-router-dom";
-
+import React, {useEffect, useRef, useState} from "react";
+import {Link, useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
+import sprite from "../../icons/wedding-planner-sprite.svg";
 
 const EditTask = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
   const initialTaskState = {
     status: "",
     title: "",
@@ -11,7 +13,7 @@ const EditTask = () => {
     duedate: "",
     budget: "",
   };
-  let { id } = useParams();
+  let {id} = useParams();
   const [currentTask, setCurrentTask] = useState(initialTaskState);
 
   const countRef = useRef(0);
@@ -25,11 +27,7 @@ const EditTask = () => {
   };
   const retrieveTask = () => {
     axios
-      .get(`/api/tasks/${id}/`, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
+      .get(`/api/tasks/${id}/`)
       .then((response) => {
         setCurrentTask({
           status: response.data.status,
@@ -38,27 +36,20 @@ const EditTask = () => {
           duedate: response.data.duedate,
           budget: response.data.budget,
         });
-        console.log(currentTask);
       })
       .catch((e) => {
         console.error(e);
       });
   }
 
-  const updateTask = () => {
+  const updateTask = (e) => {
+    e.preventDefault();
+    setErrors([]);
     let data = {
-      status: currentTask.status,
-      title: currentTask.title,
-      description: currentTask.description,
-      duedate: currentTask.duedate,
-      budget: currentTask.budget
+      ...currentTask
     };
     axios
-      .put(`/api/tasks/${id}/`, data, {
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
+      .put(`/api/tasks/${id}/`, data)
       .then((response) => {
         setCurrentTask({
           status: response.data.status,
@@ -67,9 +58,18 @@ const EditTask = () => {
           duedate: response.data.duedate,
           budget: response.data.budget,
         });
-        console.log("bla")
+        if (response.status === 400) {
+          console.log(response.data);
+          setErrors(response.data);
+        }
+        if (response.status === 200) {
+          navigate("/tasks");
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrors(error.response.data);
+      })
   };
 
   return (
@@ -94,6 +94,17 @@ const EditTask = () => {
           value={currentTask.title}
           onChange={handleTaskChange}
         />
+        {errors['title']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Notiz
@@ -104,6 +115,17 @@ const EditTask = () => {
           value={currentTask.description}
           onChange={handleTaskChange}
         />
+        {errors['description']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Fällig am
@@ -113,15 +135,37 @@ const EditTask = () => {
           value={currentTask.duedate}
           onChange={handleTaskChange}
         />
+        {errors['duedate']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <label>
         Budget
         <input
           type="number"
           name="budget"
-          value={currentTask.duedate | ""}
+          value={currentTask.budget}
           onChange={handleTaskChange}
         />
+        {errors['budget']?.map(error =>
+          <div
+            key={error}
+            className="form-error"
+          >
+            <svg className="card__status icon small">
+              <use href={sprite + "#exclamation"}/>
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
       </label>
       <div className="form__footer">
         <div className="button-group">

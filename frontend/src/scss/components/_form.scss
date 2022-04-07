@@ -10,4 +10,13 @@
     flex: 0 0 auto;
     width: auto;
   }
+
+  &-error {
+    align-items: center;
+    color: color(alert);
+    display: flex;
+    flex: 1 1 100%;
+    font-size: 14px;
+    font-weight: 400;
+  }
 }

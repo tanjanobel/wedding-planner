@@ -29,6 +29,7 @@ class Task(models.Model):
         verbose_name="Titel",
     )
     description = models.TextField(
+        max_length=500,
         blank=True,
         verbose_name="Notizen",
     )
