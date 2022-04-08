@@ -1,5 +1,7 @@
 .header {
   background-color: color(white);
+  border-bottom: 1px solid color(lighter-gray);
+  box-shadow: $box-shadow;
   top: 0;
   width: 100%;
   z-index: 1;

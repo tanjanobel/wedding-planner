@@ -1,0 +1,90 @@
+.hero {
+  @include breakpoint(laptop) {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
+  &__image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include breakpoint(laptop) {
+      flex: 0 0 50%;
+      margin-left: 2 * $global-margin;
+      margin-right: 0;
+    }
+
+    img {
+      visibility: hidden;
+      width: 100%;
+    }
+  }
+
+  &__content {
+    padding: 2 * $global-padding 12px;
+
+    @include breakpoint(phablet) {
+      padding: 2 * $global-padding 24px;
+    }
+
+    @include breakpoint(laptop) {
+      flex: 0 0 50%;
+      max-width: 660px;
+      padding: 3 * $global-padding 0 3 * $global-padding 60px;
+      position: relative;
+      z-index: 1;
+
+      &::after {
+        background-color: color(white);
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        transform: skewX(-8deg);
+        right: -80px;
+        width: 200px;
+        z-index: -1;
+      }
+    }
+
+    @include breakpoint(screen) {
+      padding: 3 * $global-padding 20px;
+    }
+
+    h2 {
+      font-family: $heading-font-family;
+      font-size: rem-calc(36px);
+      font-weight: 700;
+      letter-spacing: normal;
+      line-height: 1.2;
+      margin-bottom: 0;
+      padding-bottom: $global-padding;
+      text-transform: none;
+      word-spacing: normal;
+
+      @include breakpoint(laptop) {
+        font-size: rem-calc(60px);
+        padding-bottom: 2 * $global-padding;
+      }
+
+      span {
+        color: color(primary);
+      }
+    }
+
+    p {
+      font-size: rem-calc(16px);
+      margin-bottom: 0;
+
+      @include breakpoint(laptop) {
+        font-size: rem-calc(20px);
+      }
+    }
+  }
+
+  &__footer {
+    padding-top: 2 * $global-padding;
+  }
+}

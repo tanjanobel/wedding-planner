@@ -1,8 +1,4 @@
-import { Link } from "react-router-dom";
-import logo from "../images/logo.svg";
-import sprite from "../icons/wedding-planner-sprite.svg";
-
-const SubHeader = ({ title }) => {
+const SubHeader = ({title}) => {
 
   return (
     <>
