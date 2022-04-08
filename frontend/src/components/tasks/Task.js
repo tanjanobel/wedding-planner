@@ -1,124 +1,78 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import sprite from "../../icons/wedding-planner-sprite.svg";
+import {Link} from "react-router-dom";
 import moment from "moment";
-import Flashmessage from "../Flashmessage";
+import sprite from "../../icons/wedding-planner-sprite.svg";
 
-
-const Task = () => {
-  const [tasks, setTasks] = useState("");
-  const [deleted, setDeleted] = useState(false);
-
-  useEffect(() => {
-    getTasks()
-  }, [])
-
-  const getTasks = () => {
-    axios
-      .get("/api/tasks/")
-      .then((response) => {
-        const data = response.data;
-        setTasks(data)
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const deleteTask = (id) => {
-    axios
-      .delete(`/api/tasks/${id}/`)
-      .then((response) => {
-        setDeleted(true);
-        getTasks();
-      })
-      .catch((err) => console.log(err));
-  }
-
+const Task = ({id, title, status, description, duedate}) => {
   return (
     <>
-      {deleted && (
-        <Flashmessage className="success" icon="#done" text="Aufgabe erfolgreich gelöscht." />
-      )}
-      <div className="card__button text-right padding-bottom-2">
-        <Link to="/tasks/add" className="button primary">
-          <svg className="icon small">
-            <use href={sprite + "#plus"}/>
-          </svg>
-          <span>Aufgabe hinzufügen</span>
-        </Link>
-      </div>
-      <div className="card__container">
-        {tasks && tasks.map(task =>
-          <div
-            className="card"
-            key={task.id}
-            id={task.id}
+      {/*{deleted && (*/}
+      {/*  <Flashmessage className="success" icon="#done" text="Aufgabe erfolgreich gelöscht."/>*/}
+      {/*)}*/}
+      <div className="card" key={id} id={id} title={title}>
+        <div className="card__meta">
+          {(() => {
+            switch (status) {
+              case "In Arbeit":
+                return <svg className="card__status icon large">
+                  <use href={sprite + "#in-progress"}/>
+                </svg>
+              case "Erledigt":
+                return <svg className="card__status icon large">
+                  <use href={sprite + "#done"}/>
+                </svg>
+              default:
+                return <svg className="card__status icon large">
+                  <use href={sprite + "#open"}/>
+                </svg>
+            }
+          })()}
+        </div>
 
-            title={task.title}
-          >
-            <div className="card__meta">
-              {(() => {
-                switch (task.status) {
-                  case "In Arbeit":
-                    return <svg className="card__status icon large">
-                      <use href={sprite + "#in-progress"}/>
-                    </svg>
-                  case "Erledigt":
-                    return <svg className="card__status icon large">
-                      <use href={sprite + "#done"}/>
-                    </svg>
-                  default:
-                    return <svg className="card__status icon large">
-                      <use href={sprite + "#open"}/>
-                    </svg>
-                }
-              })()}
-            </div>
-            <div className="card__body">
-              <h3 className="card__heading">
-                {task.title}
-              </h3>
+        <div className="card__body">
+          <h3 className="card__heading">
+            {title}
+          </h3>
+          <p className="card__text">
+            Status: {status}
+          </p>
+          {
+            description ? (
               <p className="card__text">
-                Status: {task.status}
-              </p>
-              {
-                task.description ? (
-                  <p className="card__text">
-                    Notiz: {task.description}</p>
-                ) : null
-              }
-              {
-                task.duedate ? (
-                  <p className="card__text">
-                    Fällig am: {moment(task.duedate).format("DD.MM.YYYY")}</p>
-                ) : null
-              }
-            </div>
-            <div className="card__buttons">
-              <button
-                className="card__button button clear black"
-                onClick={() => deleteTask(task.id)}
-              >
-                <svg className='icon small'>
-                  <use href={sprite + "#trash"}/>
-                </svg>
-                <span>Löschen</span>
-              </button>
-              <Link
-                to={`/tasks/${task.id}`}
-                className="card__button button clear black"
-              >
-                <svg className='icon small'>
-                  <use href={sprite + "#edit"}/>
-                </svg>
-                <span>Bearbeiten</span>
-              </Link>
-            </div>
-          </div>
-        )}
+                Notiz: {description}</p>
+            ) : null
+          }
+          {
+            duedate ? (
+              <p className="card__text">
+                Fällig am: {moment(duedate).format("DD.MM.YYYY")}</p>
+            ) : null
+          }
+        </div>
+
+        <div className="card__buttons">
+          <Link
+            to={`/tasks/delete/${id}`}
+            className="card__button button clear black"
+          >
+            <svg className='icon small'>
+              <use href={sprite + "#trash"}/>
+            </svg>
+            <span>Löschen</span>
+          </Link>
+          {/*</button>*/}
+          <Link
+            to={`/tasks/${id}`}
+            className="card__button button clear black"
+          >
+            <svg className='icon small'>
+              <use href={sprite + "#edit"}/>
+            </svg>
+            <span>Bearbeiten</span>
+          </Link>
+        </div>
       </div>
     </>
-  );
+  )
 }
 
 export default Task;

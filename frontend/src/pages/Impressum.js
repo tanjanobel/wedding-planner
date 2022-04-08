@@ -1,12 +1,10 @@
+import SubHeader from "../components/SubHeader";
+
 const Impressum = () => {
 
   return (
     <>
-      <header className="subheader">
-        <div className="container">
-          <h1>Impressum</h1>
-        </div>
-      </header>
+      <SubHeader title="Impressum"/>
       <p className="font-bold">Kontakt</p>
       <p>
         Tanja Nobel<br/>

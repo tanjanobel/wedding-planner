@@ -1,12 +1,10 @@
-const Dashboard = () => {
 
+import SubHeader from "../components/SubHeader";
+
+const Dashboard = () => {
   return (
     <>
-      <header className="subheader">
-        <div className="container">
-          <h1>Dashboard</h1>
-        </div>
-      </header>
+      <SubHeader title="Dashboard"/>
     </>
   )
 }

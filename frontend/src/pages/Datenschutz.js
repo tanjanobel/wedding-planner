@@ -1,12 +1,10 @@
+import SubHeader from "../components/SubHeader";
+
 const Datenschutz = () => {
 
   return (
     <>
-      <header className="subheader">
-        <div className="container">
-          <h1>Datenschutz</h1>
-        </div>
-      </header>
+      <SubHeader title="Datenschutz"/>
       <p>
         Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen Bestimmungen des
         Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor

@@ -8,8 +8,9 @@ import Wedding from "./pages/Wedding";
 import Tasks from "./pages/Tasks";
 import Datenschutz from "./pages/Datenschutz";
 import Impressum from "./pages/Impressum";
-import AddTask from "./components/tasks/AddTask";
-import EditTask from "./components/tasks/EditTask";
+import AddTask from "./pages/AddTask";
+import EditTask from "./pages/EditTask";
+import DeleteTask from "./pages/DeleteTask";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/tasks" element={<Tasks/>}/>
               <Route path="/tasks/add" element={<AddTask/>}/>
               <Route path="/tasks/:id" element={<EditTask/>}/>
+              <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
               <Route path="/guests" element={<Guests/>}/>
               <Route path="/budget" element={<Budget/>}/>
               <Route path="/wedding" element={<Wedding/>}/>

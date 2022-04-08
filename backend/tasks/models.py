@@ -3,15 +3,13 @@ from django.db import models
 from django.utils import timezone
 
 
+class TaskStatus(models.TextChoices):
+    OFFEN = 'Offen', 'Offen'
+    IN_ARBEIT = 'In Arbeit', 'In Arbeit'
+    ERLEDIGT = 'Erledigt', 'Erledigt'
+
+
 class Task(models.Model):
-    OFFEN = 'Offen'
-    IN_ARBEIT = "In Arbeit"
-    ERLEDIGT = "Erledigt"
-    STATUS = [
-        (OFFEN, "Offen"),
-        (IN_ARBEIT, "In Arbeit"),
-        (ERLEDIGT, "Erledigt"),
-    ]
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -20,8 +18,8 @@ class Task(models.Model):
     )
     status = models.CharField(
         max_length=32,
-        choices=STATUS,
-        default=OFFEN,
+        choices=TaskStatus.choices,
+        default=TaskStatus.OFFEN,
         verbose_name="Status",
     )
     title = models.CharField(

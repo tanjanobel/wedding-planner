@@ -1,0 +1,179 @@
+import React, {useEffect, useRef, useState} from "react";
+import {Link, useParams, useNavigate} from "react-router-dom";
+import axios from "axios";
+import sprite from "../icons/wedding-planner-sprite.svg";
+import SubHeader from "../components/SubHeader";
+
+const EditTask = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
+  const initialTaskState = {
+    status: "",
+    title: "",
+    description: "",
+    duedate: "",
+    budget: "",
+  };
+  let {id} = useParams();
+  const [currentTask, setCurrentTask] = useState(initialTaskState);
+
+  const countRef = useRef(0);
+  useEffect(() => {
+    retrieveTask();
+  }, [countRef]);
+
+  const handleTaskChange = (e) => {
+    const {name, value} = e.target;
+    setCurrentTask({...currentTask, [name]: value});
+  };
+  const retrieveTask = () => {
+    axios
+      .get(`/api/tasks/${id}/`)
+      .then((response) => {
+        setCurrentTask({
+          status: response.data.status,
+          title: response.data.title,
+          description: response.data.description,
+          duedate: response.data.duedate,
+          budget: response.data.budget,
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const updateTask = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    let data = {
+      ...currentTask,
+    };
+    axios
+      .put(`/api/tasks/${id}/`, data)
+      .then((response) => {
+        setCurrentTask({
+          status: response.data.status,
+          title: response.data.title,
+          description: response.data.description,
+          duedate: response.data.duedate,
+          budget: response.data.budget,
+        });
+        if (response.status === 400) {
+          console.log(response.data);
+          setErrors(response.data);
+        }
+        if (response.status === 200) {
+          navigate("/tasks");
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrors(error.response.data);
+      });
+  };
+
+  return (
+    <>
+      <SubHeader title="Aufgabe bearbeiten"/>
+      <form>
+        <label>
+          Status
+          <select
+            className="form-select"
+            name="status"
+            onChange={handleTaskChange}
+          >
+            <option>Offen</option>
+            <option>In Arbeit</option>
+            <option>Erledigt</option>
+          </select>
+        </label>
+        <label>
+          Titel (Pflichtfeld)
+          <input
+            type="text"
+            name="title"
+            value={currentTask.title}
+            onChange={handleTaskChange}
+          />
+          {errors["title"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"}/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+        </label>
+        <label>
+          Notiz
+          <textarea
+            name="description"
+            cols="40"
+            rows="5"
+            value={currentTask.description}
+            onChange={handleTaskChange}
+          />
+          {errors["description"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"}/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+        </label>
+        <label>
+          Fällig am
+          <input
+            type="date"
+            name="duedate"
+            value={currentTask.duedate}
+            onChange={handleTaskChange}
+          />
+          {errors["duedate"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"}/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+        </label>
+        <label>
+          Budget
+          <input
+            type="number"
+            name="budget"
+            value={currentTask.budget}
+            onChange={handleTaskChange}
+          />
+          {errors["budget"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"}/>
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+        </label>
+        <div className="form__footer">
+          <div className="button-group">
+            <Link to="/tasks" className="button secondary">
+              Abbrechen
+            </Link>
+            <button
+              type="submit"
+              className="button primary"
+              onClick={updateTask}
+            >
+              Speichern
+            </button>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+};
+export default EditTask;
