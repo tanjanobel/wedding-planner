@@ -18,24 +18,18 @@ function App() {
   return (
     <>
       <Header/>
-      <main className="main">
-        <section className="section">
-          <div className="section__container container medium">
-            <Routes>
-              <Route index element={<Dashboard/>}/>
-              <Route path="/tasks" element={<Tasks/>}/>
-              <Route path="/tasks/add" element={<AddTask/>}/>
-              <Route path="/tasks/:id" element={<EditTask/>}/>
-              <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
-              <Route path="/guests" element={<Guests/>}/>
-              <Route path="/budget" element={<Budget/>}/>
-              <Route path="/wedding" element={<Wedding/>}/>
-              <Route path="/impressum" element={<Impressum/>}/>
-              <Route path="/datenschutz" element={<Datenschutz/>}/>
-            </Routes>
-          </div>
-        </section>
-      </main>
+      <Routes>
+        <Route index element={<Dashboard/>}/>
+        <Route path="/tasks" element={<Tasks/>}/>
+        <Route path="/tasks/add" element={<AddTask/>}/>
+        <Route path="/tasks/:id" element={<EditTask/>}/>
+        <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
+        <Route path="/guests" element={<Guests/>}/>
+        <Route path="/budget" element={<Budget/>}/>
+        <Route path="/wedding" element={<Wedding/>}/>
+        <Route path="/impressum" element={<Impressum/>}/>
+        <Route path="/datenschutz" element={<Datenschutz/>}/>
+      </Routes>
       <Footer/>
     </>
   );

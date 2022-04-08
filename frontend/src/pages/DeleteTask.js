@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link, useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import SubHeader from "../components/SubHeader";
+import Section from "../components/Section";
 
 const DeleteTask = () => {
   const navigate = useNavigate();
@@ -25,17 +26,19 @@ const DeleteTask = () => {
   return (
     <>
       <SubHeader title="Aufgabe löschen"/>
-      <p className="text-center">Möchtest du die Aufgabe <b>xxx</b> wirklich löschen?</p>
-      <div className="grid-x align-right">
-        <div className="button-group">
-          <Link to="/tasks" className="button secondary">
-            Abbrechen
-          </Link>
-          <button onClick={() => deleteTask(id)} className="button primary">
-            Löschen
-          </button>
+      <Section>
+        <p className="text-center">Möchtest du die Aufgabe <b>xxx</b> wirklich löschen?</p>
+        <div className="grid-x align-right">
+          <div className="button-group">
+            <Link to="/tasks" className="button secondary">
+              Abbrechen
+            </Link>
+            <button onClick={() => deleteTask(id)} className="button primary">
+              Löschen
+            </button>
+          </div>
         </div>
-      </div>
+      </Section>
     </>
   );
 };

@@ -15,8 +15,8 @@
   }
 
   h1 {
-    @include fluid(padding-top, 16px, 32px, map-get($breakpoints, tablet), map-get($breakpoints, desktop));
-    @include fluid(padding-bottom, 16px, 32px, map-get($breakpoints, tablet), map-get($breakpoints, desktop));
+    @include fluid(padding-top, 16px, 64px, map-get($breakpoints, tablet), map-get($breakpoints, desktop));
+    @include fluid(padding-bottom, 16px, 0, map-get($breakpoints, tablet), map-get($breakpoints, desktop));
     color: color(black);
     flex: 1 1 auto;
     font-family: $heading-font-family;

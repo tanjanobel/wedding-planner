@@ -5,7 +5,7 @@
     a,
     button {
       &:last-child {
-        margin-left: $global-margin;
+        margin-left: rem-calc(12px);
       }
     }
   }

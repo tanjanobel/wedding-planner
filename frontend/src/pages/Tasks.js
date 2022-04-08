@@ -4,6 +4,7 @@ import axios from "axios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import Task from "../components/tasks/Task";
 import SubHeader from "../components/SubHeader";
+import Section from "../components/Section";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState("");
@@ -25,24 +26,26 @@ const Tasks = () => {
   return (
     <>
       <SubHeader title="Meine Aufgaben"/>
-      <div className="card__button text-right padding-bottom-2">
-        <Link to="/tasks/add" className="button primary">
-          <svg className="icon small">
-            <use href={sprite + "#plus"}/>
-          </svg>
-          <span>Aufgabe hinzufügen</span>
-        </Link>
-      </div>
+      <Section>
+        <div className="card__button text-right padding-bottom-2">
+          <Link to="/tasks/add" className="button primary">
+            <svg className="icon small">
+              <use href={sprite + "#plus"}/>
+            </svg>
+            <span>Aufgabe hinzufügen</span>
+          </Link>
+        </div>
 
-      {tasks && tasks.map(task =>
-        <Task
-          key={task.id}
-          id={task.id} title={task.title}
-          status={task.status}
-          description={task.description}
-          duedate={task.duedate}
-        />
-      )}
+        {tasks && tasks.map(task =>
+          <Task
+            key={task.id}
+            id={task.id} title={task.title}
+            status={task.status}
+            description={task.description}
+            duedate={task.duedate}
+          />
+        )}
+      </Section>
     </>
   )
 }

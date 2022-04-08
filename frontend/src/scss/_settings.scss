@@ -22,9 +22,13 @@ $heading-font-family: "Playfair Display", serif;
 $body-font-family: "Poppins", sans-serif;
 
 // Global settings
+$border-radius: 6px;
+$button-radius: $border-radius;
 $body-background-color: #f3f4f7;
 $footer-height: 100px;
 $header-height: 100px;
 $input-border: 1px solid color(lighter-gray);
+$input-padding: 0.5rem 12px;
+$input-radius: $border-radius;
 
 
