@@ -208,6 +208,10 @@
         width: 100%;
       }
     }
+
+    &.active {
+      color: color(primary);
+    }
   }
 
   &__user {
