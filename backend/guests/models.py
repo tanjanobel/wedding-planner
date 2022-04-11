@@ -1,21 +1,25 @@
+import uuid
 from django.db import models
 from django.utils import timezone
 
 
-class Guest(models.Model):
-    AUSSTEHEND = 'Ausstehend'
-    ZUSAGE = "Zusage"
-    ABSAGE = "Absage"
-    STATUS = [
-        (AUSSTEHEND, "Ausstehend"),
-        (ZUSAGE, "Zusage"),
-        (ABSAGE, "Absage"),
-    ]
+class GuestStatus(models.TextChoices):
+    AUSSTEHEND = 'Ausstehend', 'Ausstehend'
+    ZUSAGE = 'Zusage', 'Zusage'
+    ABSAGE = 'Absage', 'Absage'
 
+
+class Guest(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+    )
     status = models.CharField(
         max_length=32,
-        choices=STATUS,
-        default=AUSSTEHEND,
+        choices=GuestStatus.choices,
+        default=GuestStatus.AUSSTEHEND,
         verbose_name="Status",
     )
     firstname = models.CharField(
