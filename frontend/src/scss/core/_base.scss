@@ -4,7 +4,6 @@ html {
 
 body {
   background-color: $body-background-color;
-  color: color(text-color);
   font-family: $body-font-family;
   overflow-x: hidden;
   position: relative;
@@ -12,4 +11,14 @@ body {
 
 main {
   min-height: calc(100vh - #{$header-height} - #{$footer-height});
+}
+
+/* Webkit */
+::selection {
+  background: color(primary);
+  color: color(white);
+}
+/* Gecko/Mozilla */
+::-moz-selection {
+  background: color(primary);
 }
