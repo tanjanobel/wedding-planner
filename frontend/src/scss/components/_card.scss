@@ -86,4 +86,10 @@
       }
     }
   }
+
+  &__summary {
+    font-size: rem-calc(26px);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
 }
