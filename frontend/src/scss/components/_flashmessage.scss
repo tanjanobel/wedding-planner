@@ -3,7 +3,7 @@
   background-color: color(white);
   display: flex;
   flex: 1 1 100%;
-  margin-bottom: $global-margin;
+  margin-bottom: 2 * $global-margin;
 
   &--success {
     border-top: 4px solid color(success);
