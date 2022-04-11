@@ -87,6 +87,16 @@ const Tasks = (props) => {
           </Link>
         </div>
 
+        {tasks.length === 0 &&
+          <div className="text-center">
+            <svg className="icon xlarge padding-bottom-2">
+              <use href={sprite + "#file"} />
+            </svg>
+            <h3>Keine Einträge vorhanden.</h3>
+            <p>Füge jetzt deine erste Aufgabe hinzu.</p>
+          </div>
+        }
+
         {tasks &&
           tasks.map((task) => (
             <Task
