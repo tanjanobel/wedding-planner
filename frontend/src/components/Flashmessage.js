@@ -4,12 +4,19 @@ import sprite from "../icons/wedding-planner-sprite.svg";
 const Flashmessage = (props) => {
   const [show, setShow] = useState(true);
   const messages = {
-    add: `Aufgabe ${props.title} erfolgreich hinzugefügt.`,
-    delete: `Aufgabe ${props.title} erfolgreich gelöscht.`,
-    edit: `Aufgabe ${props.title} erfolgreich gespeichert.`,
-    err_add: `Aufgabe ${props.title} konnte nicht hinzugefügt werden.`,
-    err_delete: `Aufgabe ${props.title} konnte nicht gelöscht werden.`,
-    err_edit: `Aufgabe ${props.title} konnte nicht gespeichert werden.`,
+    add_task: `Aufgabe ${props.title} erfolgreich hinzugefügt.`,
+    delete_task: `Aufgabe ${props.title} erfolgreich gelöscht.`,
+    edit_task: `Aufgabe ${props.title} erfolgreich gespeichert.`,
+    err_add_task: `Aufgabe ${props.title} konnte nicht hinzugefügt werden.`,
+    err_delete_task: `Aufgabe ${props.title} konnte nicht gelöscht werden.`,
+    err_edit_task: `Aufgabe ${props.title} konnte nicht gespeichert werden.`,
+
+    add_guest: `Gast ${props.title} erfolgreich hinzugefügt.`,
+    delete_guest: `Gast ${props.title} erfolgreich gelöscht.`,
+    edit_guest: `Gast ${props.title} erfolgreich gespeichert.`,
+    err_add_guest: `Gast ${props.title} konnte nicht hinzugefügt werden.`,
+    err_delete_guest: `Gast ${props.title} konnte nicht gelöscht werden.`,
+    err_edit_tguest: `Gast ${props.title} konnte nicht gespeichert werden.`,
   };
 
   let text = messages[props.performedAction];

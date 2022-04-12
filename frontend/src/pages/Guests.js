@@ -10,9 +10,9 @@ import Flashmessage from "../components/Flashmessage";
 
 const Guests = () => {
   const [guests, setGuests] = useState([]);
-  const [guestsAusstehend, setGuestsAusstehend] = useState([]);
-  const [guestsZusage, setGuestsZusage] = useState([]);
-  const [guestsAbsage, setGuestsAbsage] = useState([]);
+  const [guestsPending, setGuestsPending] = useState([]);
+  const [guestsConfirmation, setGuestsConfirmation] = useState([]);
+  const [guestsCancellation, setGuestsCancellation] = useState([]);
 
   const { state } = useLocation();
   let performedAction = "";
@@ -29,9 +29,9 @@ const Guests = () => {
   }, []);
 
   useEffect(() => {
-    setGuestsAusstehend(guests.filter((guest) => guest.status === "Ausstehend"));
-    setGuestsZusage(guests.filter((guest) => guest.status === "Zusage"));
-    setGuestsAbsage(guests.filter((guest) => guest.status === "Absage"));
+    setGuestsPending(guests.filter((guest) => guest.status === "Ausstehend"));
+    setGuestsConfirmation(guests.filter((guest) => guest.status === "Zusage"));
+    setGuestsCancellation(guests.filter((guest) => guest.status === "Absage"));
   }, [guests]);
 
   const getGuests = () => {
@@ -52,19 +52,19 @@ const Guests = () => {
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Ausstehend</h3>
-              <p className="card__summary">{guestsAusstehend.length}</p>
+              <p className="card__summary">{guestsPending.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Zusagen</h3>
-              <p className="card__summary">{guestsZusage.length}</p>
+              <p className="card__summary">{guestsConfirmation.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Absagen</h3>
-              <p className="card__summary">{guestsAbsage.length}</p>
+              <p className="card__summary">{guestsCancellation.length}</p>
             </div>
           </div>
         </div>
