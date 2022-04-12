@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddGuest from "./pages/AddGuest";
 import EditGuest from "./pages/EditGuest";
+import DeleteGuest from "./pages/DeleteGuest";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/guests" element={<Guests/>}/>
         <Route path="/guests/add" element={<AddGuest/>}/>
         <Route path="/guests/:id" element={<EditGuest/>}/>
+        <Route path="/guests/delete/:id" element={<DeleteGuest/>}/>
         <Route path="/budget" element={<Budget/>}/>
         <Route path="/wedding" element={<Wedding/>}/>
         <Route path="/impressum" element={<Impressum/>}/>

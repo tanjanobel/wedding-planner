@@ -35,7 +35,7 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
           {description ? <p className="card__text">Notiz: {description}</p> : null}
         </div>
         <div className="card__buttons">
-          <Link to={`/guests/delete/${id}`} state={{ firstname }} className="card__button button clear black">
+          <Link to={`/guests/delete/${id}`} state={{ firstname, lastname }} className="card__button button clear black">
             <svg className="icon small">
               <use href={sprite + "#trash"} />
             </svg>
