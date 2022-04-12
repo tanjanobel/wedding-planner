@@ -39,15 +39,15 @@ const AddTask = () => {
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
-          navigate("/tasks", { state: { performedAction: "err_add", title: task.title, isError: true } });
+          navigate("/tasks", { state: { performedAction: "err_add_task", title: task.title, isError: true } });
         }
         if (response.status === 201) {
-          navigate("/tasks", { state: { performedAction: "add", title: task.title } });
+          navigate("/tasks", { state: { performedAction: "add_task", title: task.title } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/tasks", { state: { performedAction: "err_add", title: task.title, isError: true } });
+        navigate("/tasks", { state: { performedAction: "err_add_task", title: task.title, isError: true } });
       });
   };
 

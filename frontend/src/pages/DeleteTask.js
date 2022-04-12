@@ -19,15 +19,15 @@ const DeleteTask = (props) => {
         setDeleted(true);
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
-          navigate("/tasks", { state: { performedAction: "err_delete", title: title, isError: true } });
+          navigate("/tasks", { state: { performedAction: "err_delete_task", title: title, isError: true } });
         }
         if (response.status === 204) {
-          navigate("/tasks", { state: { performedAction: "delete", title: title } });
+          navigate("/tasks", { state: { performedAction: "delete_task", title: title } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/tasks", { state: { performedAction: "err_delete", title: title, isError: true } });
+        navigate("/tasks", { state: { performedAction: "err_delete_task", title: title, isError: true } });
       });
   };
 

@@ -65,15 +65,15 @@ const EditTask = () => {
         });
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
-          navigate("/tasks", { state: { performedAction: "err_edit", title: currentTask.title, isError: true } });
+          navigate("/tasks", { state: { performedAction: "err_edit_task", title: currentTask.title, isError: true } });
         }
         if (response.status === 200) {
-          navigate("/tasks", { state: { performedAction: "edit", title: currentTask.title } });
+          navigate("/tasks", { state: { performedAction: "edit_task", title: currentTask.title } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/tasks", { state: { performedAction: "err_edit", title: currentTask.title, isError: true } });
+        navigate("/tasks", { state: { performedAction: "err_edit_task", title: currentTask.title, isError: true } });
       });
   };
 

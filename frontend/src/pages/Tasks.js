@@ -10,9 +10,9 @@ import Flashmessage from "../components/Flashmessage";
 
 const Tasks = (props) => {
   const [tasks, setTasks] = useState([]);
-  const [tasksOffen, setTasksOffen] = useState([]);
-  const [tasksInArbeit, setTasksInArbeit] = useState([]);
-  const [tasksErledigt, setTasksErledigt] = useState([]);
+  const [tasksOpen, setTasksOpen] = useState([]);
+  const [tasksInProgress, setTasksInProgress] = useState([]);
+  const [tasksDone, setTasksDone] = useState([]);
 
   const { state } = useLocation();
   let performedAction = "";
@@ -29,9 +29,9 @@ const Tasks = (props) => {
   }, []);
 
   useEffect(() => {
-    setTasksOffen(tasks.filter((task) => task.status === "Offen"));
-    setTasksInArbeit(tasks.filter((task) => task.status === "In Arbeit"));
-    setTasksErledigt(tasks.filter((task) => task.status === "Erledigt"));
+    setTasksOpen(tasks.filter((task) => task.status === "Offen"));
+    setTasksInProgress(tasks.filter((task) => task.status === "In Arbeit"));
+    setTasksDone(tasks.filter((task) => task.status === "Erledigt"));
   }, [tasks]);
 
   const getTasks = () => {
@@ -52,19 +52,19 @@ const Tasks = (props) => {
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Offen</h3>
-              <p className="card__summary">{tasksOffen.length}</p>
+              <p className="card__summary">{tasksOpen.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">In Arbeit</h3>
-              <p className="card__summary">{tasksInArbeit.length}</p>
+              <p className="card__summary">{tasksInProgress.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Erledigt</h3>
-              <p className="card__summary">{tasksErledigt.length}</p>
+              <p className="card__summary">{tasksDone.length}</p>
             </div>
           </div>
         </div>
