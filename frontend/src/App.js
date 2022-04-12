@@ -13,6 +13,8 @@ import EditTask from "./pages/EditTask";
 import DeleteTask from "./pages/DeleteTask";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AddGuest from "./pages/AddGuest";
+import EditGuest from "./pages/EditGuest";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/tasks/:id" element={<EditTask/>}/>
         <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
         <Route path="/guests" element={<Guests/>}/>
+        <Route path="/guests/add" element={<AddGuest/>}/>
+        <Route path="/guests/:id" element={<EditGuest/>}/>
         <Route path="/budget" element={<Budget/>}/>
         <Route path="/wedding" element={<Wedding/>}/>
         <Route path="/impressum" element={<Impressum/>}/>
