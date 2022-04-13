@@ -25,11 +25,11 @@ function App() {
         <Route index element={<Dashboard/>}/>
         <Route path="/tasks" element={<Tasks/>}/>
         <Route path="/tasks/add" element={<AddTask/>}/>
-        <Route path="/tasks/:id" element={<EditTask/>}/>
+        <Route path="/tasks/edit/:id" element={<EditTask/>}/>
         <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
         <Route path="/guests" element={<Guests/>}/>
         <Route path="/guests/add" element={<AddGuest/>}/>
-        <Route path="/guests/:id" element={<EditGuest/>}/>
+        <Route path="/guests/edit/:id" element={<EditGuest/>}/>
         <Route path="/guests/delete/:id" element={<DeleteGuest/>}/>
         <Route path="/budget" element={<Budget/>}/>
         <Route path="/wedding" element={<Wedding/>}/>

@@ -63,17 +63,13 @@ const EditTask = () => {
           duedate: response.data.duedate,
           budget: response.data.budget,
         });
-        if (response.status.toString().startsWith("4")) {
-          console.error(response.data);
-          navigate("/tasks", { state: { performedAction: "err_edit_task", title: currentTask.title, isError: true } });
-        }
         if (response.status === 200) {
           navigate("/tasks", { state: { performedAction: "edit_task", title: currentTask.title } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/tasks", { state: { performedAction: "err_edit_task", title: currentTask.title, isError: true } });
+        setErrors(error.response.data);
       });
   };
 

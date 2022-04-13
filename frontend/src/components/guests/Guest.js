@@ -30,18 +30,24 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
           })()}
         </div>
         <div className="card__body">
-          <h3 className="card__heading">{firstname} {lastname}</h3>
+          <h3 className="card__heading">
+            {firstname} {lastname}
+          </h3>
           <p className="card__text">Status: {status}</p>
           {description ? <p className="card__text">Notiz: {description}</p> : null}
         </div>
         <div className="card__buttons">
-          <Link to={`/guests/delete/${id}`} state={{ firstname, lastname }} className="card__button button clear black">
+          <Link
+            to={`/guests/delete/${id}`}
+            state={{ firstname, lastname }}
+            className="card__button button clear black"
+          >
             <svg className="icon small">
               <use href={sprite + "#trash"} />
             </svg>
             <span>Löschen</span>
           </Link>
-          <Link to={`/guests/${id}`} className="card__button button clear black">
+          <Link to={`/guests/edit/${id}`} className="card__button button clear black">
             <svg className="icon small">
               <use href={sprite + "#edit"} />
             </svg>

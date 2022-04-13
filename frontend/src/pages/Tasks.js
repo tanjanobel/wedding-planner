@@ -8,13 +8,14 @@ import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 import Flashmessage from "../components/Flashmessage";
 
-const Tasks = (props) => {
+const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksOpen, setTasksOpen] = useState([]);
   const [tasksInProgress, setTasksInProgress] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
 
   const { state } = useLocation();
+
   let performedAction = "";
   let isError = "";
   let title = "TASK_TITLE";
@@ -87,7 +88,7 @@ const Tasks = (props) => {
           </Link>
         </div>
 
-        {tasks.length === 0 &&
+        {tasks.length === 0 && (
           <div className="text-center">
             <svg className="icon xlarge padding-bottom-2">
               <use href={sprite + "#file"} />
@@ -95,10 +96,11 @@ const Tasks = (props) => {
             <h3>Keine Einträge vorhanden.</h3>
             <p>Füge jetzt deine erste Aufgabe hinzu.</p>
           </div>
-        }
+        )}
 
-        {tasks &&
-          tasks.map((task) => (
+        {/* Tasks open */}
+        {tasksOpen &&
+          tasksOpen.map((task) => (
             <Task
               key={task.id}
               id={task.id}
@@ -107,7 +109,36 @@ const Tasks = (props) => {
               description={task.description}
               duedate={task.duedate}
             />
-          ))}
+          ))
+        }
+
+        {/* Tasks in progress*/}
+        {tasksInProgress &&
+          tasksInProgress.map((task) => (
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              status={task.status}
+              description={task.description}
+              duedate={task.duedate}
+            />
+          ))
+        }
+
+        {/* Tasks done */}
+        {tasksDone &&
+          tasksDone.map((task) => (
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              status={task.status}
+              description={task.description}
+              duedate={task.duedate}
+            />
+          ))
+        }
       </Section>
     </>
   );

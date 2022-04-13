@@ -17,7 +17,7 @@ const AddGuest = () => {
     city: "",
     email: "",
     phone: "",
-    description: ""
+    description: "",
   });
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ const AddGuest = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const addGuest = (e) => {
     setErrors([]);
     e.preventDefault();
     const guestData = {
@@ -39,23 +39,21 @@ const AddGuest = () => {
       city: guest.city,
       email: guest.email,
       phone: guest.phone,
-      description: guest.description
+      description: guest.description,
     };
 
     axios
       .post("/api/guests/", guestData)
       .then((response) => {
-        if (response.status.toString().startsWith("4")) {
-          console.error(response.data);
-          navigate("/guests", { state: { performedAction: "err_add_guest", title: guest.title, isError: true } });
-        }
         if (response.status === 201) {
-          navigate("/guests", { state: { performedAction: "add_guest", title: guest.title } });
+          navigate("/guests", {
+            state: { performedAction: "add_guest", name: `${guest.firstname} ${guest.lastname}` },
+          });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/guests", { state: { performedAction: "err_add_guest", title: guest.title, isError: true } });
+        setErrors(error.response.data);
       });
   };
 
@@ -63,7 +61,7 @@ const AddGuest = () => {
     <>
       <SubHeader title="Gast hinzufügen" />
       <Section>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label>
             Status
             <select className="form-select" name="status" onChange={handleChange}>
@@ -132,10 +130,10 @@ const AddGuest = () => {
               </div>
             ))}
           </label>
-          <label htmlFor="email">
+          <label>
             E-Mail Adresse
             <input type="email" name="email" value={guest.email} onChange={handleChange} />
-            {errors["lastname"]?.map((error) => (
+            {errors["email"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
                   <use href={sprite + "#exclamation"} />
@@ -173,7 +171,7 @@ const AddGuest = () => {
               <Link to="/guests" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary">
+              <button type="submit" className="button primary" onClick={addGuest}>
                 Speichern
               </button>
             </div>

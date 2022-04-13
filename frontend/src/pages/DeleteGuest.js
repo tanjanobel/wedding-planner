@@ -10,7 +10,7 @@ const DeleteGuest = () => {
   let { id } = useParams();
 
   const location = useLocation();
-  const { title } = location.state;
+  const { firstname, lastname } = location.state;
 
   const deleteGuest = () => {
     axios
@@ -19,15 +19,19 @@ const DeleteGuest = () => {
         setDeleted(true);
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
-          navigate("/guests", { state: { performedAction: "err_delete_guest", title: title, isError: true } });
+          navigate("/guests", {
+            state: { performedAction: "err_delete_guest", name: `${firstname} ${lastname}`, isError: true },
+          });
         }
         if (response.status === 204) {
-          navigate("/guests", { state: { performedAction: "delete_guest", title: title } });
+          navigate("/guests", { state: { performedAction: "delete_guest", name: `${firstname} ${lastname}` } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/guests", { state: { performedAction: "err_delete_guest", title: title, isError: true } });
+        navigate("/guests", {
+          state: { performedAction: "err_delete_guest", name: `${firstname} ${lastname}`, isError: true },
+        });
       });
   };
 
@@ -36,7 +40,11 @@ const DeleteGuest = () => {
       <SubHeader title="Gast löschen" />
       <Section>
         <p className="text-center">
-          Möchtest du den Gast <b>{title}</b> wirklich löschen?
+          Möchtest du den Gast{" "}
+          <b>
+            {firstname} {lastname}
+          </b>{" "}
+          wirklich löschen?
         </p>
         <div className="grid-x align-right">
           <div className="button-group">

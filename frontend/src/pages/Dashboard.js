@@ -1,5 +1,4 @@
 import heroImage from "../images/hero.jpg";
-import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 
 const Dashboard = () => {

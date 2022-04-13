@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import sprite from "../icons/wedding-planner-sprite.svg";
-import Task from "../components/guests/Guest";
+import Guest from "../components/guests/Guest";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 import Flashmessage from "../components/Flashmessage";
@@ -11,17 +11,19 @@ import Flashmessage from "../components/Flashmessage";
 const Guests = () => {
   const [guests, setGuests] = useState([]);
   const [guestsPending, setGuestsPending] = useState([]);
-  const [guestsConfirmation, setGuestsConfirmation] = useState([]);
-  const [guestsCancellation, setGuestsCancellation] = useState([]);
+  const [guestsConfirmed, setGuestsConfirmed] = useState([]);
+  const [guestsCancelled, setGuestsCancelled] = useState([]);
 
   const { state } = useLocation();
+
   let performedAction = "";
   let isError = "";
-  let title = "GUEST_FIRSTNAME";
+  let name = "GUEST_NAME";
+
   if (state) {
     performedAction = state.performedAction;
     isError = state.isError;
-    title = state.title;
+    name = state.name;
   }
 
   useEffect(() => {
@@ -30,8 +32,8 @@ const Guests = () => {
 
   useEffect(() => {
     setGuestsPending(guests.filter((guest) => guest.status === "Ausstehend"));
-    setGuestsConfirmation(guests.filter((guest) => guest.status === "Zusage"));
-    setGuestsCancellation(guests.filter((guest) => guest.status === "Absage"));
+    setGuestsConfirmed(guests.filter((guest) => guest.status === "Zusage"));
+    setGuestsCancelled(guests.filter((guest) => guest.status === "Absage"));
   }, [guests]);
 
   const getGuests = () => {
@@ -58,13 +60,13 @@ const Guests = () => {
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Zusagen</h3>
-              <p className="card__summary">{guestsConfirmation.length}</p>
+              <p className="card__summary">{guestsConfirmed.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
             <div className="card__body text-center">
               <h3 className="card__heading">Absagen</h3>
-              <p className="card__summary">{guestsCancellation.length}</p>
+              <p className="card__summary">{guestsCancelled.length}</p>
             </div>
           </div>
         </div>
@@ -73,7 +75,7 @@ const Guests = () => {
             className="success"
             icon="#done"
             performedAction={performedAction}
-            title={title}
+            title={name}
             isError={isError}
             duration={3000}
           />
@@ -87,7 +89,7 @@ const Guests = () => {
           </Link>
         </div>
 
-        {guests.length === 0 &&
+        {guests.length === 0 && (
           <div className="text-center">
             <svg className="icon xlarge padding-bottom-2">
               <use href={sprite + "#file"} />
@@ -95,11 +97,12 @@ const Guests = () => {
             <h3>Keine Einträge vorhanden.</h3>
             <p>Füge jetzt deinen ersten Gast hinzu.</p>
           </div>
-        }
+        )}
 
-        {guests &&
-          guests.map((guest) => (
-            <Task
+        {/* Guests pending */}
+        {guestsPending &&
+          guestsPending.map((guest) => (
+            <Guest
               key={guest.id}
               id={guest.id}
               firstname={guest.firstname}
@@ -112,7 +115,46 @@ const Guests = () => {
               phone={guest.phone}
               description={guest.description}
             />
-          ))}
+          ))
+        }
+
+        {/* Guests confirmed */}
+        {guestsConfirmed &&
+          guestsConfirmed.map((guest) => (
+            <Guest
+              key={guest.id}
+              id={guest.id}
+              firstname={guest.firstname}
+              lastname={guest.lastname}
+              status={guest.status}
+              street={guest.street}
+              zip={guest.zip}
+              city={guest.city}
+              email={guest.email}
+              phone={guest.phone}
+              description={guest.description}
+            />
+          ))
+        }
+
+        {/* Guests cancelled */}
+        {guestsCancelled &&
+          guestsCancelled.map((guest) => (
+            <Guest
+              key={guest.id}
+              id={guest.id}
+              firstname={guest.firstname}
+              lastname={guest.lastname}
+              status={guest.status}
+              street={guest.street}
+              zip={guest.zip}
+              city={guest.city}
+              email={guest.email}
+              phone={guest.phone}
+              description={guest.description}
+            />
+          ))
+        }
       </Section>
     </>
   );

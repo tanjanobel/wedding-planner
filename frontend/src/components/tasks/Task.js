@@ -43,7 +43,7 @@ const Task = ({ id, title, status, description, duedate }) => {
             </svg>
             <span>Löschen</span>
           </Link>
-          <Link to={`/tasks/${id}`} className="card__button button clear black">
+          <Link to={`/tasks/edit/${id}`} className="card__button button clear black">
             <svg className="icon small">
               <use href={sprite + "#edit"} />
             </svg>

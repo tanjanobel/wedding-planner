@@ -23,8 +23,9 @@ const AddTask = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const addTask = (e) => {
     setErrors([]);
+
     e.preventDefault();
     const taskData = {
       status: task.status,
@@ -37,17 +38,13 @@ const AddTask = () => {
     axios
       .post("/api/tasks/", taskData)
       .then((response) => {
-        if (response.status.toString().startsWith("4")) {
-          console.error(response.data);
-          navigate("/tasks", { state: { performedAction: "err_add_task", title: task.title, isError: true } });
-        }
         if (response.status === 201) {
           navigate("/tasks", { state: { performedAction: "add_task", title: task.title } });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/tasks", { state: { performedAction: "err_add_task", title: task.title, isError: true } });
+        setErrors(error.response.data);
       });
   };
 
@@ -55,7 +52,7 @@ const AddTask = () => {
     <>
       <SubHeader title="Aufgabe hinzufügen" />
       <Section>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label>
             Status
             <select className="form-select" name="status" onChange={handleChange}>
@@ -117,7 +114,7 @@ const AddTask = () => {
               <Link to="/tasks" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary">
+              <button type="submit" className="button primary" onClick={addTask}>
                 Speichern
               </button>
             </div>

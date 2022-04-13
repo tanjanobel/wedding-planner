@@ -1,4 +1,4 @@
-import {Link, NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../images/logo.svg";
 import sprite from "../icons/wedding-planner-sprite.svg";
 

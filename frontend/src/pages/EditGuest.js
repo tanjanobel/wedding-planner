@@ -9,7 +9,7 @@ const EditGuest = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
-  const initialTaskState = {
+  const initialGuestState = {
     status: "",
     firstname: "",
     lastname: "",
@@ -18,11 +18,11 @@ const EditGuest = () => {
     city: "",
     email: "",
     phone: "",
-    description: ""
+    description: "",
   };
 
   let { id } = useParams();
-  const [currentGuest, setCurrentGuest] = useState(initialTaskState);
+  const [currentGuest, setCurrentGuest] = useState(initialGuestState);
 
   const countRef = useRef(0);
   useEffect(() => {
@@ -47,7 +47,7 @@ const EditGuest = () => {
           city: response.data.city,
           email: response.data.email,
           phone: response.data.phone,
-          description: response.data.description
+          description: response.data.description,
         });
       })
       .catch((e) => {
@@ -55,7 +55,7 @@ const EditGuest = () => {
       });
   };
 
-  const updateTask = (e) => {
+  const updateGuest = (e) => {
     e.preventDefault();
     setErrors([]);
     let data = {
@@ -73,19 +73,17 @@ const EditGuest = () => {
           city: response.data.city,
           email: response.data.email,
           phone: response.data.phone,
-          description: response.data.description
+          description: response.data.description,
         });
-        if (response.status.toString().startsWith("4")) {
-          console.error(response.data);
-          navigate("/guests", { state: { performedAction: "err_edit_guest", title: currentGuest.title, isError: true } });
-        }
         if (response.status === 200) {
-          navigate("/guests", { state: { performedAction: "edit_guest", title: currentGuest.title } });
+          navigate("/guests", {
+            state: { performedAction: "edit_guest", name: `${currentGuest.firstname} ${currentGuest.lastname}` },
+          });
         }
       })
       .catch((error) => {
         console.error(error);
-        navigate("/guests", { state: { performedAction: "err_edit_guest", title: currentGuest.title, isError: true } });
+        setErrors(error.response.data);
       });
   };
 
@@ -210,7 +208,7 @@ const EditGuest = () => {
               <Link to="/guests" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={updateTask}>
+              <button type="submit" className="button primary" onClick={updateGuest}>
                 Speichern
               </button>
             </div>
