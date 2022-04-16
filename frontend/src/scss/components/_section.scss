@@ -19,9 +19,12 @@
   }
 
   &__heading {
+    font-family: $heading-font-family;
+    letter-spacing: normal;
     margin-bottom: 1rem;
     position: relative;
     text-align: center;
+    text-transform: none;
 
     @include breakpoint(phablet) {
       margin-bottom: 3rem;

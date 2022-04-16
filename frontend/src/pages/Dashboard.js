@@ -1,7 +1,34 @@
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import heroImage from "../images/hero.jpg";
 import Section from "../components/Section";
+import Task from "../components/tasks/Task";
+import SubHeader from "../components/SubHeader";
 
 const Dashboard = () => {
+  const [statistics, setStatistics] = useState([
+    {
+      tasks_open_count: "",
+      tasks_total_count: "",
+      guests_confirmed_count: "",
+      guests_total_count: "",
+      next_tasks: ""
+    }
+  ]);
+
+  useEffect(() => {
+    getStatistics();
+  }, []);
+
+  const getStatistics = () => {
+    axios
+      .get("/api/dashboard")
+      .then((response) => {
+        const data = response.data;
+        setStatistics(data);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <section className="section bg-white">
@@ -24,7 +51,49 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
+      <SubHeader title="Mein grosser Tag"/>
       <Section>
+        <div className="summary grid-x grid-margin-x padding-bottom-2">
+          <div className="card cell small-12 phablet-6 desktop-3">
+            <div className="card__body text-center">
+              <h3 className="card__heading">Meine Hochzeit</h3>
+              <p className="card__summary">xxx</p>
+              <p className="card__text">Tage bis zur Hochzeit</p>
+            </div>
+          </div>
+          <div className="card cell small-12 phablet-6 desktop-3">
+            <div className="card__body text-center">
+              <h3 className="card__heading">Meine Aufgaben</h3>
+              <p className="card__summary">{statistics.tasks_open_count}</p>
+              <p className="card__text">von {statistics.tasks_total_count} erledigt</p>
+            </div>
+          </div>
+          <div className="card cell small-12 phablet-6 desktop-3">
+            <div className="card__body text-center">
+              <h3 className="card__heading">Meine Gästeliste</h3>
+              <p className="card__summary">{statistics.guests_confirmed_count}</p>
+              <p className="card__text">von {statistics.guests_total_count} zugesagt</p>
+            </div>
+          </div>
+          <div className="card cell small-12 phablet-6 desktop-3">
+            <div className="card__body text-center">
+              <h3 className="card__heading">Mein Budget</h3>
+              <p className="card__summary">xxx CHF</p>
+              <p className="card__text">von xxx CHF verfügbar</p>
+            </div>
+          </div>
+        </div>
+      </Section>
+      <Section>
+        <h2 className="section__heading">Nächste Aufgaben</h2>
+        {/*{statistics.map((item, index) => (*/}
+        {/*  <div key={index}>*/}
+        {/*    {item.next_tasks.map((task, i) => (*/}
+        {/*      <p>{task.title}</p>*/}
+        {/*    ))}*/}
+        {/*  </div>*/}
+        {/*))}*/}
+
       </Section>
     </>
   )
