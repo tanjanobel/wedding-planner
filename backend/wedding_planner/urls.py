@@ -5,6 +5,7 @@ from tasks.views import TaskView, TaskStatusView
 from guests.views import GuestView
 
 from dashboard.views import statistics
+from api.views import isAuthenticated
 
 router = routers.DefaultRouter()
 router.register(r'tasks', TaskView, 'tasks')
@@ -16,4 +17,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/dashboard', statistics),
+    path('api/auth', isAuthenticated),
+    path('api/', include('api.urls'))
 ]

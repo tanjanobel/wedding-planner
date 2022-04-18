@@ -16,26 +16,34 @@ import Footer from "./components/Footer";
 import AddGuest from "./pages/AddGuest";
 import EditGuest from "./pages/EditGuest";
 import DeleteGuest from "./pages/DeleteGuest";
+import {AuthProvider} from "./context/AuthContext";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <>
       <Header/>
-      <Routes>
-        <Route index element={<Dashboard/>}/>
-        <Route path="/tasks" element={<Tasks/>}/>
-        <Route path="/tasks/add" element={<AddTask/>}/>
-        <Route path="/tasks/edit/:id" element={<EditTask/>}/>
-        <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
-        <Route path="/guests" element={<Guests/>}/>
-        <Route path="/guests/add" element={<AddGuest/>}/>
-        <Route path="/guests/edit/:id" element={<EditGuest/>}/>
-        <Route path="/guests/delete/:id" element={<DeleteGuest/>}/>
-        <Route path="/budget" element={<Budget/>}/>
-        <Route path="/wedding" element={<Wedding/>}/>
-        <Route path="/impressum" element={<Impressum/>}/>
-        <Route path="/datenschutz" element={<Datenschutz/>}/>
-      </Routes>
+      <AuthProvider>
+
+        <Routes>
+          <Route index element={<Dashboard/>}/>
+          <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/tasks/add" element={<AddTask/>}/>
+          <Route path="/tasks/edit/:id" element={<EditTask/>}/>
+          <Route path="/tasks/delete/:id" element={<DeleteTask/>}/>
+          <Route path="/guests" element={<Guests/>}/>
+          <Route path="/guests/add" element={<AddGuest/>}/>
+          <Route path="/guests/edit/:id" element={<EditGuest/>}/>
+          <Route path="/guests/delete/:id" element={<DeleteGuest/>}/>
+          <Route path="/budget" element={<Budget/>}/>
+          <Route path="/wedding" element={<Wedding/>}/>
+          <Route path="/impressum" element={<Impressum/>}/>
+          <Route path="/datenschutz" element={<Datenschutz/>}/>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
+        </Routes>
+      </AuthProvider>
       <Footer/>
     </>
   );
