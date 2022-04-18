@@ -97,11 +97,11 @@ const Dashboard = () => {
             />
           ))}
           <div className="section__footer">
-            <Link to="/tasks" className="card__button button clear">
-              <span>Zu den Aufgaben</span>
-              <svg className="icon small">
+            <Link to="/tasks" className="card__button button clear black">
+              <svg className="icon medium">
                 <use href={sprite + "#right-arrow"} />
               </svg>
+              <span>Zu den Aufgaben</span>
             </Link>
           </div>
         </div>

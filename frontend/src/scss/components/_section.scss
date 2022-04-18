@@ -34,11 +34,5 @@
   &__footer {
     padding-top: $global-padding;
     text-align: center;
-
-    .button {
-      &.clear {
-        fill: color(primary);
-      }
-    }
   }
 }
