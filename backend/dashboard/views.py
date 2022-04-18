@@ -11,13 +11,11 @@ from tasks.models import Task
 from tasks.serializers import TaskSerializer
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def statistics(request):
-    next_tasks = Task.objects.filter(status=TaskStatus.OFFEN).order_by("duedate")
+    next_tasks = Task.objects.filter(
+        status__in=[TaskStatus.OFFEN, TaskStatus.IN_ARBEIT]).order_by("duedate")
     serializer = TaskSerializer(next_tasks, many=True)
-
-    print(serializer.data)
-
     if request.method == "GET":
         return Response(
             {
