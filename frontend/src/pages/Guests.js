@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
+import useAxios from "../utils/useAxios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import Guest from "../components/guests/Guest";
 import SubHeader from "../components/SubHeader";
@@ -15,6 +14,8 @@ const Guests = () => {
   const [guestsCancelled, setGuestsCancelled] = useState([]);
 
   const { state } = useLocation();
+
+  const api = useAxios();
 
   let performedAction = "";
   let isError = "";
@@ -37,8 +38,8 @@ const Guests = () => {
   }, [guests]);
 
   const getGuests = () => {
-    axios
-      .get("/api/guests/")
+    api
+      .get("/guests/")
       .then((response) => {
         const data = response.data;
         setGuests(data);
@@ -115,8 +116,7 @@ const Guests = () => {
               phone={guest.phone}
               description={guest.description}
             />
-          ))
-        }
+          ))}
 
         {/* Guests confirmed */}
         {guestsConfirmed &&
@@ -134,8 +134,7 @@ const Guests = () => {
               phone={guest.phone}
               description={guest.description}
             />
-          ))
-        }
+          ))}
 
         {/* Guests cancelled */}
         {guestsCancelled &&
@@ -153,8 +152,7 @@ const Guests = () => {
               phone={guest.phone}
               description={guest.description}
             />
-          ))
-        }
+          ))}
       </Section>
     </>
   );

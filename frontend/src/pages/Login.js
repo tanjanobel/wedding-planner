@@ -1,43 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import sprite from "../icons/wedding-planner-sprite.svg";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
-import axios from "axios";
-import { useNavigate } from "react-router";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import {Link} from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
-
-  const onLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "/api/token/",
-        {
-          username,
-          password,
-        },
-        { "Content-Type": "application/json" }
-      )
-      .then((response) => {
-        localStorage.setItem("wedding-planner-access-token", response.data["access"]);
-        localStorage.setItem("wedding-planner-refresh-token", response.data["refresh"]);
-        navigate("/");
-      })
-      .catch((err) => {
-        if (err.response.data["detail"]) {
-          console.log("detail error");
-          console.log(err.response.data["detail"]);
-          setErrors({ detail: [err.response.data["detail"]] });
-        } else {
-          setErrors(err.response.data);
-        }
-      });
+    let data = await loginUser(username, password);
+    if (data["detail"]) {
+      setErrors({ detail: [data["detail"]] });
+    } else {
+      setErrors(data);
+    }
   };
 
   return (
@@ -49,17 +31,18 @@ const Login = () => {
             <div className="card__body">
               <h3 className="card__heading text-center padding-bottom-2">Mit Kundenkonto anmelden</h3>
               <p className="text-center padding-bottom-1">
-                Du hast schon ein Kundenkonto?<br />
+                Du hast schon ein Kundenkonto?
+                <br />
                 Bitte gib deine E-Mail Adresse und dein Passwort ein.
               </p>
-              <form>
-                <label htmlFor="username">Benutzername</label>
-                <input type="text" id="username" onChange={(e) => setUsername(e.target.value)}/>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username">E-Mail Adresse</label>
+                <input type="text" id="username" onChange={(e) => setUsername(e.target.value)} />
 
                 {errors["detail"]?.map((error) => (
                   <div key={error} className="form-error">
                     <svg className="card__status icon small">
-                      <use href={sprite + "#exclamation"}/>
+                      <use href={sprite + "#exclamation"} />
                     </svg>
                     <span>{error}</span>
                   </div>
@@ -68,26 +51,26 @@ const Login = () => {
                 {errors["username"]?.map((error) => (
                   <div key={error} className="form-error">
                     <svg className="card__status icon small">
-                      <use href={sprite + "#exclamation"}/>
+                      <use href={sprite + "#exclamation"} />
                     </svg>
                     <span>{error}</span>
                   </div>
                 ))}
 
                 <label htmlFor="password">Passwort</label>
-                <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
 
                 {errors["password"]?.map((error) => (
                   <div key={error} className="form-error">
                     <svg className="card__status icon small">
-                      <use href={sprite + "#exclamation"}/>
+                      <use href={sprite + "#exclamation"} />
                     </svg>
                     <span>{error}</span>
                   </div>
                 ))}
 
                 <div className="form__footer text-right">
-                  <button onClick={onLogin} type="submit" className="button primary expanded">
+                  <button type="submit" className="button primary expanded">
                     Login
                   </button>
                 </div>
@@ -97,10 +80,10 @@ const Login = () => {
           <div className="card cell small-12 tablet-6">
             <div className="card__body">
               <h3 className="card__heading text-center padding-bottom-2">Ich habe noch kein Konto</h3>
-              <p className="text-center padding-bottom-1">
-                Lege jetzt in wenigen Schritten ein Kundenkonto an.
-              </p>
-              <Link to="/register" className="button hollow expanded">Jetzt registrieren</Link>
+              <p className="text-center padding-bottom-1">Lege jetzt in wenigen Schritten ein Kundenkonto an.</p>
+              <Link to="/register" className="button hollow expanded">
+                Jetzt registrieren
+              </Link>
             </div>
           </div>
         </div>
