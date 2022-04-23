@@ -1,46 +1,13 @@
-import {NavLink} from "react-router-dom";
+import { useEffect, useContext } from "react";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../images/logo.svg";
 import sprite from "../icons/wedding-planner-sprite.svg";
-import {useEffect, useState} from "react";
-import axios from "axios";
-import {Link} from "react-router-dom";
-import {useNavigate} from "react-router";
+import AuthContext from "../context/AuthContext";
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState("");
+  const { user, logoutUser } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-
-  const checkAuthStatus = () => {
-    let config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("wedding-planner-access-token")}`,
-      },
-    };
-    axios
-      .get("/api/auth", config)
-      .then((response) => {
-        setIsAuthenticated(true);
-        setUsername(response.data["username"]);
-      })
-      .catch((err) => {
-        setIsAuthenticated(false);
-        setUsername("");
-      });
-  };
-
-  const logoutUser = () => {
-    setIsAuthenticated(null);
-    setUsername(null);
-    localStorage.removeItem("wedding-planner-access-token");
-    localStorage.removeItem("wedding-planner-refresh-token");
-    navigate("/");
-  };
-
-  useEffect(() => {
-    checkAuthStatus();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -52,20 +19,22 @@ const Header = () => {
                 <span>Happily ever after...</span>
               </div>
               <div className="header__user cell small-12 tablet-6">
-                {isAuthenticated ? (
+                {user ? (
                   <>
                     <Link to="/profile">
-                      <svg className='icon medium'>
-                        <use href={sprite + "#user"}/>
+                      <svg className="icon medium">
+                        <use href={sprite + "#user"} />
                       </svg>
-                      <span className="header__user">{username}</span>
+                      <span className="header__user">{user.first_name}</span>
                     </Link>
-                    <button onClick={logoutUser} className="button clear black small">(Abmelden)</button>
+                    <button onClick={logoutUser} className="button clear black small">
+                      (Abmelden)
+                    </button>
                   </>
                 ) : (
                   <Link to="/login" className="button clear black">
-                    <svg className='icon medium'>
-                      <use href={sprite + "#enter"}/>
+                    <svg className="icon medium">
+                      <use href={sprite + "#enter"} />
                     </svg>
                     <span>Anmelden</span>
                   </Link>
@@ -78,10 +47,10 @@ const Header = () => {
           <div className="container large">
             <div className="header__logo">
               <a href="/">
-                <img src={logo} alt="Wedding Planner"/>
+                <img src={logo} alt="Wedding Planner" />
               </a>
             </div>
-            <input type="checkbox" className="header__toggle" id="menu-toggle"/>
+            <input type="checkbox" className="header__toggle" id="menu-toggle" />
             <label htmlFor="menu-toggle" className="header__hamburger hide-for-tablet">
               <span></span>
             </label>
@@ -112,21 +81,23 @@ const Header = () => {
                     Hochzeit
                   </NavLink>
                 </li>
-                {isAuthenticated ? (
+                {user ? (
                   <li className="hide-for-tablet">
                     <Link to="/profile">
-                      <svg className='icon medium'>
-                        <use href={sprite + "#user"}/>
+                      <svg className="icon medium">
+                        <use href={sprite + "#user"} />
                       </svg>
-                      <span className="header__user">{username}</span>
+                      <span className="header__user">{user.username}</span>
                     </Link>
-                    <button onClick={logoutUser} className="button clear black small">(Abmelden)</button>
+                    <button onClick={logoutUser} className="button clear black small">
+                      (Abmelden)
+                    </button>
                   </li>
                 ) : (
                   <li className="hide-for-tablet">
                     <Link to="/login" className="button clear black padding-left-0">
-                      <svg className='icon medium'>
-                        <use href={sprite + "#enter"}/>
+                      <svg className="icon medium">
+                        <use href={sprite + "#enter"} />
                       </svg>
                       <span>Anmelden</span>
                     </Link>

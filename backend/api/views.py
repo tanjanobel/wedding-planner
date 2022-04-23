@@ -29,15 +29,12 @@ def getRoutes(request):
     return Response(routes)
 
 
-# Test View
 @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
 def isAuthenticated(request):
     if request.method == 'GET':
-
         if "Authorization" not in request.headers.keys():
             return Response({"detail": "No token provided"}, status.HTTP_401_UNAUTHORIZED)
-            
         jwtToken = request.headers["Authorization"].split()[1]
         payload = jwt.decode(jwtToken, 
             "django-insecure-#9j3dw!%gawgx(#5^ar$+m67q23x+ql3=vw*79e2n+8w_#tsh#",

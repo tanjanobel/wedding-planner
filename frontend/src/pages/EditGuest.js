@@ -26,15 +26,15 @@ const EditGuest = () => {
 
   const countRef = useRef(0);
   useEffect(() => {
-    retrieveTask();
+    retrieveGuest();
   }, [countRef]);
 
-  const handleTaskChange = (e) => {
+  const handleGuestChange = (e) => {
     const { name, value } = e.target;
     setCurrentGuest({ ...currentGuest, [name]: value });
   };
 
-  const retrieveTask = () => {
+  const retrieveGuest = () => {
     axios
       .get(`/api/guests/${id}/`)
       .then((response) => {
@@ -94,7 +94,7 @@ const EditGuest = () => {
         <form>
           <label>
             Status
-            <select className="form-select" name="status" onChange={handleTaskChange}>
+            <select className="form-select" name="status" onChange={handleGuestChange}>
               <option>Ausstehend</option>
               <option>Zusage</option>
               <option>Absage</option>
@@ -102,7 +102,7 @@ const EditGuest = () => {
           </label>
           <label>
             Vorname (Pflichtfeld)
-            <input type="text" name="firstname" value={currentGuest.firstname} onChange={handleTaskChange} />
+            <input type="text" name="firstname" value={currentGuest.firstname} onChange={handleGuestChange} />
             {errors["firstname"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -114,7 +114,7 @@ const EditGuest = () => {
           </label>
           <label>
             Nachname (Pflichtfeld)
-            <input type="text" name="lastname" value={currentGuest.lastname} onChange={handleTaskChange} />
+            <input type="text" name="lastname" value={currentGuest.lastname} onChange={handleGuestChange} />
             {errors["lastname"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -126,7 +126,7 @@ const EditGuest = () => {
           </label>
           <label>
             Strasse
-            <input type="text" name="street" value={currentGuest.street} onChange={handleTaskChange} />
+            <input type="text" name="street" value={currentGuest.street} onChange={handleGuestChange} />
             {errors["street"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -138,7 +138,7 @@ const EditGuest = () => {
           </label>
           <label>
             PLZ
-            <input type="number" name="zip" value={currentGuest.zip} onChange={handleTaskChange} />
+            <input type="number" name="zip" value={currentGuest.zip} onChange={handleGuestChange} />
             {errors["zip"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -150,7 +150,7 @@ const EditGuest = () => {
           </label>
           <label>
             Ort
-            <input type="text" name="city" value={currentGuest.city} onChange={handleTaskChange} />
+            <input type="text" name="city" value={currentGuest.city} onChange={handleGuestChange} />
             {errors["city"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -162,7 +162,7 @@ const EditGuest = () => {
           </label>
           <label>
             E-Mail Adresse
-            <input type="email" name="email" value={currentGuest.email} onChange={handleTaskChange} />
+            <input type="email" name="email" value={currentGuest.email} onChange={handleGuestChange} />
             {errors["email"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -174,7 +174,7 @@ const EditGuest = () => {
           </label>
           <label>
             Telefonnummer
-            <input type="tel" name="phone" value={currentGuest.phone} onChange={handleTaskChange} />
+            <input type="tel" name="phone" value={currentGuest.phone} onChange={handleGuestChange} />
             {errors["phone"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -191,7 +191,7 @@ const EditGuest = () => {
               cols="40"
               rows="5"
               value={currentGuest.description}
-              onChange={handleTaskChange}
+              onChange={handleGuestChange}
             />
             {errors["description"]?.map((error) => (
               <div key={error} className="form-error">
