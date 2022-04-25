@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Plane deine Aufgaben",
+    "description": "Erstelle eine Liste aller Aufgaben, die bis zur Hochzeit zu erledigen sind.",
+    "icon": "to-do-list"
+  },
+  {
+    "title": "Behalte dein Budget im Blick",
+    "description": "Mit dem Budgetplaner siehst du sofort, welche Kosten noch auf dich zukommen und was du bereits bezahlt hast.",
+    "icon": "team"
+  },
+  {
+    "title": "Erstelle deine Gästeliste",
+    "description": "Mit der Gästeliste hast du den Überblick, wer zu deiner Hochzeit kommt und wer nicht.",
+    "icon": "money-bag"
+  }
+]

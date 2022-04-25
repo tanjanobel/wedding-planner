@@ -1,0 +1,21 @@
+.service {
+  &__heading {
+    font-size: rem-calc(18px);
+    font-weight: 600;
+  }
+
+  &__icon {
+    fill: color(primary);
+    padding-bottom: $global-padding;
+
+    .icon {
+      height: 3rem;
+      width: 3rem;
+
+      @include breakpoint(tablet) {
+        height: 3.6rem;
+        width: 3.6rem;
+      }
+    }
+  }
+}

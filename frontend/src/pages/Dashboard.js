@@ -6,7 +6,9 @@ import heroImage from "../images/hero.jpg";
 import Section from "../components/Section";
 import Task from "../components/tasks/Task";
 import SubHeader from "../components/SubHeader";
+import Service from "../components/services/Service";
 import AuthContext from "../context/AuthContext";
+import data from "../data/services.json";
 
 const Dashboard = () => {
   const {user} = useContext(AuthContext);
@@ -18,6 +20,8 @@ const Dashboard = () => {
     guests_total_count: "",
     next_tasks: [],
   });
+
+  const services = data;
 
   useEffect(() => {
     getStatistics();
@@ -93,28 +97,38 @@ const Dashboard = () => {
           </Section>
         </>
         :
-        <section className="section bg-white">
-          <div className="hero">
-            <div className="hero__content">
-              <h2>
-                Plane <span>deine Hochzeit</span> online
-              </h2>
-              <p>
-                Mit unserem digitalen Hochzeitsplaner planst du deinen grossen Tag ganz einfach und ohne grossen
-                Aufwand.
-                <br/>
-                Erstelle eine Liste mit den zu erledigenden Aufgaben, erfasse alle Gäste und habe dein Budget stets in
-                Auge.
-              </p>
-              <div className="hero__footer">
-                <Link to="/login" className="button primary large">Jetzt loslegen</Link>
+        <>
+          <section className="section bg-white">
+            <div className="hero">
+              <div className="hero__content">
+                <h2>
+                  Plane <span>deine Hochzeit</span> online
+                </h2>
+                <p>
+                  Mit unserem digitalen Hochzeitsplaner planst du deinen grossen Tag ganz einfach und ohne grossen
+                  Aufwand.
+                  <br/>
+                  Erstelle eine Liste mit den zu erledigenden Aufgaben, erfasse alle Gäste und habe dein Budget stets
+                  in
+                  Auge.
+                </p>
+                <div className="hero__footer">
+                  <Link to="/login" className="button primary large">Jetzt loslegen</Link>
+                </div>
+              </div>
+              <div className="hero__image" style={{backgroundImage: `url(${heroImage})`}}>
+                <img src={heroImage} alt={heroImage.title}/>
               </div>
             </div>
-            <div className="hero__image" style={{backgroundImage: `url(${heroImage})`}}>
-              <img src={heroImage} alt={heroImage.title}/>
+          </section>
+          <Section>
+            <div className="grid-x grid-margin-x grid-margin-y">
+            {services.map((service, i) => (
+              <Service key={i} {...service} />
+              ))}
             </div>
-          </div>
-        </section>
+          </Section>
+        </>
       }
     </>
   );
