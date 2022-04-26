@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import sprite from "../icons/wedding-planner-sprite.svg";
+import dashboardMockup from "../images/mockup-dashboard.jpg";
 import heroImage from "../images/hero.jpg";
 import Section from "../components/Section";
 import Task from "../components/tasks/Task";
@@ -126,6 +127,21 @@ const Dashboard = () => {
             {services.map((service, i) => (
               <Service key={i} {...service} />
               ))}
+            </div>
+          </Section>
+          <Section className="bg-white">
+            <div className="grid-x grid-margin-x grid-margin-y align-middle">
+              <div className="cell small-12 desktop-6">
+                <h2 className="section__subheading">Behalte den Überblick</h2>
+                <p>
+                  Wie viele Aufgaben sind noch zu erledigen? Habe ich an alle Gäste gedacht? Ist noch genügend Budget
+                  vorhanden? - Alle diese Fragen werden dir mit unserem digitalen Hochzeitsplaner auf einen Blick
+                  beantwortet.
+                </p>
+              </div>
+              <div className="cell small-12 desktop-6">
+                <img src={dashboardMockup} alt="Dashboard"/>
+              </div>
             </div>
           </Section>
         </>

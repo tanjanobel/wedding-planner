@@ -31,6 +31,27 @@
     }
   }
 
+  &__subheading {
+    font-family: $body-font-family;
+    font-weight: 600;
+    letter-spacing: normal;
+    position: relative;
+    text-transform: none;
+    z-index: 1;
+
+    &::before {
+      @include fluid(height, 8px, 12px);
+      @include fluid(width, 80px, 140px);
+      @include fluid(bottom, 2px, 4px);
+      content: "";
+      position: absolute;
+      left: -2px;
+      transform: skew(-12deg);
+      background: rgba(color(primary), 0.5);
+      z-index: -1;
+    }
+  }
+
   &__footer {
     padding-top: $global-padding;
     text-align: center;
