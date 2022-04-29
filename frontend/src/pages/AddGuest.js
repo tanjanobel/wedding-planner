@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../utils/useAxios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
@@ -19,6 +19,8 @@ const AddGuest = () => {
     phone: "",
     description: "",
   });
+
+  const api = useAxios();
 
   const handleChange = (e) => {
     setGuest({
@@ -42,8 +44,8 @@ const AddGuest = () => {
       description: guest.description,
     };
 
-    axios
-      .post("/api/guests/", guestData)
+    api
+      .post("/guests", guestData)
       .then((response) => {
         if (response.status === 201) {
           navigate("/guests", {
