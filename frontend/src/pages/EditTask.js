@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../utils/useAxios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
@@ -17,6 +17,8 @@ const EditTask = () => {
     budget: "",
   };
 
+  const api = useAxios();
+
   let { id } = useParams();
   const [currentTask, setCurrentTask] = useState(initialTaskState);
 
@@ -31,8 +33,8 @@ const EditTask = () => {
   };
 
   const retrieveTask = () => {
-    axios
-      .get(`/api/tasks/${id}/`)
+    api
+      .get(`/tasks/${id}`)
       .then((response) => {
         setCurrentTask({
           status: response.data.status,
@@ -53,8 +55,8 @@ const EditTask = () => {
     let data = {
       ...currentTask,
     };
-    axios
-      .put(`/api/tasks/${id}/`, data)
+    api
+      .put(`/tasks/${id}`, data)
       .then((response) => {
         setCurrentTask({
           status: response.data.status,

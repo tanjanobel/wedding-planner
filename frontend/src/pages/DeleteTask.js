@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../utils/useAxios";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 
@@ -11,9 +11,11 @@ const DeleteTask = (props) => {
   const location = useLocation();
   const { title } = location.state;
 
+  const api = useAxios();
+
   const deleteTask = () => {
-    axios
-      .delete(`/api/tasks/${id}/`)
+    api
+      .delete(`/tasks/${id}`)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
