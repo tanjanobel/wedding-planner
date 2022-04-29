@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
+import useAxios from "../utils/useAxios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import Task from "../components/tasks/Task";
 import SubHeader from "../components/SubHeader";
@@ -15,6 +14,8 @@ const Tasks = () => {
   const [tasksDone, setTasksDone] = useState([]);
 
   const { state } = useLocation();
+
+  const api = useAxios();
 
   let performedAction = "";
   let isError = "";
@@ -36,8 +37,8 @@ const Tasks = () => {
   }, [tasks]);
 
   const getTasks = () => {
-    axios
-      .get("/api/tasks/")
+    api
+      .get("/tasks")
       .then((response) => {
         const data = response.data;
         setTasks(data);
@@ -109,8 +110,7 @@ const Tasks = () => {
               description={task.description}
               duedate={task.duedate}
             />
-          ))
-        }
+          ))}
 
         {/* Tasks in progress*/}
         {tasksInProgress &&
@@ -123,8 +123,7 @@ const Tasks = () => {
               description={task.description}
               duedate={task.duedate}
             />
-          ))
-        }
+          ))}
 
         {/* Tasks done */}
         {tasksDone &&
@@ -137,8 +136,7 @@ const Tasks = () => {
               description={task.description}
               duedate={task.duedate}
             />
-          ))
-        }
+          ))}
       </Section>
     </>
   );
