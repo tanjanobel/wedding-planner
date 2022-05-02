@@ -21,6 +21,7 @@ import Register from "./pages/Register";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import Profile from "./pages/Profile";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/*" element={<PageNotFound />} />
 
           {/* Private Routes */}
           <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
