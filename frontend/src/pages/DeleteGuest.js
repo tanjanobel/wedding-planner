@@ -15,7 +15,11 @@ const DeleteGuest = () => {
 
   const deleteGuest = () => {
     api
-      .delete(`/guests/${id}`)
+      .delete("/guests", {
+        data: {
+          id: id
+        }
+      })
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
@@ -23,7 +27,7 @@ const DeleteGuest = () => {
             state: { performedAction: "err_delete_guest", name: `${firstname} ${lastname}`, isError: true },
           });
         }
-        if (response.status === 204) {
+        if (response.status === 200) {
           navigate("/guests", { state: { performedAction: "delete_guest", name: `${firstname} ${lastname}` } });
         }
       })
