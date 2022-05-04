@@ -24,6 +24,7 @@ import Profile from "./pages/Profile";
 import PageNotFound from "./pages/PageNotFound";
 import AddExpense from "./pages/AddExpense";
 import EditExpense from "./pages/EditExpense";
+import DeleteExpense from "./pages/DeleteExpense";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/budget" element={<PrivateRoute><Budget /></PrivateRoute>} />
           <Route path="/budget/add" element={<PrivateRoute><AddExpense /></PrivateRoute>} />
           <Route path="/budget/edit/:id" element={<PrivateRoute><EditExpense /></PrivateRoute>} />
+          <Route path="/budget/delete/:id" element={<PrivateRoute><DeleteExpense /></PrivateRoute>} />
           <Route path="/wedding" element={<PrivateRoute><Wedding /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
         </Routes>
