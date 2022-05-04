@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api',
     'tasks',
     'guests',
+    'budget',
     'dashboard'
 
 ]
