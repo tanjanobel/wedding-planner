@@ -78,7 +78,7 @@ const Expenses = () => {
           />
         )}
         <div className="card__button text-right padding-bottom-2">
-          <Link to="/expenses/add" className="button primary">
+          <Link to="/budget/add" className="button primary">
             <svg className="icon small">
               <use href={sprite + "#plus"} />
             </svg>
