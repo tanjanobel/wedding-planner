@@ -17,6 +17,13 @@ const Flashmessage = (props) => {
     err_add_guest: `Gast ${props.title} konnte nicht hinzugefügt werden.`,
     err_delete_guest: `Gast ${props.title} konnte nicht gelöscht werden.`,
     err_edit_guest: `Gast ${props.title} konnte nicht gespeichert werden.`,
+
+    add_expense: `Ausgabe ${props.title} erfolgreich hinzugefügt.`,
+    delete_expense: `Ausgabe ${props.title} erfolgreich gelöscht.`,
+    edit_expense: `Ausgabe ${props.title} erfolgreich gespeichert.`,
+    err_add_expense: `Ausgabe ${props.title} konnte nicht hinzugefügt werden.`,
+    err_delete_expense: `Ausgabe ${props.title} konnte nicht gelöscht werden.`,
+    err_edit_expense: `Ausgabe ${props.title} konnte nicht gespeichert werden.`,
   };
 
   let text = messages[props.performedAction];

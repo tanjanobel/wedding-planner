@@ -22,6 +22,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import Profile from "./pages/Profile";
 import PageNotFound from "./pages/PageNotFound";
+import AddExpense from "./pages/AddExpense";
+import EditExpense from "./pages/EditExpense";
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
           <Route path="/guests/edit/:id" element={<PrivateRoute><EditGuest /></PrivateRoute>} />
           <Route path="/guests/delete/:id" element={<PrivateRoute><DeleteGuest /></PrivateRoute>} />
           <Route path="/budget" element={<PrivateRoute><Budget /></PrivateRoute>} />
+          <Route path="/budget/add" element={<PrivateRoute><AddExpense /></PrivateRoute>} />
+          <Route path="/budget/edit/:id" element={<PrivateRoute><EditExpense /></PrivateRoute>} />
           <Route path="/wedding" element={<PrivateRoute><Wedding /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
         </Routes>
