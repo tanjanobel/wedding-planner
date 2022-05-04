@@ -1,29 +1,23 @@
 import { Link } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 
-const Guest = ({ id, status, firstname, lastname, description }) => {
+const Expense = ({ id, title, status, budget, description }) => {
   return (
     <>
-      <div className="card" key={id} id={id} title={`${firstname} ${lastname}`}>
+      <div className="card" key={id} id={id} title={title}>
         <div className="card__meta">
           {(() => {
             switch (status) {
-              case "Absage":
+              case "Bezahlt":
                 return (
                   <svg className="card__status icon large">
-                    <use href={sprite + "#refuse"} />
-                  </svg>
-                );
-              case "Zusage":
-                return (
-                  <svg className="card__status icon large">
-                    <use href={sprite + "#done"} />
+                    <use href={sprite + "#done"}/>
                   </svg>
                 );
               default:
                 return (
                   <svg className="card__status icon large">
-                    <use href={sprite + "#open"} />
+                    <use href={sprite + "#open"}/>
                   </svg>
                 );
             }
@@ -32,9 +26,10 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
         <div className="card__content">
           <div className="card__header">
             <div className="card__title">
-              <h3 className="card__heading">
-                {firstname} {lastname}
-              </h3>
+              <h3 className="card__heading">{title}</h3>
+            </div>
+            <div className="card__budget tablet-text-right">
+              <span className="card__heading">{budget} CHF</span>
             </div>
           </div>
           <div className="card__body">
@@ -43,17 +38,13 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
               {description ? <p>Notiz: {description}</p> : null}
             </div>
             <div className="card__buttons">
-              <Link
-                to={`/guests/delete/${id}`}
-                state={{firstname, lastname}}
-                className="card__button button clear black"
-              >
+              <Link to={`/budget/delete/${id}`} state={{title}} className="card__button button clear black">
                 <svg className="icon small">
                   <use href={sprite + "#trash"}/>
                 </svg>
                 <span>Löschen</span>
               </Link>
-              <Link to={`/guests/edit/${id}`} className="card__button button clear black">
+              <Link to={`/budget/edit/${id}`} className="card__button button clear black">
                 <svg className="icon small">
                   <use href={sprite + "#edit"}/>
                 </svg>
@@ -67,4 +58,4 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
   );
 };
 
-export default Guest;
+export default Expense;

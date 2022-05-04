@@ -51,19 +51,19 @@ const Tasks = () => {
       <Section>
         <div className="summary grid-x grid-margin-x padding-bottom-2">
           <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
+            <div className="card__content text-center">
               <h3 className="card__heading">Offen</h3>
               <p className="card__summary">{tasksOpen.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
+            <div className="card__content text-center">
               <h3 className="card__heading">In Arbeit</h3>
               <p className="card__summary">{tasksInProgress.length}</p>
             </div>
           </div>
           <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
+            <div className="card__content text-center">
               <h3 className="card__heading">Erledigt</h3>
               <p className="card__summary">{tasksDone.length}</p>
             </div>

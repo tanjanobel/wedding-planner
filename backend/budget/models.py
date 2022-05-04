@@ -31,8 +31,6 @@ class Budget(models.Model):
         verbose_name="Notizen",
     )
     budget = models.DecimalField(
-        blank=True,
-        null=True,
         max_digits=6,
         decimal_places=2,
         verbose_name="Budget",
