@@ -46,31 +46,31 @@ const Dashboard = () => {
           <Section>
             <div className="summary grid-x grid-margin-x padding-bottom-3">
               <div className="card cell small-12 phablet-6 desktop-3">
-                <div className="card__body text-center">
+                <div className="card__content text-center">
                   <h3 className="card__heading">Meine Hochzeit</h3>
                   <p className="card__summary">xxx</p>
-                  <p className="card__text">Tage bis zur Hochzeit</p>
+                  <p className="card__description">Tage bis zur Hochzeit</p>
                 </div>
               </div>
               <div className="card cell small-12 phablet-6 desktop-3">
-                <div className="card__body text-center">
+                <div className="card__content text-center">
                   <h3 className="card__heading">Meine Aufgaben</h3>
                   <p className="card__summary">{statistics.tasks_open_count}</p>
-                  <p className="card__text">von {statistics.tasks_total_count} erledigt</p>
+                  <p className="card__description">von {statistics.tasks_total_count} erledigt</p>
                 </div>
               </div>
               <div className="card cell small-12 phablet-6 desktop-3">
-                <div className="card__body text-center">
+                <div className="card__content text-center">
                   <h3 className="card__heading">Meine Gästeliste</h3>
                   <p className="card__summary">{statistics.guests_confirmed_count}</p>
-                  <p className="card__text">von {statistics.guests_total_count} zugesagt</p>
+                  <p className="card__description">von {statistics.guests_total_count} zugesagt</p>
                 </div>
               </div>
               <div className="card cell small-12 phablet-6 desktop-3">
-                <div className="card__body text-center">
+                <div className="card__content text-center">
                   <h3 className="card__heading">Mein Budget</h3>
                   <p className="card__summary">xxx CHF</p>
-                  <p className="card__text">von xxx CHF verfügbar</p>
+                  <p className="card__description">von xxx CHF verfügbar</p>
                 </div>
               </div>
             </div>

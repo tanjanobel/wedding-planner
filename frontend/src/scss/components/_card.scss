@@ -26,39 +26,48 @@
     }
   }
 
-  &__buttons {
-    padding-top: $global-padding;
+  &__content {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+  }
 
-    & > :first-child {
-      padding-right: $global-padding;
-    }
+  &__title {
+    flex: 1 1 100%;
 
     @include breakpoint(tablet) {
-      align-items: flex-end;
-      display: flex;
-      flex: 0 0 auto;
-      justify-content: flex-end;
-      padding-top: 0;
+      flex: 1 1 0;
     }
   }
 
-  &__button {
-    color: color(black);
-    line-height: 1;
-    padding: 0;
+  &__budget {
+    flex: 1 1 100%;
+    font-family: $body-font-family;
+    font-size: rem-calc(16px);
+    font-weight: 600;
+    margin-bottom: 0.5 * $global-margin;
+
+    @include breakpoint(tablet) {
+      flex: 0 0 auto;
+      font-size: rem-calc(18px);
+      padding-left: 2 * $global-padding;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+    }
   }
 
   &__body {
-    //padding-bottom: $global-padding;
-
-    @include breakpoint(tablet) {
-      //flex: 1 1 auto;
-      //padding: 0 2 * $global-padding;
-      display: flex;
-      flex: 1 1 100%;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
   }
 
   &__heading {
@@ -72,12 +81,38 @@
   }
 
   &__text {
-    color: color(black);
-    font-size: 14px;
-    margin-bottom: 0.5 * $global-margin;
+    flex: 0 0 50%;
 
-    &:last-of-type {
-      margin-bottom: 0;
+    p {
+      color: color(black);
+      font-size: 14px;
+      margin-bottom: 0.5 * $global-margin;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    color: color(black);
+    line-height: 1;
+    padding: 0;
+  }
+
+  &__buttons {
+    display: flex;
+    flex: 1 1 100%;
+    padding-top: $global-padding;
+
+    & > :first-child {
+      padding-right: $global-padding;
+    }
+
+    @include breakpoint(tablet) {
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-top: 0;
     }
   }
 
@@ -96,6 +131,10 @@
   &__summary {
     font-size: rem-calc(26px);
     font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  &__description {
     margin-bottom: 0;
   }
 }

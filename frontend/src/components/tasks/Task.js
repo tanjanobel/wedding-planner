@@ -30,25 +30,33 @@ const Task = ({ id, title, status, description, duedate }) => {
             }
           })()}
         </div>
-        <div className="card__body">
-          <h3 className="card__heading">{title}</h3>
-          <p className="card__text">Status: {status}</p>
-          {description ? <p className="card__text">Notiz: {description}</p> : null}
-          {duedate ? <p className="card__text">Fällig am: {moment(duedate).format("DD.MM.YYYY")}</p> : null}
-        </div>
-        <div className="card__buttons">
-          <Link to={`/tasks/delete/${id}`} state={{ title }} className="card__button button clear black">
-            <svg className="icon small">
-              <use href={sprite + "#trash"} />
-            </svg>
-            <span>Löschen</span>
-          </Link>
-          <Link to={`/tasks/edit/${id}`} className="card__button button clear black">
-            <svg className="icon small">
-              <use href={sprite + "#edit"} />
-            </svg>
-            <span>Bearbeiten</span>
-          </Link>
+        <div className="card__content">
+          <div className="card__header">
+            <div className="card__title">
+              <h3 className="card__heading">{title}</h3>
+            </div>
+          </div>
+          <div className="card__body">
+            <div className="card__text">
+              <p>Status: {status}</p>
+              {description ? <p>Notiz: {description}</p> : null}
+              {duedate ? <p>Fällig am: {moment(duedate).format("DD.MM.YYYY")}</p> : null}
+            </div>
+            <div className="card__buttons">
+              <Link to={`/tasks/delete/${id}`} state={{title}} className="card__button button clear black">
+                <svg className="icon small">
+                  <use href={sprite + "#trash"}/>
+                </svg>
+                <span>Löschen</span>
+              </Link>
+              <Link to={`/tasks/edit/${id}`} className="card__button button clear black">
+                <svg className="icon small">
+                  <use href={sprite + "#edit"}/>
+                </svg>
+                <span>Bearbeiten</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>
