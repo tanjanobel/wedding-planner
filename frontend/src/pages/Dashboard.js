@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import sprite from "../icons/wedding-planner-sprite.svg";
 import dashboardMockup from "../images/mockup-dashboard.jpg";
 import heroImage from "../images/hero.jpg";
+import AuthContext from "../context/AuthContext";
+import data from "../data/services.json";
+import useAxios from "../utils/useAxios";
 import Section from "../components/Section";
 import Task from "../components/tasks/Task";
 import SubHeader from "../components/SubHeader";
 import Service from "../components/services/Service";
-import AuthContext from "../context/AuthContext";
-import data from "../data/services.json";
 
 const Dashboard = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [statistics, setStatistics] = useState({
     tasks_open_count: "",
@@ -24,13 +24,15 @@ const Dashboard = () => {
 
   const services = data;
 
+  const api = useAxios();
+
   useEffect(() => {
     getStatistics();
   }, []);
 
   const getStatistics = () => {
-    axios
-      .get("/api/dashboard")
+    api
+      .get("/dashboard")
       .then((response) => {
         const data = response.data;
         setStatistics(data);
@@ -39,10 +41,9 @@ const Dashboard = () => {
   };
   return (
     <>
-      {user
-        ?
+      {user ? (
         <>
-          <SubHeader title="Mein grosser Tag"/>
+          <SubHeader title="Mein grosser Tag" />
           <Section>
             <div className="summary grid-x grid-margin-x padding-bottom-3">
               <div className="card cell small-12 phablet-6 desktop-3">
@@ -55,8 +56,8 @@ const Dashboard = () => {
               <div className="card cell small-12 phablet-6 desktop-3">
                 <div className="card__content text-center">
                   <h3 className="card__heading">Meine Aufgaben</h3>
-                  <p className="card__summary">{statistics.tasks_open_count}</p>
-                  <p className="card__description">von {statistics.tasks_total_count} erledigt</p>
+                  <p className="card__summary">{statistics.tasks_done_count}</p>
+                  <p className="card__text">von {statistics.tasks_total_count} erledigt</p>
                 </div>
               </div>
               <div className="card cell small-12 phablet-6 desktop-3">
@@ -89,7 +90,7 @@ const Dashboard = () => {
               <div className="section__footer">
                 <Link to="/tasks" className="card__button button clear black">
                   <svg className="icon medium">
-                    <use href={sprite + "#right-arrow"}/>
+                    <use href={sprite + "#right-arrow"} />
                   </svg>
                   <span>Zu den Aufgaben</span>
                 </Link>
@@ -97,7 +98,7 @@ const Dashboard = () => {
             </div>
           </Section>
         </>
-        :
+      ) : (
         <>
           <section className="section bg-white">
             <div className="hero">
@@ -108,24 +109,25 @@ const Dashboard = () => {
                 <p>
                   Mit unserem digitalen Hochzeitsplaner planst du deinen grossen Tag ganz einfach und ohne grossen
                   Aufwand.
-                  <br/>
+                  <br />
                   Erstelle eine Liste mit den zu erledigenden Aufgaben, erfasse alle Gäste und habe dein Budget stets
-                  in
-                  Auge.
+                  in Auge.
                 </p>
                 <div className="hero__footer">
-                  <Link to="/login" className="button primary large">Jetzt loslegen</Link>
+                  <Link to="/login" className="button primary large">
+                    Jetzt loslegen
+                  </Link>
                 </div>
               </div>
-              <div className="hero__image" style={{backgroundImage: `url(${heroImage})`}}>
-                <img src={heroImage} alt={heroImage.title}/>
+              <div className="hero__image" style={{ backgroundImage: `url(${heroImage})` }}>
+                <img src={heroImage} alt={heroImage.title} />
               </div>
             </div>
           </section>
           <Section>
             <div className="grid-x grid-margin-x grid-margin-y">
-            {services.map((service, i) => (
-              <Service key={i} {...service} />
+              {services.map((service, i) => (
+                <Service key={i} {...service} />
               ))}
             </div>
           </Section>
@@ -140,12 +142,12 @@ const Dashboard = () => {
                 </p>
               </div>
               <div className="cell small-12 desktop-6">
-                <img src={dashboardMockup} alt="Dashboard"/>
+                <img src={dashboardMockup} alt="Dashboard" />
               </div>
             </div>
           </Section>
         </>
-      }
+      )}
     </>
   );
 };

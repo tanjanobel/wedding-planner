@@ -39,7 +39,7 @@ const Guests = () => {
 
   const getGuests = () => {
     api
-      .get("/guests/")
+      .get("/guests")
       .then((response) => {
         const data = response.data;
         setGuests(data);

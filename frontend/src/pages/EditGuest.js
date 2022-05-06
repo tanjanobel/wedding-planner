@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import sprite from "../icons/wedding-planner-sprite.svg";
+import useAxios from "../utils/useAxios";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 
@@ -21,6 +21,8 @@ const EditGuest = () => {
     description: "",
   };
 
+  const api = useAxios();
+
   let { id } = useParams();
   const [currentGuest, setCurrentGuest] = useState(initialGuestState);
 
@@ -35,8 +37,8 @@ const EditGuest = () => {
   };
 
   const retrieveGuest = () => {
-    axios
-      .get(`/api/guests/${id}/`)
+    api
+      .get(`/guests/${id}`)
       .then((response) => {
         setCurrentGuest({
           status: response.data.status,
@@ -61,8 +63,8 @@ const EditGuest = () => {
     let data = {
       ...currentGuest,
     };
-    axios
-      .put(`/api/guests/${id}/`, data)
+    api
+      .patch(`/guests/${id}`, data)
       .then((response) => {
         setCurrentGuest({
           status: response.data.status,

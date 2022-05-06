@@ -1,25 +1,27 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../utils/useAxios";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 
-const DeleteTask = (props) => {
+const DeleteTask = () => {
   const navigate = useNavigate();
   let { id } = useParams();
 
   const location = useLocation();
   const { title } = location.state;
 
+  const api = useAxios();
+
   const deleteTask = () => {
-    axios
-      .delete(`/api/tasks/${id}/`)
+    api
+      .delete(`/tasks/${id}`)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
           navigate("/tasks", { state: { performedAction: "err_delete_task", title: title, isError: true } });
         }
-        if (response.status === 204) {
+        if (response.status === 200) {
           navigate("/tasks", { state: { performedAction: "delete_task", title: title } });
         }
       })

@@ -54,6 +54,11 @@ class Task(models.Model):
         auto_now=True,
         verbose_name="Geändert am",
     )
+    owner_id = models.IntegerField(
+        default=0,
+        blank=False,
+        verbose_name="UserID"
+    )
 
     class Meta:
         verbose_name = "Aufgabe"
