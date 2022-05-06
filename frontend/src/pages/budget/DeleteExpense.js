@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../../utils/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 
@@ -11,15 +11,17 @@ const DeleteExpense = () => {
   const location = useLocation();
   const { title } = location.state;
 
+  const api = useAxios();
+
   const deleteExpense = () => {
-    axios
-      .delete(`/api/budget/${id}/`)
+    api
+      .delete(`/budget/${id}`)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
           navigate("/budget", { state: { performedAction: "err_delete_expense", title: title, isError: true } });
         }
-        if (response.status === 204) {
+        if (response.status === 200) {
           navigate("/budget", { state: { performedAction: "delete_expense", title: title } });
         }
       })

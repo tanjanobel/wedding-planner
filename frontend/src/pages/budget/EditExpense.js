@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
+import useAxios from "../../utils/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 
@@ -15,6 +15,8 @@ const EditExpense = () => {
     description: "",
     budget: "",
   };
+
+  const api = useAxios();
 
   let { id } = useParams();
   const [currentExpense, setCurrentExpense] = useState(initialExpenseState);
@@ -30,8 +32,8 @@ const EditExpense = () => {
   };
 
   const retrieveExpense = () => {
-    axios
-      .get(`/api/budget/${id}/`)
+    api
+      .get(`/budget/${id}`)
       .then((response) => {
         setCurrentExpense({
           status: response.data.status,
@@ -51,8 +53,8 @@ const EditExpense = () => {
     let data = {
       ...currentExpense,
     };
-    axios
-      .put(`/api/budget/${id}/`, data)
+    api
+      .patch(`/budget/${id}`, data)
       .then((response) => {
         setCurrentExpense({
           status: response.data.status,

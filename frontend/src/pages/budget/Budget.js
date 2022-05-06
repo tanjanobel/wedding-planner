@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../../utils/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import Expense from "../../components/budget/Budget";
 import SubHeader from "../../components/SubHeader";
@@ -14,6 +14,8 @@ const Expenses = () => {
   const [expensesDone, setExpensesDone] = useState([]);
 
   const { state } = useLocation();
+
+  const api = useAxios();
 
   let performedAction = "";
   let isError = "";
@@ -34,8 +36,8 @@ const Expenses = () => {
   }, [expenses]);
 
   const getExpenses = () => {
-    axios
-      .get("/api/budget/")
+    api
+      .get("/budget")
       .then((response) => {
         const data = response.data;
         setExpenses(data);

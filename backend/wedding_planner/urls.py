@@ -1,16 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from budget.views import BudgetView
 from api.views import isAuthenticated
 from user.views import my_user
 from dashboard.views import statistics
 from tasks.views import task, tasks, TaskStatusView
 from guests.views import guest, guests
+from budget.views import expense, expenses
 
 router = routers.DefaultRouter()
 router.register(r'taskstatuses', TaskStatusView, 'taskstatuses')
-router.register(r'budget', BudgetView, 'budget')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +26,7 @@ urlpatterns = [
 
     path('api/guests', guests),
     path('api/guests/<str:guest_id>', guest),
+
+    path('api/budget', expenses),
+    path('api/budget/<str:expense_id>', expense),
 ]

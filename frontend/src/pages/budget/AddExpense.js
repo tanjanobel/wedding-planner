@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
+import useAxios from "../../utils/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 
@@ -15,6 +15,8 @@ const AddExpense = () => {
     duedate: "",
     budget: "",
   });
+
+  const api = useAxios();
 
   const handleChange = (e) => {
     setExpense({
@@ -34,8 +36,8 @@ const AddExpense = () => {
       budget: expense.budget,
     };
 
-    axios
-      .post("/api/budget/", expenseData)
+    api
+      .post("/budget", expenseData)
       .then((response) => {
         if (response.status === 201) {
           navigate("/budget", { state: { performedAction: "add_expense", title: expense.title } });
