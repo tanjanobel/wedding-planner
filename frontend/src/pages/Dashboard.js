@@ -57,7 +57,7 @@ const Dashboard = () => {
                 <div className="card__content text-center">
                   <h3 className="card__heading">Meine Aufgaben</h3>
                   <p className="card__summary">{statistics.tasks_done_count}</p>
-                  <p className="card__text">von {statistics.tasks_total_count} erledigt</p>
+                  <p className="card__description">von {statistics.tasks_total_count} erledigt</p>
                 </div>
               </div>
               <div className="card cell small-12 phablet-6 desktop-3">
