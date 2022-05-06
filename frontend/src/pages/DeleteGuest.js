@@ -15,11 +15,7 @@ const DeleteGuest = () => {
 
   const deleteGuest = () => {
     api
-      .delete("/guests", {
-        data: {
-          id: id
-        }
-      })
+      .delete(`/guests/${id}`)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);

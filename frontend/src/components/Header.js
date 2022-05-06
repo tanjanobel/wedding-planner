@@ -87,7 +87,7 @@ const Header = () => {
                       <svg className="icon medium">
                         <use href={sprite + "#user"} />
                       </svg>
-                      <span className="header__user">{user.username}</span>
+                      <span className="header__user">{user.first_name}</span>
                     </Link>
                     <button onClick={logoutUser} className="button clear black small">
                       (Abmelden)

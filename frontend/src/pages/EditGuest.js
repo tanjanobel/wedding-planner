@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import useAxios from "../utils/useAxios";
 import sprite from "../icons/wedding-planner-sprite.svg";
+import useAxios from "../utils/useAxios";
 import SubHeader from "../components/SubHeader";
 import Section from "../components/Section";
 
@@ -64,7 +64,7 @@ const EditGuest = () => {
       ...currentGuest,
     };
     api
-      .put(`/guests/${id}`, data)
+      .patch(`/guests/${id}`, data)
       .then((response) => {
         setCurrentGuest({
           status: response.data.status,

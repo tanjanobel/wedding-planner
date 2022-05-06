@@ -15,11 +15,7 @@ const DeleteTask = () => {
 
   const deleteTask = () => {
     api
-      .delete("/tasks", {
-        data: {
-          id: id
-        }
-      })
+      .delete(`/tasks/${id}`)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);

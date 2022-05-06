@@ -17,6 +17,8 @@ const Flashmessage = (props) => {
     err_add_guest: `Gast ${props.title} konnte nicht hinzugefügt werden.`,
     err_delete_guest: `Gast ${props.title} konnte nicht gelöscht werden.`,
     err_edit_guest: `Gast ${props.title} konnte nicht gespeichert werden.`,
+
+    edit_user: `Das Profil wurde erfolgreich gespeichert. Die Änderungen werden nach dem nächsten Login sichtbar.`,
   };
 
   let text = messages[props.performedAction];
@@ -30,7 +32,7 @@ const Flashmessage = (props) => {
     return () => {
       clearTimeout(timeId);
     };
-  }, );
+  });
 
   if (show) {
     if (!isError) {

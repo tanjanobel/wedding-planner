@@ -3,9 +3,9 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from utils.decode import get_jwt_data
 from .serializers import TaskSerializer, TaskStatusSerializer
 from .models import Task, TaskStatus
-from utils.decode import get_jwt_data
 
 
 class TaskStatusView(viewsets.ModelViewSet):
@@ -13,7 +13,8 @@ class TaskStatusView(viewsets.ModelViewSet):
     queryset = TaskStatus.choices
 
 
-@api_view(['GET', 'POST', 'PATCH', 'DELETE'])
+# /api/tasks
+@api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def tasks(request):
     if request.method == "GET":
@@ -33,33 +34,33 @@ def tasks(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# /api/tasks/<task_id>
+@api_view(['GET', 'PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def task(request, task_id):
+    user_id = get_jwt_data(request)["user_id"]
+
+    if request.method == "GET":
+        try:
+            my_task = Task.objects.get(owner_id=user_id, id=task_id)
+            serializer = TaskSerializer(my_task, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
     if request.method == "PATCH":
-        if "id" not in request.data.keys():
-            return Response({"id": ["id is required"]})
-        taskToPatch = Task.objects.get(pk=request.data["id"])
-        user_id = get_jwt_data(request)["user_id"]
-        if taskToPatch.owner_id != user_id:
-            return Response({"error": "Task doesn't belong to authenticated user"}, status=status.HTTP_401_UNAUTHORIZED)
+        taskToPatch = Task.objects.get(owner_id=user_id, id=task_id)
         serializer = TaskSerializer(taskToPatch, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     if request.method == "DELETE":
         try:
-            if "id" not in request.data.keys():
-                return Response({"id": ["id is required"]})
-
-            taskToDelete = Task.objects.get(pk=request.data["id"])
-
-            user_id = get_jwt_data(request)["user_id"]
-            if taskToDelete.owner_id != user_id:
-                return Response({"error": "Task doesn't belong to authenticated user"}, status=status.HTTP_401_UNAUTHORIZED)
-
+            taskToDelete = Task.objects.get(owner_id=user_id, id=task_id)
             taskToDelete.delete()
             return Response(status=status.HTTP_200_OK)
-
         except ObjectDoesNotExist:
-            return Response({"error": ["Task doesn't exist"]}, status=status.HTTP_404_NOT_FOUND)
-
+            return Response(status=status.HTTP_404_NOT_FOUND)
