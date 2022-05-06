@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
 const Register = () => {
   const [username, setUsername] = useState("");

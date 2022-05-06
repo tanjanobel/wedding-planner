@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import useAxios from "../utils/useAxios";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import useAxios from "../../utils/useAxios";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
 const DeleteTask = () => {
   const navigate = useNavigate();

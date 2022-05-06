@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
-import AuthContext from "../context/AuthContext";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
+import AuthContext from "../../context/AuthContext";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);

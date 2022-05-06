@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import useAxios from "../utils/useAxios";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import useAxios from "../../utils/useAxios";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
 const EditGuest = () => {
   const navigate = useNavigate();

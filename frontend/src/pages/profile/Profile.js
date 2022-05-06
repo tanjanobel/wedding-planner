@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import useAxios from "../utils/useAxios";
-import AuthContext from "../context/AuthContext";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
-import Flashmessage from "../components/Flashmessage";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import useAxios from "../../utils/useAxios";
+import AuthContext from "../../context/AuthContext";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
+import Flashmessage from "../../components/Flashmessage";
 
 const EditUser = () => {
   const navigate = useNavigate();

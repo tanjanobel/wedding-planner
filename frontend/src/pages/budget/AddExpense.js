@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAxios from "../utils/useAxios";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import axios from "axios";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
-const AddTask = () => {
+const AddExpense = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
-  const [task, setTask] = useState({
+  const [expense, setExpense] = useState({
     status: "Offen",
     title: "",
     description: "",
@@ -16,32 +16,29 @@ const AddTask = () => {
     budget: "",
   });
 
-  const api = useAxios();
-
   const handleChange = (e) => {
-    setTask({
-      ...task,
+    setExpense({
+      ...expense,
       [e.target.name]: e.target.value,
     });
   };
 
-  const addTask = (e) => {
+  const addExpense = (e) => {
     setErrors([]);
 
     e.preventDefault();
-    const taskData = {
-      status: task.status,
-      title: task.title,
-      description: task.description,
-      duedate: task.duedate,
-      budget: task.budget,
+    const expenseData = {
+      status: expense.status,
+      title: expense.title,
+      description: expense.description,
+      budget: expense.budget,
     };
 
-    api
-      .post("/tasks", taskData)
+    axios
+      .post("/api/budget/", expenseData)
       .then((response) => {
         if (response.status === 201) {
-          navigate("/tasks", { state: { performedAction: "add_task", title: task.title } });
+          navigate("/budget", { state: { performedAction: "add_expense", title: expense.title } });
         }
       })
       .catch((error) => {
@@ -52,20 +49,19 @@ const AddTask = () => {
 
   return (
     <>
-      <SubHeader title="Aufgabe hinzufügen" />
+      <SubHeader title="Ausgabe hinzufügen" />
       <Section>
         <form>
           <label>
             Status
             <select className="form-select" name="status" onChange={handleChange}>
               <option>Offen</option>
-              <option>In Arbeit</option>
-              <option>Erledigt</option>
+              <option>Bezahlt</option>
             </select>
           </label>
           <label htmlFor="title">
             Titel (Pflichtfeld)
-            <input type="text" name="title" value={task.title} onChange={handleChange} />
+            <input type="text" name="title" value={expense.title} onChange={handleChange} />
             {errors["title"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
@@ -76,33 +72,21 @@ const AddTask = () => {
             ))}
           </label>
           <label>
-            Notiz
-            <textarea name="description" cols="40" rows="5" value={task.description} onChange={handleChange} />
-            {errors["description"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Fällig am
-            <input type="date" name="duedate" value={task.duedate} onChange={handleChange} />
-            {errors["duedate"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
             Budget
-            <input type="number" name="budget" value={task.budget} onChange={handleChange} />
+            <input type="number" name="budget" value={expense.budget} onChange={handleChange} />
             {errors["budget"]?.map((error) => (
+              <div key={error} className="form-error">
+                <svg className="card__status icon small">
+                  <use href={sprite + "#exclamation"} />
+                </svg>
+                <span>{error}</span>
+              </div>
+            ))}
+          </label>
+          <label>
+            Notiz
+            <textarea name="description" cols="40" rows="5" value={expense.description} onChange={handleChange} />
+            {errors["description"]?.map((error) => (
               <div key={error} className="form-error">
                 <svg className="card__status icon small">
                   <use href={sprite + "#exclamation"} />
@@ -113,10 +97,10 @@ const AddTask = () => {
           </label>
           <div className="form__footer text-right">
             <div className="button-group">
-              <Link to="/tasks" className="button secondary">
+              <Link to="/expenses" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={addTask}>
+              <button type="submit" className="button primary" onClick={addExpense}>
                 Speichern
               </button>
             </div>
@@ -127,4 +111,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default AddExpense;

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
 const DeleteExpense = () => {
   const navigate = useNavigate();
