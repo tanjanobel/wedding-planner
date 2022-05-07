@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Dashbaord",
+    "path": "/"
+  },
+  {
+    "name": "Aufgaben",
+    "path": "/tasks"
+  },
+  {
+    "name": "Gästeliste",
+    "path": "/guests"
+  },
+  {
+    "name": "Budget",
+    "path": "/budget"
+  },
+  {
+    "name": "Hochzeit",
+    "path": "/wedding"
+  }
+]
