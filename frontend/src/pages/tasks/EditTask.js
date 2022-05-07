@@ -80,78 +80,57 @@ const EditTask = () => {
       <SubHeader title="Aufgabe bearbeiten" />
       <Section>
         <form>
-          <label>
-            Status
-            <select className="form-select" name="status" onChange={handleTaskChange}>
-              <option>Offen</option>
-              <option>In Arbeit</option>
-              <option>Erledigt</option>
-            </select>
-          </label>
-          <label>
-            Titel (Pflichtfeld)
-            <input type="text" name="title" value={currentTask.title} onChange={handleTaskChange} />
-            {errors["title"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Notiz
-            <textarea
-              name="description"
-              cols="40"
-              rows="5"
-              value={currentTask.description}
-              onChange={handleTaskChange}
-            />
-            {errors["description"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Fällig am
-            <input
-              type="date"
-              name="duedate"
-              value={currentTask.duedate ? currentTask.duedate : ""}
-              onChange={handleTaskChange}
-            />
-            {errors["duedate"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Budget
-            <input
-              type="number"
-              name="budget"
-              value={currentTask.budget ? currentTask.budget : ""}
-              onChange={handleTaskChange}
-            />
+          <label htmlFor="status">Status</label>
+          <select className="form-select" name="status" onChange={handleTaskChange}>
+            <option>Offen</option>
+            <option>In Arbeit</option>
+            <option>Erledigt</option>
+          </select>
+          <label htmlFor="title">Titel (Pflichtfeld)</label>
+          <input type="text" name="title" value={currentTask.title} onChange={handleTaskChange} />
+          {errors["title"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="description">Notiz</label>
+          <textarea name="description" cols="40" rows="5" value={currentTask.description} onChange={handleTaskChange}/>
+          {errors["description"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="duedate">Fällig am</label>
+          <input type="date" name="duedate" value={currentTask.duedate ? currentTask.duedate : ""} onChange={handleTaskChange}/>
+          {errors["duedate"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="budget">Budget</label>
+          <div className="input-group">
+            <input className="input-group-field" type="number" name="budget" value={currentTask.budget ? currentTask.budget : ""} onChange={handleTaskChange}/>
+            <div className="input-group-icon">
+              <span>CHF</span>
+            </div>
+          </div>
             {errors["budget"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
           <div className="form__footer">
             <div className="button-group">
               <Link to="/tasks" className="button secondary">

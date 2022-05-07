@@ -1,0 +1,22 @@
+.input {
+  &-group {
+    position: relative;
+
+    &-field {
+      border-radius: $border-radius !important;
+      padding: 8px 3.5 * $global-padding 8px 12px;
+    }
+
+    &-icon {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      font-weight: 600;
+      height: 100%;
+      padding-right: $global-padding;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

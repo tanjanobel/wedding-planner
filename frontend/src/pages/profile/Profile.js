@@ -86,30 +86,26 @@ const EditUser = () => {
         )}
 
         <form>
-          <label>
-            Vorname (Pflichtfeld)
-            <input type="text" name="first_name" value={currentUser.first_name} onChange={handleUserChange} />
-            {errors["firstname"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Nachname (Pflichtfeld)
-            <input type="text" name="last_name" value={currentUser.last_name} onChange={handleUserChange} />
-            {errors["lastname"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
+          <label htmlFor="first_name">Vorname (Pflichtfeld)</label>
+          <input type="text" name="first_name" value={currentUser.first_name} onChange={handleUserChange} />
+          {errors["firstname"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="last_name">Nachname (Pflichtfeld)</label>
+          <input type="text" name="last_name" value={currentUser.last_name} onChange={handleUserChange} />
+          {errors["lastname"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
           <div className="form__footer">
             <div className="button-group">
               <Link to="/profile" className="button secondary">

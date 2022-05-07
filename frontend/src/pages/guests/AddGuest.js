@@ -64,110 +64,92 @@ const AddGuest = () => {
       <SubHeader title="Gast hinzufügen" />
       <Section>
         <form>
-          <label>
-            Status
-            <select className="form-select" name="status" onChange={handleChange}>
-              <option>Ausstehend</option>
-              <option>Zusage</option>
-              <option>Absage</option>
-            </select>
-          </label>
-          <label htmlFor="firstname">
-            Vorname (Pflichtfeld)
-            <input type="text" name="firstname" value={guest.firstname} onChange={handleChange} />
-            {errors["firstname"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label htmlFor="lastname">
-            Nachname (Pflichtfeld)
-            <input type="text" name="lastname" value={guest.lastname} onChange={handleChange} />
-            {errors["lastname"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label htmlFor="lastname">
-            Strasse
-            <input type="text" name="street" value={guest.street} onChange={handleChange} />
-            {errors["street"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label htmlFor="zip">
-            PLZ
-            <input type="number" name="zip" value={guest.zip} onChange={handleChange} />
-            {errors["zip"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label htmlFor="city">
-            Ort
-            <input type="text" name="city" value={guest.city} onChange={handleChange} />
-            {errors["city"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            E-Mail Adresse
-            <input type="email" name="email" value={guest.email} onChange={handleChange} />
-            {errors["email"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label htmlFor="phone">
-            Telefonnummer
-            <input type="tel" name="phone" value={guest.phone} onChange={handleChange} />
-            {errors["phone"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Notiz
-            <textarea name="description" cols="40" rows="5" value={guest.description} onChange={handleChange} />
-            {errors["description"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
+          <label htmlFor="status">Status</label>
+          <select className="form-select" name="status" onChange={handleChange}>
+            <option>Ausstehend</option>
+            <option>Zusage</option>
+            <option>Absage</option>
+          </select>
+          <label htmlFor="firstname">Vorname (Pflichtfeld)</label>
+          <input type="text" name="firstname" value={guest.firstname} onChange={handleChange} />
+          {errors["firstname"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="lastname">Nachname (Pflichtfeld)</label>
+          <input type="text" name="lastname" value={guest.lastname} onChange={handleChange} />
+          {errors["lastname"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="street">Strasse</label>
+          <input type="text" name="street" value={guest.street} onChange={handleChange} />
+          {errors["street"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="zip">PLZ</label>
+          <input type="number" name="zip" value={guest.zip} onChange={handleChange} />
+          {errors["zip"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="city">Ort</label>
+          <input type="text" name="city" value={guest.city} onChange={handleChange} />
+          {errors["city"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="email">E-Mail Adresse</label>
+          <input type="email" name="email" value={guest.email} onChange={handleChange} />
+          {errors["email"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="phone">Telefonnummer</label>
+          <input type="tel" name="phone" value={guest.phone} onChange={handleChange} />
+          {errors["phone"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="description">Notiz</label>
+          <textarea name="description" cols="40" rows="5" value={guest.description} onChange={handleChange} />
+          {errors["description"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
           <div className="form__footer text-right">
             <div className="button-group">
               <Link to="/guests" className="button secondary">

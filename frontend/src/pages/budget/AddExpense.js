@@ -54,52 +54,49 @@ const AddExpense = () => {
       <SubHeader title="Ausgabe hinzufügen" />
       <Section>
         <form>
-          <label>
-            Status
-            <select className="form-select" name="status" onChange={handleChange}>
-              <option>Offen</option>
-              <option>Bezahlt</option>
-            </select>
-          </label>
-          <label htmlFor="title">
-            Titel (Pflichtfeld)
-            <input type="text" name="title" value={expense.title} onChange={handleChange} />
-            {errors["title"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Budget
-            <input type="number" name="budget" value={expense.budget} onChange={handleChange} />
-            {errors["budget"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
-          <label>
-            Notiz
-            <textarea name="description" cols="40" rows="5" value={expense.description} onChange={handleChange} />
-            {errors["description"]?.map((error) => (
-              <div key={error} className="form-error">
-                <svg className="card__status icon small">
-                  <use href={sprite + "#exclamation"} />
-                </svg>
-                <span>{error}</span>
-              </div>
-            ))}
-          </label>
+          <label htmlFor="status">Status</label>
+          <select className="form-select" name="status" onChange={handleChange}>
+            <option>Offen</option>
+            <option>Bezahlt</option>
+          </select>
+          <label htmlFor="title">Titel (Pflichtfeld)</label>
+          <input type="text" name="title" value={expense.title} onChange={handleChange} />
+          {errors["title"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="budget">Budget</label>
+          <div className="input-group">
+            <input className="input-group-field" type="number" name="budget" value={expense.budget} onChange={handleChange} />
+            <div className="input-group-icon">
+              <span>CHF</span>
+            </div>
+          </div>
+          {errors["budget"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="description">Notiz</label>
+          <textarea name="description" cols="40" rows="5" value={expense.description} onChange={handleChange} />
+          {errors["description"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
           <div className="form__footer text-right">
             <div className="button-group">
-              <Link to="/expenses" className="button secondary">
+              <Link to="/budget" className="button secondary">
                 Abbrechen
               </Link>
               <button type="submit" className="button primary" onClick={addExpense}>
