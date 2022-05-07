@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {useContext, useState} from "react";
 import { NavLink, Link } from "react-router-dom";
 import data from "../data/menuItems.json";
 import sprite from "../icons/wedding-planner-sprite.svg";
@@ -7,10 +7,17 @@ import AuthContext from "../context/AuthContext";
 const Nav = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const menuItems = data;
+  const [checked, setChecked] = useState(false);
 
   return (
     <>
-      <input type="checkbox" className="header__toggle" id="menu-toggle" />
+      <input
+        className="header__toggle"
+        id="menu-toggle"
+        type="checkbox"
+        checked={checked}
+        onChange={() => setChecked(checked ? false : "expanded")}
+      />
       <label htmlFor="menu-toggle" className="header__hamburger hide-for-tablet">
         <span/>
       </label>
@@ -21,6 +28,7 @@ const Nav = () => {
                 <NavLink
                   className="header__link"
                   to={menuItem.path}
+                  onClick={() => setChecked(false)}
                 >
                   {menuItem.name}
                 </NavLink>
