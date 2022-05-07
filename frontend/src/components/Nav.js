@@ -48,7 +48,7 @@ const Nav = () => {
             </li>
           ) : (
             <li className="hide-for-tablet">
-              <Link to="/login" className="button clear black padding-left-0">
+              <Link to="/login" className="button clear black padding-left-0" onClick={() => setChecked(false)}>
                 <svg className="icon medium">
                   <use href={sprite + "#enter"}/>
                 </svg>
