@@ -26,6 +26,8 @@ const Expenses = () => {
     title = state.title;
   }
 
+  let totalExpenses = 0;
+
   useEffect(() => {
     getExpenses();
   }, []);
@@ -60,6 +62,7 @@ const Expenses = () => {
             <div className="card__content text-center">
               <h3 className="card__heading">Ausgaben</h3>
               <p className="card__summary">xxx</p>
+              {expenses.budget}
             </div>
           </div>
           <div className="card cell small-12 phablet-4">

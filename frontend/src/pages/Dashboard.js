@@ -103,9 +103,9 @@ const Dashboard = () => {
           <section className="section bg-white">
             <div className="hero">
               <div className="hero__content">
-                <h2>
+                <h1>
                   Plane <span>deine Hochzeit</span> online
-                </h2>
+                </h1>
                 <p>
                   Mit unserem digitalen Hochzeitsplaner planst du deinen grossen Tag ganz einfach und ohne grossen
                   Aufwand.
