@@ -92,7 +92,7 @@ const EditExpense = () => {
               <span>{error}</span>
             </div>
           ))}
-          <label htmlFor="budget">Budget</label>
+          <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
             <input className="input-group-field" type="number" name="budget" value={currentExpense.budget ? currentExpense.budget : ""} onChange={handleExpenseChange}/>
             <div className="input-group-icon">

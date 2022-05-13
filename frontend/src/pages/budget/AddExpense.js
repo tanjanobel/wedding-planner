@@ -69,7 +69,7 @@ const AddExpense = () => {
               <span>{error}</span>
             </div>
           ))}
-          <label htmlFor="budget">Budget</label>
+          <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
             <input className="input-group-field" type="number" name="budget" value={expense.budget} onChange={handleChange} />
             <div className="input-group-icon">
