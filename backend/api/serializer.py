@@ -1,10 +1,10 @@
 from distutils.log import error
-from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from user.models import UserProfile
 import re
 
 from user.serializer import UserSerializer   
@@ -28,7 +28,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
-        model = User
+        model = UserProfile
         fields = ('username', 'password', 'password2', "first_name", "last_name")
 
     def validate(self, attrs):
@@ -54,7 +54,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(
+        user = UserProfile.objects.create(
             username=validated_data['username'], 
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
