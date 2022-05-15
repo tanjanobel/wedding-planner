@@ -26,8 +26,6 @@ const Expenses = () => {
     title = state.title;
   }
 
-  let totalExpenses = 0;
-
   useEffect(() => {
     getExpenses();
   }, []);
