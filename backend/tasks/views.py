@@ -17,6 +17,7 @@ class TaskStatusView(viewsets.ModelViewSet):
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def tasks(request):
+    """Get all tasks and post new task by user id"""
     if request.method == "GET":
         user_id = get_jwt_data(request)["user_id"]
         tasks = Task.objects.filter(owner_id=user_id)
@@ -39,6 +40,7 @@ def tasks(request):
 @api_view(['GET', 'PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def task(request, task_id):
+    """Get, patch and delete single task by user id and task uuid"""
     user_id = get_jwt_data(request)["user_id"]
 
     if request.method == "GET":

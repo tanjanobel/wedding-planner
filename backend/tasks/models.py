@@ -4,12 +4,14 @@ from django.utils import timezone
 
 
 class TaskStatus(models.TextChoices):
+    """Represents the task status"""
     OFFEN = 'Offen', 'Offen'
     IN_ARBEIT = 'In Arbeit', 'In Arbeit'
     ERLEDIGT = 'Erledigt', 'Erledigt'
 
 
 class Task(models.Model):
+    """Represents a task"""
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
