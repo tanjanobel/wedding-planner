@@ -10,7 +10,7 @@ describe('Footer Component', () => {
         <Footer />
       </Router>
     );
-  })
+  });
 
   test('renders copyright', () => {
     render(
@@ -19,8 +19,8 @@ describe('Footer Component', () => {
       </Router>
     );
     const copyright = screen.getByText(/© 2022 Wedding Planner/);
-    expect(copyright).toHaveTextContent("©");
-  })
+    expect(copyright).toHaveTextContent('©');
+  });
 
   test('renders meta navigation', () => {
     render(
@@ -28,7 +28,7 @@ describe('Footer Component', () => {
         <Footer />
       </Router>
     );
-    const metaNav = screen.getAllByRole("listitem");
+    const metaNav = screen.getAllByRole('listitem');
     expect(metaNav.length).toBe(2);
-  })
+  });
 });

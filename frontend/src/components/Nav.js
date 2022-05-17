@@ -17,6 +17,7 @@ const Nav = () => {
         type="checkbox"
         checked={checked}
         onChange={() => setChecked(checked ? false : "expanded")}
+        data-testid="menuToggle"
       />
       <label htmlFor="menu-toggle" className="header__hamburger hide-for-tablet">
         <span/>

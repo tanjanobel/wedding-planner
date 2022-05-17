@@ -13,7 +13,7 @@ describe('Dashboard page', () => {
         </AuthProvider>
       </Router>
     );
-  })
+  });
 
   test('Renders h1', () => {
     render(
@@ -23,7 +23,7 @@ describe('Dashboard page', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = "Plane deine Hochzeit online";
+    const h1 = 'Plane deine Hochzeit online';
     expect(h1).toMatch(/deine Hochzeit/);
-  })
+  });
 });

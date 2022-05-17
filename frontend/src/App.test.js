@@ -13,5 +13,5 @@ describe('App', () => {
         </AuthProvider>
       </Router>
     );
-  })
+  });
 });
