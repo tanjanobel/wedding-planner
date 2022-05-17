@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
-import sprite from "../../icons/wedding-planner-sprite.svg";
-import Task from "../../components/tasks/Task";
-import SubHeader from "../../components/SubHeader";
-import Section from "../../components/Section";
-import Flashmessage from "../../components/Flashmessage";
+import useAxios from "../utils/useAxios";
+import sprite from "../icons/wedding-planner-sprite.svg";
+import Task from "../components/tasks/Task";
+import SubHeader from "../components/SubHeader";
+import Section from "../components/Section";
+import Flashmessage from "../components/Flashmessage";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
