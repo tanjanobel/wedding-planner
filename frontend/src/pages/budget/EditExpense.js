@@ -78,12 +78,12 @@ const EditExpense = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" onChange={handleExpenseChange}>
+          <select className="form-select" name="status" id="status" onChange={handleExpenseChange}>
             <option>Offen</option>
             <option>Bezahlt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
-          <input type="text" name="title" value={currentExpense.title} onChange={handleExpenseChange} />
+          <input type="text" name="title" id="title" value={currentExpense.title} onChange={handleExpenseChange} />
           {errors["title"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -94,7 +94,7 @@ const EditExpense = () => {
           ))}
           <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" value={currentExpense.budget ? currentExpense.budget : ""} onChange={handleExpenseChange}/>
+            <input className="input-group-field" type="number" name="budget" id="budget" value={currentExpense.budget ? currentExpense.budget : ""} onChange={handleExpenseChange}/>
             <div className="input-group-icon">
               <span>CHF</span>
             </div>

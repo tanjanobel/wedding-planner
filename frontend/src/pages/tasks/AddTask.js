@@ -56,13 +56,13 @@ const AddTask = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" onChange={handleChange}>
+          <select className="form-select" name="status" id="status" onChange={handleChange}>
             <option>Offen</option>
             <option>In Arbeit</option>
             <option>Erledigt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
-          <input type="text" name="title" value={task.title} onChange={handleChange} />
+          <input type="text" name="title" id="title" value={task.title} onChange={handleChange} />
           {errors["title"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -82,7 +82,7 @@ const AddTask = () => {
             </div>
           ))}
           <label htmlFor="duedate">Fällig am</label>
-          <input type="date" name="duedate" value={task.duedate} onChange={handleChange} />
+          <input type="date" name="duedate" id="duedate" value={task.duedate} onChange={handleChange} />
           {errors["duedate"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -93,7 +93,7 @@ const AddTask = () => {
           ))}
           <label htmlFor="budget">Budget</label>
           <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" value={task.budget} onChange={handleChange} />
+            <input className="input-group-field" type="number" name="budget" id="budget" value={task.budget} onChange={handleChange} />
             <div className="input-group-icon">
               <span>CHF</span>
             </div>

@@ -55,12 +55,12 @@ const AddExpense = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" onChange={handleChange}>
+          <select className="form-select" name="status" id="status" onChange={handleChange}>
             <option>Offen</option>
             <option>Bezahlt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
-          <input type="text" name="title" value={expense.title} onChange={handleChange} />
+          <input type="text" name="title" id="title" value={expense.title} onChange={handleChange} />
           {errors["title"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -71,7 +71,7 @@ const AddExpense = () => {
           ))}
           <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" value={expense.budget} onChange={handleChange} />
+            <input className="input-group-field" type="number" name="budget" id="budget" value={expense.budget} onChange={handleChange} />
             <div className="input-group-icon">
               <span>CHF</span>
             </div>
@@ -85,7 +85,7 @@ const AddExpense = () => {
             </div>
           ))}
           <label htmlFor="description">Notiz</label>
-          <textarea name="description" cols="40" rows="5" value={expense.description} onChange={handleChange} />
+          <textarea name="description" cols="40" rows="5" id="description" value={expense.description} onChange={handleChange} />
           {errors["description"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">

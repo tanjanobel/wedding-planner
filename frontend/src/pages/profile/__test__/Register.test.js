@@ -1,17 +1,15 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
-import Login from "../Login";
 import Register from "../Register";
-import AddTask from "../../tasks/AddTask";
 
-describe('Login Component', () => {
+describe('Register Component', () => {
 
-  test('renders login',() => {
+  test('renders register',() => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
@@ -21,23 +19,23 @@ describe('Login Component', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Anmelden';
-    expect(h1).toMatch(/Anmelden/);
+    const h1 = 'Registrieren';
+    expect(h1).toMatch(/Registrieren/);
   });
 
   test('renders email input', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const emailInput = screen.getByLabelText('E-Mail Adresse');
+    const emailInput = screen.getByLabelText('E-Mail Adresse (Pflichtfeld)');
     expect(emailInput).toBeInTheDocument();
   });
 
@@ -45,48 +43,35 @@ describe('Login Component', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const passwordInput = screen.getByLabelText('Passwort');
+    const passwordInput = screen.getByLabelText('Passwort (Pflichtfeld)');
     expect(passwordInput).toBeInTheDocument();
   });
 
-  test('renders login button', () => {
+  test('renders button', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const loginLink = screen.getByRole('button');
-    expect(loginLink).toBeInTheDocument();
-  });
-
-  test('renders register now link', () => {
-    render(
-      <Router>
-        <AuthProvider>
-          <Login />
-        </AuthProvider>
-      </Router>
-    );
-    const registerNowLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(registerNowLink[0].textContent).toEqual('Jetzt registrieren');
-    expect(registerNowLink[0].href).toContain('/register');
+    const submitButton = screen.getByRole('button');
+    expect(submitButton).toBeInTheDocument();
   });
 
   test('email input should change', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const emailInput = screen.getByLabelText('E-Mail Adresse');
+    const emailInput = screen.getByLabelText('E-Mail Adresse (Pflichtfeld)');
     const testValue = 'test@test.com';
     fireEvent.change(emailInput, {target: {value: testValue}});
     expect(emailInput.value).toBe(testValue);
@@ -96,11 +81,11 @@ describe('Login Component', () => {
     render(
       <Router>
         <AuthProvider>
-          <Login />
+          <Register />
         </AuthProvider>
       </Router>
     );
-    const passwordInput = screen.getByLabelText('Passwort');
+    const passwordInput = screen.getByLabelText('Passwort (Pflichtfeld)');
     const testValue = '12345678!';
     fireEvent.change(passwordInput, {target: {value: testValue}});
     expect(passwordInput.value).toBe(testValue);

@@ -65,13 +65,13 @@ const AddGuest = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" onChange={handleChange}>
+          <select className="form-select" name="status" id="status" onChange={handleChange}>
             <option>Ausstehend</option>
             <option>Zusage</option>
             <option>Absage</option>
           </select>
           <label htmlFor="firstname">Vorname (Pflichtfeld)</label>
-          <input type="text" name="firstname" value={guest.firstname} onChange={handleChange} />
+          <input type="text" name="firstname" id="firstname" value={guest.firstname} onChange={handleChange} />
           {errors["firstname"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -81,7 +81,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="lastname">Nachname (Pflichtfeld)</label>
-          <input type="text" name="lastname" value={guest.lastname} onChange={handleChange} />
+          <input type="text" name="lastname" id="lastname" value={guest.lastname} onChange={handleChange} />
           {errors["lastname"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -91,7 +91,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="street">Strasse</label>
-          <input type="text" name="street" value={guest.street} onChange={handleChange} />
+          <input type="text" name="street" id="street" value={guest.street} onChange={handleChange} />
           {errors["street"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -101,7 +101,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="zip">PLZ</label>
-          <input type="number" name="zip" value={guest.zip} onChange={handleChange} />
+          <input type="number" name="zip" id="zip" value={guest.zip} onChange={handleChange} />
           {errors["zip"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -111,7 +111,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="city">Ort</label>
-          <input type="text" name="city" value={guest.city} onChange={handleChange} />
+          <input type="text" name="city" id="city" value={guest.city} onChange={handleChange} />
           {errors["city"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -121,7 +121,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="email">E-Mail Adresse</label>
-          <input type="email" name="email" value={guest.email} onChange={handleChange} />
+          <input type="email" name="email" id="email" value={guest.email} onChange={handleChange} />
           {errors["email"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -131,7 +131,7 @@ const AddGuest = () => {
             </div>
           ))}
           <label htmlFor="phone">Telefonnummer</label>
-          <input type="tel" name="phone" value={guest.phone} onChange={handleChange} />
+          <input type="tel" name="phone" id="phone" value={guest.phone} onChange={handleChange} />
           {errors["phone"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
