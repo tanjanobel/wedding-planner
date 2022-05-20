@@ -8,13 +8,13 @@ import AuthContext from "../../context/AuthContext";
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let data = await loginUser(username, password);
+    let data = await loginUser(email, password);
     if (data["detail"]) {
       setErrors({ detail: [data["detail"]] });
     } else {
@@ -36,8 +36,8 @@ const Login = () => {
                 Bitte gib deine E-Mail Adresse und dein Passwort ein.
               </p>
               <form onSubmit={handleSubmit}>
-                <label htmlFor="username">E-Mail Adresse</label>
-                <input type="text" id="username" onChange={(e) => setUsername(e.target.value)} />
+                <label htmlFor="email">E-Mail Adresse</label>
+                <input type="text" id="email" onChange={(e) => setEmail(e.target.value)} />
 
                 {errors["detail"]?.map((error) => (
                   <div key={error} className="form-error">
@@ -48,7 +48,7 @@ const Login = () => {
                   </div>
                 ))}
 
-                {errors["username"]?.map((error) => (
+                {errors["email"]?.map((error) => (
                   <div key={error} className="form-error">
                     <svg className="card__status icon small">
                       <use href={sprite + "#exclamation"} />

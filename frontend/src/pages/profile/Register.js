@@ -6,7 +6,7 @@ import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -23,7 +23,7 @@ const Register = () => {
       .post(
         "/api/register/",
         {
-          username,
+          email,
           password,
           password2,
           first_name: firstname,
@@ -50,9 +50,9 @@ const Register = () => {
               Neu bei Wedding Planner? Jetzt einfach registrieren.
             </h3>
             <form>
-              <label htmlFor="username">E-Mail Adresse (Pflichtfeld)</label>
-              <input type="text" id="username" required onChange={(e) => setUsername(e.target.value)} />
-              {errors["username"]?.map((error) => (
+              <label htmlFor="email">E-Mail Adresse (Pflichtfeld)</label>
+              <input type="text" id="email" required onChange={(e) => setEmail(e.target.value)} />
+              {errors["email"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">
                     <use href={sprite + "#exclamation"} />

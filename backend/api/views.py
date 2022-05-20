@@ -5,16 +5,17 @@ from django.http import JsonResponse
 from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics, status
-from django.contrib.auth.models import User
+from user.models import UserProfile
 from rest_framework.permissions import AllowAny, IsAuthenticated
 import jwt
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = UserProfile.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
