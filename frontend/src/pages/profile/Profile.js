@@ -24,7 +24,7 @@ const EditUser = () => {
   }
 
   const initialUserState = {
-    username: user.username,
+    email: user.email,
     first_name: user.first_name,
     last_name: user.last_name,
   };
@@ -50,6 +50,7 @@ const EditUser = () => {
       .patch(`/user`, data)
       .then((response) => {
         setCurrentUser({
+          email: response.data.email,
           firstname: response.data.first_name,
           lastname: response.data.last_name,
         });
@@ -87,7 +88,7 @@ const EditUser = () => {
 
         <form>
           <label htmlFor="first_name">Vorname (Pflichtfeld)</label>
-          <input type="text" name="first_name" value={currentUser.first_name} onChange={handleUserChange} />
+          <input type="text" name="first_name" id="first_name" value={currentUser.first_name} onChange={handleUserChange} />
           {errors["firstname"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -97,8 +98,18 @@ const EditUser = () => {
             </div>
           ))}
           <label htmlFor="last_name">Nachname (Pflichtfeld)</label>
-          <input type="text" name="last_name" value={currentUser.last_name} onChange={handleUserChange} />
+          <input type="text" name="last_name" id="last_name" value={currentUser.last_name} onChange={handleUserChange} />
           {errors["lastname"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <label htmlFor="email">E-Mail Adresse (Pflichtfeld)</label>
+          <input type="email" name="email" id="email" value={currentUser.email} onChange={handleUserChange} />
+          {errors["email"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
                 <use href={sprite + "#exclamation"} />

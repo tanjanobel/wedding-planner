@@ -15,7 +15,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         # Add custom claims
-        token['username'] = user.username
+        token['email'] = user.email
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
         # ...
@@ -29,7 +29,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('username', 'password', 'password2', "first_name", "last_name")
+        fields = ('email', 'password', 'password2', "first_name", "last_name")
 
     def validate(self, attrs):
         
@@ -39,8 +39,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             errors["password"] = "Die Passwörter stimmen nicht überein."
 
         email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
-        if not re.search(email_regex, attrs["username"]):
-             errors["username"] = "Diese E-Mail Adresse ist nicht gültig."
+        if not re.search(email_regex, attrs["email"]):
+             errors["email"] = "Diese E-Mail Adresse ist nicht gültig."
 
         if 'first_name' not in attrs.keys() or len(attrs["first_name"]) < 1:
             errors["first_name"] = "Dieses Feld darf nicht leer sein."
@@ -55,7 +55,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = UserProfile.objects.create(
-            username=validated_data['username'], 
+            email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
         )
