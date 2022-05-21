@@ -19,6 +19,9 @@ const Dashboard = () => {
     tasks_total_count: "",
     guests_confirmed_count: "",
     guests_total_count: "",
+    days_until_wedding: "",
+    wedding_budget_total: "",
+    wedding_budget_available: "",
     next_tasks: [],
   });
 
@@ -49,7 +52,7 @@ const Dashboard = () => {
               <div className="card cell small-12 phablet-6 desktop-3">
                 <div className="card__content text-center">
                   <h3 className="card__heading">Meine Hochzeit</h3>
-                  <p className="card__summary">xxx</p>
+                  <p className="card__summary">{statistics.days_until_wedding}</p>
                   <p className="card__description">Tage bis zur Hochzeit</p>
                 </div>
               </div>
@@ -70,32 +73,37 @@ const Dashboard = () => {
               <div className="card cell small-12 phablet-6 desktop-3">
                 <div className="card__content text-center">
                   <h3 className="card__heading">Mein Budget</h3>
-                  <p className="card__summary">xxx CHF</p>
-                  <p className="card__description">von xxx CHF verfügbar</p>
+                  <p className="card__summary">
+                    {statistics.wedding_budget_total - statistics.wedding_budget_available} CHF
+                  </p>
+                  <p className="card__description">von {statistics.wedding_budget_total} CHF verfügbar</p>
                 </div>
               </div>
             </div>
-            <div className="padding-top-2">
-              <h2 className="section__heading">Nächste Aufgaben</h2>
-              {statistics.next_tasks.slice(0, 3).map((task, index) => (
-                <Task
-                  key={task.id}
-                  id={task.id}
-                  title={task.title}
-                  status={task.status}
-                  description={task.description}
-                  duedate={task.duedate}
-                />
-              ))}
-              <div className="section__footer">
-                <Link to="/tasks" className="card__button button clear black">
-                  <svg className="icon medium">
-                    <use href={sprite + "#right-arrow"} />
-                  </svg>
-                  <span>Zu den Aufgaben</span>
-                </Link>
+
+            {statistics.next_tasks.length > 0 && (
+              <div className="padding-top-2">
+                <h2 className="section__heading">Nächste Aufgaben</h2>
+                {statistics.next_tasks.slice(0, 3).map((task, index) => (
+                  <Task
+                    key={task.id}
+                    id={task.id}
+                    title={task.title}
+                    status={task.status}
+                    description={task.description}
+                    duedate={task.duedate}
+                  />
+                ))}
+                <div className="section__footer">
+                  <Link to="/tasks" className="card__button button clear black">
+                    <svg className="icon medium">
+                      <use href={sprite + "#right-arrow"} />
+                    </svg>
+                    <span>Zu den Aufgaben</span>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </Section>
         </>
       ) : (
