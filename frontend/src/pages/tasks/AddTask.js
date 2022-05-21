@@ -57,9 +57,9 @@ const AddTask = () => {
         <form>
           <label htmlFor="status">Status</label>
           <select className="form-select" name="status" id="status" onChange={handleChange}>
-            <option>Offen</option>
-            <option>In Arbeit</option>
-            <option>Erledigt</option>
+            <option value="Offen">Offen</option>
+            <option value="In Arbeit">In Arbeit</option>
+            <option value="Erledigt">Erledigt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
           <input type="text" name="title" id="title" value={task.title} onChange={handleChange} />

@@ -56,8 +56,8 @@ const AddExpense = () => {
         <form>
           <label htmlFor="status">Status</label>
           <select className="form-select" name="status" id="status" onChange={handleChange}>
-            <option>Offen</option>
-            <option>Bezahlt</option>
+            <option value="Offen">Offen</option>
+            <option value="Bezahlt">Bezahlt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
           <input type="text" name="title" id="title" value={expense.title} onChange={handleChange} />

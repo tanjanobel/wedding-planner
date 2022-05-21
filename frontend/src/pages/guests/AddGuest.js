@@ -65,10 +65,10 @@ const AddGuest = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" id="status" onChange={handleChange}>
-            <option>Ausstehend</option>
-            <option>Zusage</option>
-            <option>Absage</option>
+          <select className="form-select" name="status" id="status" value={guest.status} onChange={handleChange}>
+            <option value="Ausstehend">Ausstehend</option>
+            <option value="Zusage">Zusage</option>
+            <option value="Absage">Absage</option>
           </select>
           <label htmlFor="firstname">Vorname (Pflichtfeld)</label>
           <input type="text" name="firstname" id="firstname" value={guest.firstname} onChange={handleChange} />

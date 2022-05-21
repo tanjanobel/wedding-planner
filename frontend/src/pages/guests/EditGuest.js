@@ -95,10 +95,10 @@ const EditGuest = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" id="status" onChange={handleGuestChange}>
-            <option>Ausstehend</option>
-            <option>Zusage</option>
-            <option>Absage</option>
+          <select className="form-select" name="status" id="status" value={currentGuest.status} onChange={handleGuestChange}>
+            <option value="Ausstehend">Ausstehend</option>
+            <option value="Zusage">Zusage</option>
+            <option value="Absage">Absage</option>
           </select>
           <label htmlFor="firstname">Vorname (Pflichtfeld)</label>
           <input type="text" name="firstname" id="firstname" value={currentGuest.firstname} onChange={handleGuestChange} />
