@@ -25,7 +25,7 @@ const Flashmessage = (props) => {
     err_delete_expense: `Ausgabe ${props.title} konnte nicht gelöscht werden.`,
     err_edit_expense: `Ausgabe ${props.title} konnte nicht gespeichert werden.`,
 
-    edit_user: `Das Profil wurde erfolgreich gespeichert. Die Änderungen werden nach dem nächsten Login sichtbar.`,
+    edit_user: `Die Änderungen wurde erfolgreich gespeichert.`,
   };
 
   let text = messages[props.performedAction];

@@ -4,8 +4,6 @@ from user.models import UserProfile
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
-        fields = '__all__'
         extra_kwargs = {
             'id': {'read_only': True},
             'password': {'read_only': True},
@@ -19,5 +17,5 @@ class UserSerializer(serializers.ModelSerializer):
             'groups': {'read_only': True},
             'user_permissions': {'read_only': True},
         }
-
-        last_name = serializers.CharField(label="last_name",required=True, allow_blank=False, allow_null=False)
+        model = UserProfile
+        fields = '__all__'
