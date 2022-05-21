@@ -4,13 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from utils.decode import get_jwt_data
-from .serializers import TaskSerializer, TaskStatusSerializer
-from .models import Task, TaskStatus
-
-
-class TaskStatusView(viewsets.ModelViewSet):
-    serializer_class = TaskStatusSerializer
-    queryset = TaskStatus.choices
+from .serializers import TaskSerializer
+from .models import Task
 
 
 # /api/tasks

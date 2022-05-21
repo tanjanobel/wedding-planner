@@ -4,12 +4,11 @@ from rest_framework import routers
 from api.views import isAuthenticated
 from user.views import my_user
 from dashboard.views import statistics
-from tasks.views import task, tasks, TaskStatusView
+from tasks.views import task, tasks
 from guests.views import guest, guests
 from budget.views import expense, expenses
 
 router = routers.DefaultRouter()
-router.register(r'taskstatuses', TaskStatusView, 'taskstatuses')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
