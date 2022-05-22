@@ -25,6 +25,8 @@ const Dashboard = () => {
     next_tasks: [],
   });
 
+  const weddingBudgetAvailable = statistics.wedding_budget_total - statistics.wedding_budget_spent;
+
   const services = data;
 
   const api = useAxios();
@@ -74,7 +76,7 @@ const Dashboard = () => {
                 <div className="card__content text-center">
                   <h3 className="card__heading">Mein Budget</h3>
                   <p className="card__summary">
-                    {statistics.wedding_budget_total - statistics.wedding_budget_spent} CHF
+                    {weddingBudgetAvailable.toFixed(2)} CHF
                   </p>
                   <p className="card__description">von {statistics.wedding_budget_total} CHF verfügbar</p>
                 </div>

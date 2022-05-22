@@ -15,8 +15,9 @@ const Expenses = () => {
   const [statistics, setStatistics] = useState({
     wedding_budget_total: "",
     wedding_budget_spent: "",
-    wedding_budget_available: ""
   });
+
+  const weddingBudgetAvailable = statistics.wedding_budget_total - statistics.wedding_budget_spent;
 
   const { state } = useLocation();
 
@@ -76,7 +77,7 @@ const Expenses = () => {
             <div className="card__content text-center">
               <h3 className="card__heading">Ausgaben</h3>
               {statistics.wedding_budget_spent > 0
-                ? <p className="card__summary">{statistics.wedding_budget_spent} CHF</p>
+                ? <p className="card__summary">{statistics.wedding_budget_spent.toFixed(2)} CHF</p>
                 : <p className="card__summary">0 CHF</p>
               }
               {expenses.budget}
@@ -85,7 +86,7 @@ const Expenses = () => {
           <div className="card cell small-12 phablet-4">
             <div className="card__content text-center">
               <h3 className="card__heading">Verfügbar</h3>
-              <p className="card__summary">{statistics.wedding_budget_total - statistics.wedding_budget_spent} CHF</p>
+              <p className="card__summary">{weddingBudgetAvailable.toFixed(2)} CHF</p>
             </div>
           </div>
         </div>
