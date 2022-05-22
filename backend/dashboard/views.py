@@ -42,7 +42,8 @@ def statistics(request):
                 "guests_confirmed_count": Guest.objects.filter(status=GuestStatus.ZUSAGE, owner_id=user_id).count(),
                 "days_until_wedding": days_until_wedding,
                 "wedding_budget_total": user_serializer.data["wedding_budget"],
-                "wedding_budget_available": Budget.objects.filter(owner_id=user_id).aggregate(total=Sum('budget'))["total"],
+                "wedding_budget_spent": Budget.objects.filter(owner_id=user_id).aggregate(total=Sum('budget'))["total"],
+
                 "next_tasks": serializer.data
             }
         )

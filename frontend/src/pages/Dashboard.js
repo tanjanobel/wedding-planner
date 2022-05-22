@@ -21,7 +21,7 @@ const Dashboard = () => {
     guests_total_count: "",
     days_until_wedding: "",
     wedding_budget_total: "",
-    wedding_budget_available: "",
+    wedding_budget_spent: "",
     next_tasks: [],
   });
 
@@ -74,7 +74,7 @@ const Dashboard = () => {
                 <div className="card__content text-center">
                   <h3 className="card__heading">Mein Budget</h3>
                   <p className="card__summary">
-                    {statistics.wedding_budget_total - statistics.wedding_budget_available} CHF
+                    {statistics.wedding_budget_total - statistics.wedding_budget_spent} CHF
                   </p>
                   <p className="card__description">von {statistics.wedding_budget_total} CHF verfügbar</p>
                 </div>
