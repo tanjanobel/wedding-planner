@@ -37,7 +37,7 @@ const Nav = () => {
             )}
           {user ? (
             <li className="hide-for-tablet">
-              <Link to="/profile">
+              <Link to="/profile" onClick={() => setChecked(false)}>
                 <svg className="icon medium">
                   <use href={sprite + "#user"}/>
                 </svg>
