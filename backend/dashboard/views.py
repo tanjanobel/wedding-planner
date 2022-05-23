@@ -24,7 +24,6 @@ def statistics(request):
     serializer = TaskSerializer(next_tasks, many=True)
 
     if request.method == 'GET':
-
         user = UserProfile.objects.get(id=user_id)
         user_serializer = UserSerializer(user)
 

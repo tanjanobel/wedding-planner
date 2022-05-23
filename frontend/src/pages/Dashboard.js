@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [statistics, setStatistics] = useState({
     tasks_open_count: "",
     tasks_total_count: "",
+    tasks_done_count: "",
     guests_confirmed_count: "",
     guests_total_count: "",
     days_until_wedding: "",
