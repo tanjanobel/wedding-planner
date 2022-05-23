@@ -4,11 +4,13 @@ from django.utils import timezone
 
 
 class BudgetStatus(models.TextChoices):
+    """Represents the budget status"""
     OFFEN = 'Offen', 'Offen'
     BEZAHLT = 'Bezahlt', 'Bezahlt'
 
 
 class Budget(models.Model):
+    """Represents a task"""
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -19,42 +21,42 @@ class Budget(models.Model):
         max_length=32,
         choices=BudgetStatus.choices,
         default=BudgetStatus.OFFEN,
-        verbose_name="Status",
+        verbose_name='Status',
     )
     title = models.CharField(
         max_length=100,
-        verbose_name="Titel",
+        verbose_name='Titel',
     )
     description = models.TextField(
         max_length=500,
         blank=True,
-        verbose_name="Notizen",
+        verbose_name='Notizen',
     )
     budget = models.DecimalField(
         max_digits=6,
         decimal_places=2,
-        verbose_name="Budget",
+        verbose_name='Budget',
     )
     date = models.DateTimeField(
         auto_now_add=True,
     )
     created = models.DateField(
-        default=timezone.now().strftime("%Y-%m-%d"),
-        verbose_name="Erstellt am",
+        default=timezone.now().strftime('%Y-%m-%d'),
+        verbose_name='Erstellt am',
     )
     changed = models.DateTimeField(
         auto_now=True,
-        verbose_name="Geändert am",
+        verbose_name='Geändert am',
     )
     owner_id = models.IntegerField(
         default=0,
         blank=False,
-        verbose_name="UserID"
+        verbose_name='UserID'
     )
 
     class Meta:
-        verbose_name = "Ausgabe"
-        verbose_name_plural = "Ausgaben"
+        verbose_name = 'Ausgabe'
+        verbose_name_plural = 'Ausgaben'
 
     def __str__(self):
         return self.title

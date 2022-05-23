@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views import isAuthenticated
+from api.views import is_authenticated
 from user.views import my_user
 from dashboard.views import statistics
 from tasks.views import task, tasks
@@ -15,8 +15,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/', include('api.urls')),
 
-    path('api/auth', isAuthenticated),
-    path("api/user", my_user),
+    path('api/auth', is_authenticated),
+    path('api/user', my_user),
 
     path('api/dashboard', statistics),
 

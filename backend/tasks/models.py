@@ -22,50 +22,50 @@ class Task(models.Model):
         max_length=32,
         choices=TaskStatus.choices,
         default=TaskStatus.OFFEN,
-        verbose_name="Status",
+        verbose_name='Status',
     )
     title = models.CharField(
         max_length=100,
-        verbose_name="Titel",
+        verbose_name='Titel',
     )
     description = models.TextField(
         max_length=500,
         blank=True,
-        verbose_name="Notizen",
+        verbose_name='Notizen',
     )
     duedate = models.DateField(
         blank=True,
         null=True,
-        verbose_name="Fällig am",
+        verbose_name='Fällig am',
     )
     budget = models.DecimalField(
         blank=True,
         null=True,
         max_digits=6,
         decimal_places=2,
-        verbose_name="Budget",
+        verbose_name='Budget',
     )
     date = models.DateTimeField(
         auto_now_add=True,
     )
     created = models.DateField(
-        default=timezone.now().strftime("%Y-%m-%d"),
-        verbose_name="Erstellt am",
+        default=timezone.now().strftime('%Y-%m-%d'),
+        verbose_name='Erstellt am',
     )
     changed = models.DateTimeField(
         auto_now=True,
-        verbose_name="Geändert am",
+        verbose_name='Geändert am',
     )
     owner_id = models.IntegerField(
         default=0,
         blank=False,
-        verbose_name="UserID"
+        verbose_name='UserID'
     )
 
     class Meta:
-        verbose_name = "Aufgabe"
-        verbose_name_plural = "Aufgaben"
-        ordering = ["duedate"]
+        verbose_name = 'Aufgabe'
+        verbose_name_plural = 'Aufgaben'
+        ordering = ['duedate']
 
     def __str__(self):
         return self.title

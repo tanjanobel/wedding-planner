@@ -5,8 +5,8 @@ from .models import Task
 class TaskSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         """Check if duedate is empty and convert to None"""
-        if "duedate" not in data.keys():
-            data["duedate"] = None
+        if 'duedate' not in data.keys():
+            data['duedate'] = None
         if data['duedate'] == '':
             data['duedate'] = None
 

@@ -9,57 +9,57 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         max_length=255,
         unique=True,
-        verbose_name="E-Mail Adresse"
+        verbose_name='E-Mail Adresse'
     )
     first_name = models.CharField(
         max_length=255,
-        verbose_name="Vorname"
+        verbose_name='Vorname'
     )
     last_name = models.CharField(
         max_length=255,
-        verbose_name="Nachname"
+        verbose_name='Nachname'
     )
     wedding_date = models.DateField(
         blank=True,
         default=datetime.date.today,
-        verbose_name="Hochzeitsdatum"
+        verbose_name='Hochzeitsdatum'
     )
     wedding_city = models.CharField(
         max_length=255,
         blank=True,
         default="",
-        verbose_name="Hochzeitsort"
+        verbose_name='Hochzeitsort'
     )
     wedding_budget = models.DecimalField(
         blank=True,
         default=0,
         max_digits=8,
         decimal_places=2,
-        verbose_name="Hochzeitsbudget",
+        verbose_name='Hochzeitsbudget',
     )
     bride = models.CharField(
         max_length=255,
         blank=True,
         default="",
-        verbose_name="Braut"
+        verbose_name='Braut'
     )
     groom = models.CharField(
         max_length=255,
         blank=True,
         default="",
-        verbose_name="Bräutigam"
+        verbose_name='Bräutigam'
     )
     maid_of_honor = models.CharField(
         max_length=255,
         blank=True,
         default="",
-        verbose_name="Trauzeugin"
+        verbose_name='Trauzeugin'
     )
     best_man = models.CharField(
         max_length=255,
         blank=True,
         default="",
-        verbose_name="Trauzeuge"
+        verbose_name='Trauzeuge'
     )
 
     is_active = models.BooleanField(default=True)
