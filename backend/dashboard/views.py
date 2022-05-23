@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db.models import F
 from budget.models import Budget
 from user.serializer import UserSerializer
 from user.models import UserProfile
@@ -20,7 +21,7 @@ def statistics(request):
 
     user_id = payload['user_id']
     next_tasks = Task.objects.filter(
-        status__in=[TaskStatus.OFFEN, TaskStatus.IN_ARBEIT], owner_id=user_id).order_by('duedate')
+        status__in=[TaskStatus.OFFEN, TaskStatus.IN_ARBEIT], owner_id=user_id).order_by(F('duedate').asc(nulls_last=True))
     serializer = TaskSerializer(next_tasks, many=True)
 
     if request.method == 'GET':

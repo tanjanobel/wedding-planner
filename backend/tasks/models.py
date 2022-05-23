@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.db.models import F
 from django.utils import timezone
 
 
@@ -65,7 +66,7 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'Aufgabe'
         verbose_name_plural = 'Aufgaben'
-        ordering = ['duedate']
+        ordering = [F('duedate').asc(nulls_last=True)]
 
     def __str__(self):
         return self.title
