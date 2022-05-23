@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import data from "../data/menuItems.json";
 import sprite from "../icons/wedding-planner-sprite.svg";

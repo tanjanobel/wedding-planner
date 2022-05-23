@@ -21,6 +21,6 @@ Login with test account<br>
 `http://localhost:3000/login`
 
 email:
-leonie.zimmermann@gmail.com
+leonie.zimmermann@gmail.com<br>
 password:
 12345678!

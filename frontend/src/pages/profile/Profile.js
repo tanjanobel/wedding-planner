@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import useAxios from "../../utils/useAxios";
@@ -39,6 +39,7 @@ const EditUser = () => {
   const countRef = useRef(0);
   useEffect(() => {
     retrieveUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countRef]);
 
   const handleUserChange = (e) => {

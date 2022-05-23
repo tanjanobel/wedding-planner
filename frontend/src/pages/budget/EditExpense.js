@@ -24,6 +24,7 @@ const EditExpense = () => {
   const countRef = useRef(0);
   useEffect(() => {
     retrieveExpense();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countRef]);
 
   const handleExpenseChange = (e) => {

@@ -1,9 +1,7 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
 import Login from "../Login";
-import Register from "../Register";
-import AddTask from "../../tasks/AddTask";
 
 describe('Login Component', () => {
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import SubHeader from "../components/SubHeader";
 import useAxios from "../utils/useAxios";
@@ -10,6 +10,7 @@ const Wedding = () => {
 
   useEffect(() => {
     getWeddingData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getWeddingData = () => {

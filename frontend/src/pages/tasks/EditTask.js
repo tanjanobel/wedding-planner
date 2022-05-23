@@ -25,6 +25,7 @@ const EditTask = () => {
   const countRef = useRef(0);
   useEffect(() => {
     retrieveTask();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countRef]);
 
   const handleTaskChange = (e) => {

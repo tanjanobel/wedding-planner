@@ -35,6 +35,7 @@ const Expenses = () => {
   useEffect(() => {
     getExpenses();
     getStatistics();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

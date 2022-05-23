@@ -29,6 +29,7 @@ const Guests = () => {
 
   useEffect(() => {
     getGuests();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
