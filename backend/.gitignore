@@ -1,7 +1,6 @@
 .env
 *.py[co]
 *.mo
-*.sqlite3
 *.egg-info
 package-lock.json
 /docs/_build
