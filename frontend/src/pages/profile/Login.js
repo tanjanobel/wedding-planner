@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import AuthContext from "../../context/AuthContext";
+import Flashmessage from "../../components/Flashmessage";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -11,6 +12,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+
+  const { state } = useLocation();
+
+  let performedAction = "";
+  let isError = "";
+  if (state) {
+    performedAction = state.performedAction;
+    isError = state.isError;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +36,15 @@ const Login = () => {
     <>
       <SubHeader title="Anmelden" />
       <Section>
+        {performedAction && (
+          <Flashmessage
+            className="success"
+            icon="#done"
+            performedAction={performedAction}
+            isError={isError}
+            duration={6000}
+          />
+        )}
         <div className="grid-x grid-margin-x align-top">
           <div className="card cell small-12 tablet-6">
             <div className="card__body">

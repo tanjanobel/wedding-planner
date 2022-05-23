@@ -26,6 +26,7 @@ const Flashmessage = (props) => {
     err_edit_expense: `Ausgabe ${props.title} konnte nicht gespeichert werden.`,
 
     edit_user: `Die Änderungen wurde erfolgreich gespeichert.`,
+    register_user: `Registrierung erfolgreich. Bitte melde dich mit deiner E-Mail Adresse und deinem Passwort an.`,
   };
 
   let text = messages[props.performedAction];

@@ -6,15 +6,14 @@ import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-
-  const [errors, setErrors] = useState([]);
-
-  const navigate = useNavigate();
 
   const onRegister = async (e) => {
     e.preventDefault();
@@ -29,13 +28,13 @@ const Register = () => {
           first_name: firstname,
           last_name: lastname,
         },
-        { "Content-Type": "application/json" }
       )
       .then((response) => {
-        navigate("/login");
+       navigate("/login", { state: { performedAction: "register_user" } });
       })
-      .catch((err) => {
-        setErrors(err.response.data);
+      .catch((error) => {
+        console.error(error);
+        setErrors(error.response.data);
       });
   };
 
