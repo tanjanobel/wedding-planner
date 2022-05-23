@@ -16,3 +16,11 @@ Start frontend<br>
 
 Visit frontend<br>
 `http://localhost:3000/`
+
+Login with test account<br>
+`http://localhost:3000/login`
+
+email:
+leonie.zimmermann@gmail.com
+password:
+12345678!
