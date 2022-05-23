@@ -1,11 +1,11 @@
+import jwt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer
+from .serializer import MyTokenObtainPairSerializer, RegisterSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics, status
 from user.models import UserProfile
 from rest_framework.permissions import AllowAny
-import jwt
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
