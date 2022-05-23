@@ -1,7 +1,8 @@
+from datetime import datetime
+from django.db.models import F, Sum
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.db.models import F
 from budget.models import Budget
 from user.serializer import UserSerializer
 from user.models import UserProfile
@@ -9,8 +10,6 @@ from utils.decode import get_jwt_data
 from tasks.serializers import TaskSerializer
 from guests.models import Guest, GuestStatus
 from tasks.models import Task, TaskStatus
-from datetime import datetime
-from django.db.models import Sum
 
 
 @api_view(['GET'])
