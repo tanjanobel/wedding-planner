@@ -13,7 +13,6 @@ const AddTask = () => {
     title: "",
     description: "",
     duedate: "",
-    budget: "",
   });
 
   const api = useAxios();
@@ -34,7 +33,6 @@ const AddTask = () => {
       title: task.title,
       description: task.description,
       duedate: task.duedate,
-      budget: task.budget,
     };
 
     api
@@ -84,21 +82,6 @@ const AddTask = () => {
           <label htmlFor="duedate">Fällig am</label>
           <input type="date" name="duedate" id="duedate" value={task.duedate} onChange={handleChange} />
           {errors["duedate"]?.map((error) => (
-            <div key={error} className="form-error">
-              <svg className="card__status icon small">
-                <use href={sprite + "#exclamation"} />
-              </svg>
-              <span>{error}</span>
-            </div>
-          ))}
-          <label htmlFor="budget">Budget</label>
-          <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" id="budget" value={task.budget} onChange={handleChange} />
-            <div className="input-group-icon">
-              <span>CHF</span>
-            </div>
-          </div>
-          {errors["budget"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
                 <use href={sprite + "#exclamation"} />

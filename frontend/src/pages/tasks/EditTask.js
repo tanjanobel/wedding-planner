@@ -14,7 +14,6 @@ const EditTask = () => {
     title: "",
     description: "",
     duedate: "",
-    budget: "",
   };
 
   const api = useAxios();
@@ -42,7 +41,6 @@ const EditTask = () => {
           title: response.data.title,
           description: response.data.description,
           duedate: response.data.duedate,
-          budget: response.data.budget,
         });
       })
       .catch((e) => {
@@ -64,7 +62,6 @@ const EditTask = () => {
           title: response.data.title,
           description: response.data.description,
           duedate: response.data.duedate,
-          budget: response.data.budget,
         });
         if (response.status === 200) {
           navigate("/tasks", { state: { performedAction: "edit_task", title: currentTask.title } });
@@ -110,21 +107,6 @@ const EditTask = () => {
           <label htmlFor="duedate">Fällig am</label>
           <input type="date" name="duedate" id="duedate" value={currentTask.duedate ? currentTask.duedate : ""} onChange={handleTaskChange}/>
           {errors["duedate"]?.map((error) => (
-            <div key={error} className="form-error">
-              <svg className="card__status icon small">
-                <use href={sprite + "#exclamation"} />
-              </svg>
-              <span>{error}</span>
-            </div>
-          ))}
-          <label htmlFor="budget">Budget</label>
-          <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" id="budget" value={currentTask.budget ? currentTask.budget : ""} onChange={handleTaskChange}/>
-            <div className="input-group-icon">
-              <span>CHF</span>
-            </div>
-          </div>
-            {errors["budget"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
                 <use href={sprite + "#exclamation"} />

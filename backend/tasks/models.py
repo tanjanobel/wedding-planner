@@ -39,13 +39,6 @@ class Task(models.Model):
         null=True,
         verbose_name='Fällig am',
     )
-    budget = models.DecimalField(
-        blank=True,
-        null=True,
-        max_digits=6,
-        decimal_places=2,
-        verbose_name='Budget',
-    )
     date = models.DateTimeField(
         auto_now_add=True,
     )
