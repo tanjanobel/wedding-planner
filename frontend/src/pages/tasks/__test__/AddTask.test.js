@@ -103,18 +103,4 @@ describe('Add task page', () => {
     fireEvent.change(titleInput, {target: {value: testValue}});
     expect(titleInput.value).toBe(testValue);
   });
-
-  test('Budget input should change', () => {
-    render(
-      <Router>
-        <AuthProvider>
-          <AddTask />
-        </AuthProvider>
-      </Router>
-    );
-    const budgetInput = screen.getByLabelText('Budget');
-    const testValue = '200';
-    fireEvent.change(budgetInput, {target: {value: testValue}});
-    expect(budgetInput.value).toBe(testValue);
-  });
 });
