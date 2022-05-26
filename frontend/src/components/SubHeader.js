@@ -1,5 +1,4 @@
-const SubHeader = ({title}) => {
-
+const SubHeader = ({ title }) => {
   return (
     <>
       <header className="subheader">
@@ -8,7 +7,7 @@ const SubHeader = ({title}) => {
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
 export default SubHeader;

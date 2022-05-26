@@ -4,9 +4,8 @@ import { AuthProvider } from "../../context/AuthContext";
 import Nav from "../Nav";
 import userEvent from "@testing-library/user-event";
 
-describe('Nav Component', () => {
-
-  test('renders nav',() => {
+describe("Nav Component", () => {
+  test("renders nav", () => {
     render(
       <Router>
         <AuthProvider>
@@ -16,7 +15,7 @@ describe('Nav Component', () => {
     );
   });
 
-  test('renders main navigation items', () => {
+  test("renders main navigation items", () => {
     render(
       <Router>
         <AuthProvider>
@@ -24,11 +23,11 @@ describe('Nav Component', () => {
         </AuthProvider>
       </Router>
     );
-    const mainNav = screen.getAllByRole('listitem');
+    const mainNav = screen.getAllByRole("listitem");
     expect(mainNav.length).toBe(6);
   });
 
-  test('renders login link', () => {
+  test("renders login link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -36,12 +35,12 @@ describe('Nav Component', () => {
         </AuthProvider>
       </Router>
     );
-    const links: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(links[5].textContent).toEqual('Anmelden');
-    expect(links[5].href).toContain('/login');
+    const links: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(links[5].textContent).toEqual("Anmelden");
+    expect(links[5].href).toContain("/login");
   });
 
-  test('check mobile nav toggle', () => {
+  test("check mobile nav toggle", () => {
     render(
       <Router>
         <AuthProvider>
@@ -49,7 +48,7 @@ describe('Nav Component', () => {
         </AuthProvider>
       </Router>
     );
-    const toggle = screen.getByTestId('menuToggle');
+    const toggle = screen.getByTestId("menuToggle");
     userEvent.click(toggle);
     expect(toggle).toBeChecked();
   });

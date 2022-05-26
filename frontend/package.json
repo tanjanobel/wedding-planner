@@ -9,10 +9,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "dayjs": "^1.11.1",
+    "eslint-config-prettier": "^8.5.0",
     "fibers": "^5.0.1",
     "foundation-sites": "^6.7.4",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.2",
+    "prettier": "^2.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router": "^6.3.0",
@@ -25,13 +27,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
     ]
+  },
+  "prettier": {
+    "tabWidth": 2
   },
   "browserslist": {
     "production": [

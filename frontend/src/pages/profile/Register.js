@@ -19,18 +19,15 @@ const Register = () => {
     e.preventDefault();
 
     axios
-      .post(
-        "/api/register/",
-        {
-          email,
-          password,
-          password2,
-          first_name: firstname,
-          last_name: lastname,
-        },
-      )
+      .post("/api/register/", {
+        email,
+        password,
+        password2,
+        first_name: firstname,
+        last_name: lastname,
+      })
       .then((response) => {
-       navigate("/login", { state: { performedAction: "register_user" } });
+        navigate("/login", { state: { performedAction: "register_user" } });
       })
       .catch((error) => {
         console.error(error);
@@ -40,7 +37,6 @@ const Register = () => {
 
   return (
     <>
-      {/* Flashmessage, bitte einloggen */}
       <SubHeader title="Registrieren" />
       <Section>
         <div className="card">

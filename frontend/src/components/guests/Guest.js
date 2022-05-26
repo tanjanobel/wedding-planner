@@ -45,17 +45,17 @@ const Guest = ({ id, status, firstname, lastname, description }) => {
             <div className="card__buttons">
               <Link
                 to={`/guests/delete/${id}`}
-                state={{firstname, lastname}}
+                state={{ firstname, lastname }}
                 className="card__button button clear black"
               >
                 <svg className="icon small">
-                  <use href={sprite + "#trash"}/>
+                  <use href={sprite + "#trash"} />
                 </svg>
                 <span>Löschen</span>
               </Link>
               <Link to={`/guests/edit/${id}`} className="card__button button clear black">
                 <svg className="icon small">
-                  <use href={sprite + "#edit"}/>
+                  <use href={sprite + "#edit"} />
                 </svg>
                 <span>Bearbeiten</span>
               </Link>

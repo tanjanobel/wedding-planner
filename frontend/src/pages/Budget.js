@@ -77,10 +77,11 @@ const Expenses = () => {
           <div className="card cell small-12 phablet-4">
             <div className="card__content text-center">
               <h3 className="card__heading">Ausgaben</h3>
-              {statistics.wedding_budget_spent > 0
-                ? <p className="card__summary">{statistics.wedding_budget_spent.toFixed(2)} CHF</p>
-                : <p className="card__summary">0 CHF</p>
-              }
+              {statistics.wedding_budget_spent > 0 ? (
+                <p className="card__summary">{statistics.wedding_budget_spent.toFixed(2)} CHF</p>
+              ) : (
+                <p className="card__summary">0 CHF</p>
+              )}
               {expenses.budget}
             </div>
           </div>
@@ -131,8 +132,7 @@ const Expenses = () => {
               description={expense.description}
               budget={expense.budget}
             />
-          ))
-        }
+          ))}
 
         {/* Expenses done */}
         {expensesDone &&
@@ -145,8 +145,7 @@ const Expenses = () => {
               description={expense.description}
               budget={expense.budget}
             />
-          ))
-        }
+          ))}
       </Section>
     </>
   );

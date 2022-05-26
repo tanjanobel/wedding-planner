@@ -3,9 +3,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
 import Header from "../Header";
 
-describe('Header Component', () => {
-
-  test('renders header',() => {
+describe("Header Component", () => {
+  test("renders header", () => {
     render(
       <Router>
         <AuthProvider>
@@ -15,7 +14,7 @@ describe('Header Component', () => {
     );
   });
 
-  test('renders slogan', () => {
+  test("renders slogan", () => {
     render(
       <Router>
         <AuthProvider>
@@ -24,10 +23,10 @@ describe('Header Component', () => {
       </Router>
     );
     const slogan = screen.getByText(/Happily ever after.../);
-    expect(slogan).toHaveTextContent('Happily ever after...');
+    expect(slogan).toHaveTextContent("Happily ever after...");
   });
 
-  test('renders login link', () => {
+  test("renders login link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -35,12 +34,12 @@ describe('Header Component', () => {
         </AuthProvider>
       </Router>
     );
-    const loginLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(loginLink[0].textContent).toEqual('Anmelden');
-    expect(loginLink[0].href).toContain('/login');
+    const loginLink: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(loginLink[0].textContent).toEqual("Anmelden");
+    expect(loginLink[0].href).toContain("/login");
   });
 
-  test('renders logo', () => {
+  test("renders logo", () => {
     render(
       <Router>
         <AuthProvider>
@@ -48,8 +47,8 @@ describe('Header Component', () => {
         </AuthProvider>
       </Router>
     );
-    const logo = screen.getByRole('img');
-    expect(logo).toHaveAttribute('src', 'logo.svg');
-    expect(logo).toHaveAttribute('alt', 'Wedding Planner');
+    const logo = screen.getByRole("img");
+    expect(logo).toHaveAttribute("src", "logo.svg");
+    expect(logo).toHaveAttribute("alt", "Wedding Planner");
   });
 });

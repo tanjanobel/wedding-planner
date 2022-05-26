@@ -4,9 +4,8 @@ import { AuthProvider } from "../../context/AuthContext";
 import Tasks from "../Tasks";
 import Task from "../../components/tasks/Task";
 
-describe('Tasks page', () => {
-
-  test('Renders tasks',() => {
+describe("Tasks page", () => {
+  test("Renders tasks", () => {
     render(
       <Router>
         <AuthProvider>
@@ -16,7 +15,7 @@ describe('Tasks page', () => {
     );
   });
 
-  test('Renders h1', () => {
+  test("Renders h1", () => {
     render(
       <Router>
         <AuthProvider>
@@ -24,11 +23,11 @@ describe('Tasks page', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Meine Aufgaben';
+    const h1 = "Meine Aufgaben";
     expect(h1).toMatch(/Meine Aufgaben/);
   });
 
-  test('renders h3 tasks open', () => {
+  test("renders h3 tasks open", () => {
     render(
       <Router>
         <AuthProvider>
@@ -36,11 +35,11 @@ describe('Tasks page', () => {
         </AuthProvider>
       </Router>
     );
-    const h3 = 'Offen';
-    expect(h3).toMatch('Offen');
+    const h3 = "Offen";
+    expect(h3).toMatch("Offen");
   });
 
-  test('renders h3 tasks in progress', () => {
+  test("renders h3 tasks in progress", () => {
     render(
       <Router>
         <AuthProvider>
@@ -48,11 +47,11 @@ describe('Tasks page', () => {
         </AuthProvider>
       </Router>
     );
-    const h3 = 'In Arbeit';
-    expect(h3).toMatch('In Arbeit');
+    const h3 = "In Arbeit";
+    expect(h3).toMatch("In Arbeit");
   });
 
-  test('renders h3 tasks done', () => {
+  test("renders h3 tasks done", () => {
     render(
       <Router>
         <AuthProvider>
@@ -60,11 +59,11 @@ describe('Tasks page', () => {
         </AuthProvider>
       </Router>
     );
-    const h3 = 'Erledigt';
-    expect(h3).toMatch('Erledigt');
+    const h3 = "Erledigt";
+    expect(h3).toMatch("Erledigt");
   });
 
-  test('renders add task link', () => {
+  test("renders add task link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -72,12 +71,12 @@ describe('Tasks page', () => {
         </AuthProvider>
       </Router>
     );
-    const addTaskLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(addTaskLink[0].textContent).toEqual('Aufgabe hinzufügen');
-    expect(addTaskLink[0].href).toContain('/tasks/add');
+    const addTaskLink: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(addTaskLink[0].textContent).toEqual("Aufgabe hinzufügen");
+    expect(addTaskLink[0].href).toContain("/tasks/add");
   });
 
-  test('Renders task component',() => {
+  test("Renders task component", () => {
     render(
       <Router>
         <AuthProvider>

@@ -3,9 +3,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
 import Dashboard from "../Dashboard";
 
-describe('Dashboard page', () => {
-
-  test('Renders dashboard',() => {
+describe("Dashboard page", () => {
+  test("Renders dashboard", () => {
     render(
       <Router>
         <AuthProvider>
@@ -15,7 +14,7 @@ describe('Dashboard page', () => {
     );
   });
 
-  test('Renders h1', () => {
+  test("Renders h1", () => {
     render(
       <Router>
         <AuthProvider>
@@ -23,7 +22,7 @@ describe('Dashboard page', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Plane deine Hochzeit online';
+    const h1 = "Plane deine Hochzeit online";
     expect(h1).toMatch(/deine Hochzeit/);
   });
 });

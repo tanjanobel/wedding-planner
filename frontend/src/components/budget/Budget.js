@@ -11,13 +11,13 @@ const Expense = ({ id, title, status, budget, description }) => {
               case "Bezahlt":
                 return (
                   <svg className="card__status icon large">
-                    <use href={sprite + "#done"}/>
+                    <use href={sprite + "#done"} />
                   </svg>
                 );
               default:
                 return (
                   <svg className="card__status icon large">
-                    <use href={sprite + "#open"}/>
+                    <use href={sprite + "#open"} />
                   </svg>
                 );
             }
@@ -38,15 +38,15 @@ const Expense = ({ id, title, status, budget, description }) => {
               {description ? <p>Notiz: {description}</p> : null}
             </div>
             <div className="card__buttons">
-              <Link to={`/budget/delete/${id}`} state={{title}} className="card__button button clear black">
+              <Link to={`/budget/delete/${id}`} state={{ title }} className="card__button button clear black">
                 <svg className="icon small">
-                  <use href={sprite + "#trash"}/>
+                  <use href={sprite + "#trash"} />
                 </svg>
                 <span>Löschen</span>
               </Link>
               <Link to={`/budget/edit/${id}`} className="card__button button clear black">
                 <svg className="icon small">
-                  <use href={sprite + "#edit"}/>
+                  <use href={sprite + "#edit"} />
                 </svg>
                 <span>Bearbeiten</span>
               </Link>

@@ -4,9 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
 import AddTask from "../AddTask";
 
-describe('Add task page', () => {
-
-  test('Renders addTask',() => {
+describe("Add task page", () => {
+  test("Renders addTask", () => {
     render(
       <Router>
         <AuthProvider>
@@ -16,7 +15,7 @@ describe('Add task page', () => {
     );
   });
 
-  test('Renders h1', () => {
+  test("Renders h1", () => {
     render(
       <Router>
         <AuthProvider>
@@ -24,11 +23,11 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Aufgabe hinzufügen';
+    const h1 = "Aufgabe hinzufügen";
     expect(h1).toMatch(/Aufgabe hinzufügen/);
   });
 
-  test('renders save link', () => {
+  test("renders save link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -36,11 +35,11 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    const saveLink: HTMLAnchorElement[] = screen.getAllByRole('button');
-    expect(saveLink[0].textContent).toEqual('Speichern');
+    const saveLink: HTMLAnchorElement[] = screen.getAllByRole("button");
+    expect(saveLink[0].textContent).toEqual("Speichern");
   });
 
-  test('renders cancel link', () => {
+  test("renders cancel link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -48,12 +47,12 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    const cancelLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(cancelLink[0].textContent).toEqual('Abbrechen');
-    expect(cancelLink[0].href).toContain('/tasks');
+    const cancelLink: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(cancelLink[0].textContent).toEqual("Abbrechen");
+    expect(cancelLink[0].href).toContain("/tasks");
   });
 
-  test('should correctly set default option', () => {
+  test("should correctly set default option", () => {
     render(
       <Router>
         <AuthProvider>
@@ -61,10 +60,10 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    expect(screen.getByRole('option', {name: 'Offen'}).selected).toBe(true);
+    expect(screen.getByRole("option", { name: "Offen" }).selected).toBe(true);
   });
 
-  test('should display the correct number of options', () => {
+  test("should display the correct number of options", () => {
     render(
       <Router>
         <AuthProvider>
@@ -72,10 +71,10 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    expect(screen.getAllByRole('option').length).toBe(3);
+    expect(screen.getAllByRole("option").length).toBe(3);
   });
 
-  test('should allow user to change status', () => {
+  test("should allow user to change status", () => {
     render(
       <Router>
         <AuthProvider>
@@ -83,14 +82,11 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    userEvent.selectOptions(
-      screen.getByRole('combobox'),
-      screen.getByRole('option', {name: 'In Arbeit'}),
-    )
-    expect(screen.getByRole('option', {name: 'In Arbeit'}).selected).toBe(true);
+    userEvent.selectOptions(screen.getByRole("combobox"), screen.getByRole("option", { name: "In Arbeit" }));
+    expect(screen.getByRole("option", { name: "In Arbeit" }).selected).toBe(true);
   });
 
-  test('Title input should change', () => {
+  test("Title input should change", () => {
     render(
       <Router>
         <AuthProvider>
@@ -98,9 +94,9 @@ describe('Add task page', () => {
         </AuthProvider>
       </Router>
     );
-    const titleInput = screen.getByLabelText('Titel (Pflichtfeld)');
-    const testValue = 'test';
-    fireEvent.change(titleInput, {target: {value: testValue}});
+    const titleInput = screen.getByLabelText("Titel (Pflichtfeld)");
+    const testValue = "test";
+    fireEvent.change(titleInput, { target: { value: testValue } });
     expect(titleInput.value).toBe(testValue);
   });
 });

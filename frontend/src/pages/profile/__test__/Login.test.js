@@ -3,9 +3,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
 import Login from "../Login";
 
-describe('Login Component', () => {
-
-  test('renders login',() => {
+describe("Login Component", () => {
+  test("renders login", () => {
     render(
       <Router>
         <AuthProvider>
@@ -15,7 +14,7 @@ describe('Login Component', () => {
     );
   });
 
-  test('Renders h1', () => {
+  test("Renders h1", () => {
     render(
       <Router>
         <AuthProvider>
@@ -23,11 +22,11 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Anmelden';
+    const h1 = "Anmelden";
     expect(h1).toMatch(/Anmelden/);
   });
 
-  test('renders email input', () => {
+  test("renders email input", () => {
     render(
       <Router>
         <AuthProvider>
@@ -35,11 +34,11 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const emailInput = screen.getByLabelText('E-Mail Adresse');
+    const emailInput = screen.getByLabelText("E-Mail Adresse");
     expect(emailInput).toBeInTheDocument();
   });
 
-  test('renders password input', () => {
+  test("renders password input", () => {
     render(
       <Router>
         <AuthProvider>
@@ -47,11 +46,11 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const passwordInput = screen.getByLabelText('Passwort');
+    const passwordInput = screen.getByLabelText("Passwort");
     expect(passwordInput).toBeInTheDocument();
   });
 
-  test('renders login button', () => {
+  test("renders login button", () => {
     render(
       <Router>
         <AuthProvider>
@@ -59,11 +58,11 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const loginLink = screen.getByRole('button');
+    const loginLink = screen.getByRole("button");
     expect(loginLink).toBeInTheDocument();
   });
 
-  test('renders register now link', () => {
+  test("renders register now link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -71,12 +70,12 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const registerNowLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(registerNowLink[0].textContent).toEqual('Jetzt registrieren');
-    expect(registerNowLink[0].href).toContain('/register');
+    const registerNowLink: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(registerNowLink[0].textContent).toEqual("Jetzt registrieren");
+    expect(registerNowLink[0].href).toContain("/register");
   });
 
-  test('email input should change', () => {
+  test("email input should change", () => {
     render(
       <Router>
         <AuthProvider>
@@ -84,13 +83,13 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const emailInput = screen.getByLabelText('E-Mail Adresse');
-    const testValue = 'test@test.com';
-    fireEvent.change(emailInput, {target: {value: testValue}});
+    const emailInput = screen.getByLabelText("E-Mail Adresse");
+    const testValue = "test@test.com";
+    fireEvent.change(emailInput, { target: { value: testValue } });
     expect(emailInput.value).toBe(testValue);
   });
 
-  test('password input should change', () => {
+  test("password input should change", () => {
     render(
       <Router>
         <AuthProvider>
@@ -98,9 +97,9 @@ describe('Login Component', () => {
         </AuthProvider>
       </Router>
     );
-    const passwordInput = screen.getByLabelText('Passwort');
-    const testValue = '12345678!';
-    fireEvent.change(passwordInput, {target: {value: testValue}});
+    const passwordInput = screen.getByLabelText("Passwort");
+    const testValue = "12345678!";
+    fireEvent.change(passwordInput, { target: { value: testValue } });
     expect(passwordInput.value).toBe(testValue);
   });
 });

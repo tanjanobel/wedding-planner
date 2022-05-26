@@ -79,7 +79,13 @@ const EditExpense = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" id="status" value={currentExpense.status} onChange={handleExpenseChange}>
+          <select
+            className="form-select"
+            name="status"
+            id="status"
+            value={currentExpense.status}
+            onChange={handleExpenseChange}
+          >
             <option value="Offen">Offen</option>
             <option value="Bezahlt">Bezahlt</option>
           </select>
@@ -95,7 +101,14 @@ const EditExpense = () => {
           ))}
           <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" id="budget" value={currentExpense.budget ? currentExpense.budget : ""} onChange={handleExpenseChange}/>
+            <input
+              className="input-group-field"
+              type="number"
+              name="budget"
+              id="budget"
+              value={currentExpense.budget ? currentExpense.budget : ""}
+              onChange={handleExpenseChange}
+            />
             <div className="input-group-icon">
               <span>CHF</span>
             </div>
@@ -109,7 +122,13 @@ const EditExpense = () => {
             </div>
           ))}
           <label htmlFor="description">Notiz</label>
-          <textarea name="description" cols="40" rows="5" value={currentExpense.description} onChange={handleExpenseChange}/>
+          <textarea
+            name="description"
+            cols="40"
+            rows="5"
+            value={currentExpense.description}
+            onChange={handleExpenseChange}
+          />
           {errors["description"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">

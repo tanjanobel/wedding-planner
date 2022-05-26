@@ -43,15 +43,15 @@ const Task = ({ id, title, status, description, duedate }) => {
               {duedate ? <p>Fällig am: {moment(duedate).format("DD.MM.YYYY")}</p> : null}
             </div>
             <div className="card__buttons">
-              <Link to={`/tasks/delete/${id}`} state={{title}} className="card__button button clear black">
+              <Link to={`/tasks/delete/${id}`} state={{ title }} className="card__button button clear black">
                 <svg className="icon small">
-                  <use href={sprite + "#trash"}/>
+                  <use href={sprite + "#trash"} />
                 </svg>
                 <span>Löschen</span>
               </Link>
               <Link to={`/tasks/edit/${id}`} className="card__button button clear black">
                 <svg className="icon small">
-                  <use href={sprite + "#edit"}/>
+                  <use href={sprite + "#edit"} />
                 </svg>
                 <span>Bearbeiten</span>
               </Link>

@@ -71,7 +71,14 @@ const AddExpense = () => {
           ))}
           <label htmlFor="budget">Budget (Pflichtfeld)</label>
           <div className="input-group">
-            <input className="input-group-field" type="number" name="budget" id="budget" value={expense.budget} onChange={handleChange} />
+            <input
+              className="input-group-field"
+              type="number"
+              name="budget"
+              id="budget"
+              value={expense.budget}
+              onChange={handleChange}
+            />
             <div className="input-group-icon">
               <span>CHF</span>
             </div>
@@ -85,7 +92,14 @@ const AddExpense = () => {
             </div>
           ))}
           <label htmlFor="description">Notiz</label>
-          <textarea name="description" cols="40" rows="5" id="description" value={expense.description} onChange={handleChange} />
+          <textarea
+            name="description"
+            cols="40"
+            rows="5"
+            id="description"
+            value={expense.description}
+            onChange={handleChange}
+          />
           {errors["description"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">

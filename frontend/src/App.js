@@ -40,20 +40,118 @@ function App() {
           <Route path="/*" element={<PageNotFound />} />
 
           {/* Private Routes */}
-          <Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
-          <Route path="/tasks/add" element={<PrivateRoute><AddTask /></PrivateRoute>} />
-          <Route path="/tasks/edit/:id" element={<PrivateRoute><EditTask /></PrivateRoute>} />
-          <Route path="/tasks/delete/:id" element={<PrivateRoute><DeleteTask /></PrivateRoute>} />
-          <Route path="/guests" element={<PrivateRoute><Guests /></PrivateRoute>} />
-          <Route path="/guests/add" element={<PrivateRoute><AddGuest /></PrivateRoute>} />
-          <Route path="/guests/edit/:id" element={<PrivateRoute><EditGuest /></PrivateRoute>} />
-          <Route path="/guests/delete/:id" element={<PrivateRoute><DeleteGuest /></PrivateRoute>} />
-          <Route path="/budget" element={<PrivateRoute><Budget /></PrivateRoute>} />
-          <Route path="/budget/add" element={<PrivateRoute><AddExpense /></PrivateRoute>} />
-          <Route path="/budget/edit/:id" element={<PrivateRoute><EditExpense /></PrivateRoute>} />
-          <Route path="/budget/delete/:id" element={<PrivateRoute><DeleteExpense /></PrivateRoute>} />
-          <Route path="/wedding" element={<PrivateRoute><Wedding /></PrivateRoute>} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+          <Route
+            path="/tasks"
+            element={
+              <PrivateRoute>
+                <Tasks />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tasks/add"
+            element={
+              <PrivateRoute>
+                <AddTask />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tasks/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditTask />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tasks/delete/:id"
+            element={
+              <PrivateRoute>
+                <DeleteTask />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/guests"
+            element={
+              <PrivateRoute>
+                <Guests />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/guests/add"
+            element={
+              <PrivateRoute>
+                <AddGuest />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/guests/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditGuest />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/guests/delete/:id"
+            element={
+              <PrivateRoute>
+                <DeleteGuest />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/budget"
+            element={
+              <PrivateRoute>
+                <Budget />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/budget/add"
+            element={
+              <PrivateRoute>
+                <AddExpense />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/budget/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditExpense />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/budget/delete/:id"
+            element={
+              <PrivateRoute>
+                <DeleteExpense />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/wedding"
+            element={
+              <PrivateRoute>
+                <Wedding />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
         </Routes>
         <Footer />
       </AuthProvider>

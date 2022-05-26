@@ -20,26 +20,22 @@ const Nav = () => {
         data-testid="menuToggle"
       />
       <label htmlFor="menu-toggle" className="header__hamburger hide-for-tablet">
-        <span/>
+        <span />
       </label>
       <nav className="header__nav">
         <ul>
-            {menuItems.map((menuItem, i) =>
-              <li key={i}>
-                <NavLink
-                  className="header__link"
-                  to={menuItem.path}
-                  onClick={() => setChecked(false)}
-                >
-                  {menuItem.name}
-                </NavLink>
-              </li>
-            )}
+          {menuItems.map((menuItem, i) => (
+            <li key={i}>
+              <NavLink className="header__link" to={menuItem.path} onClick={() => setChecked(false)}>
+                {menuItem.name}
+              </NavLink>
+            </li>
+          ))}
           {user ? (
             <li className="hide-for-tablet">
               <Link to="/profile" onClick={() => setChecked(false)}>
                 <svg className="icon medium">
-                  <use href={sprite + "#user"}/>
+                  <use href={sprite + "#user"} />
                 </svg>
                 <span className="header__user">{user.first_name}</span>
               </Link>
@@ -51,7 +47,7 @@ const Nav = () => {
             <li className="hide-for-tablet">
               <Link to="/login" className="button clear black padding-left-0" onClick={() => setChecked(false)}>
                 <svg className="icon medium">
-                  <use href={sprite + "#enter"}/>
+                  <use href={sprite + "#enter"} />
                 </svg>
                 <span>Anmelden</span>
               </Link>

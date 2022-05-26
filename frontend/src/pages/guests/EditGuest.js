@@ -98,7 +98,13 @@ const EditGuest = () => {
           <div className="grid-x grid-margin-x">
             <div className="cell small-12">
               <label htmlFor="status">Status</label>
-              <select className="form-select" name="status" id="status" value={currentGuest.status} onChange={handleGuestChange}>
+              <select
+                className="form-select"
+                name="status"
+                id="status"
+                value={currentGuest.status}
+                onChange={handleGuestChange}
+              >
                 <option value="Ausstehend">Ausstehend</option>
                 <option value="Zusage">Zusage</option>
                 <option value="Absage">Absage</option>
@@ -106,7 +112,13 @@ const EditGuest = () => {
             </div>
             <div className="cell small-12 tablet-6">
               <label htmlFor="firstname">Vorname (Pflichtfeld)</label>
-              <input type="text" name="firstname" id="firstname" value={currentGuest.firstname} onChange={handleGuestChange} />
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
+                value={currentGuest.firstname}
+                onChange={handleGuestChange}
+              />
               {errors["firstname"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">
@@ -118,7 +130,13 @@ const EditGuest = () => {
             </div>
             <div className="cell small-12 tablet-6">
               <label htmlFor="lastname">Nachname (Pflichtfeld)</label>
-              <input type="text" name="lastname" id="lastname" value={currentGuest.lastname} onChange={handleGuestChange} />
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+                value={currentGuest.lastname}
+                onChange={handleGuestChange}
+              />
               {errors["lastname"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">
@@ -190,7 +208,13 @@ const EditGuest = () => {
             </div>
             <div className="cell small-12">
               <label htmlFor="description">Notiz</label>
-              <textarea name="description" cols="40" rows="5" value={currentGuest.description} onChange={handleGuestChange}/>
+              <textarea
+                name="description"
+                cols="40"
+                rows="5"
+                value={currentGuest.description}
+                onChange={handleGuestChange}
+              />
               {errors["description"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">

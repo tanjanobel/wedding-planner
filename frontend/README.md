@@ -1,7 +1,9 @@
 # Wedding Planner
+
 Semesterarbeit FSDev Tanja Nobel
 
 ## Setup Frontend
+
 Clone this repository<br>
 `$ git clone https://git.ffhs.ch/web-technologien/fsdev/fs22/w4b-c-fs001.fsdev.zh-sa-1/main_projects/tanja_nobel.git`
 

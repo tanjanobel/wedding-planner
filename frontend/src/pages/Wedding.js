@@ -25,7 +25,7 @@ const Wedding = () => {
 
   return (
     <>
-      <SubHeader title="Meine Hochzeit"/>
+      <SubHeader title="Meine Hochzeit" />
       <section>
         <div className="section__container container small">
           <div className="summary grid-x grid-margin-x">
@@ -77,7 +77,7 @@ const Wedding = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default Wedding;

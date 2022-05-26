@@ -77,9 +77,7 @@ const Dashboard = () => {
               <div className="card cell small-12 phablet-6 desktop-3">
                 <div className="card__content text-center">
                   <h3 className="card__heading">Mein Budget</h3>
-                  <p className="card__summary">
-                    {weddingBudgetAvailable.toFixed(2)} CHF
-                  </p>
+                  <p className="card__summary">{weddingBudgetAvailable.toFixed(2)} CHF</p>
                   <p className="card__description">von {statistics.wedding_budget_total} CHF verfügbar</p>
                 </div>
               </div>

@@ -4,9 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../../context/AuthContext";
 import EditExpense from "../EditExpense";
 
-describe('Edit expense page', () => {
-
-  test('Renders editExpense',() => {
+describe("Edit expense page", () => {
+  test("Renders editExpense", () => {
     render(
       <Router>
         <AuthProvider>
@@ -16,7 +15,7 @@ describe('Edit expense page', () => {
     );
   });
 
-  test('Renders h1', () => {
+  test("Renders h1", () => {
     render(
       <Router>
         <AuthProvider>
@@ -24,11 +23,11 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    const h1 = 'Ausgabe hinzufügen';
+    const h1 = "Ausgabe hinzufügen";
     expect(h1).toMatch(/Ausgabe hinzufügen/);
   });
 
-  test('renders save link', () => {
+  test("renders save link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -36,11 +35,11 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    const saveLink: HTMLAnchorElement[] = screen.getAllByRole('button');
-    expect(saveLink[0].textContent).toEqual('Speichern');
+    const saveLink: HTMLAnchorElement[] = screen.getAllByRole("button");
+    expect(saveLink[0].textContent).toEqual("Speichern");
   });
 
-  test('renders cancel link', () => {
+  test("renders cancel link", () => {
     render(
       <Router>
         <AuthProvider>
@@ -48,12 +47,12 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    const cancelLink: HTMLAnchorElement[] = screen.getAllByRole('link');
-    expect(cancelLink[0].textContent).toEqual('Abbrechen');
-    expect(cancelLink[0].href).toContain('/budget');
+    const cancelLink: HTMLAnchorElement[] = screen.getAllByRole("link");
+    expect(cancelLink[0].textContent).toEqual("Abbrechen");
+    expect(cancelLink[0].href).toContain("/budget");
   });
 
-  test('should correctly set default option', () => {
+  test("should correctly set default option", () => {
     render(
       <Router>
         <AuthProvider>
@@ -61,10 +60,10 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    expect(screen.getByRole('option', {name: 'Offen'}).selected).toBe(true);
+    expect(screen.getByRole("option", { name: "Offen" }).selected).toBe(true);
   });
 
-  test('should display the correct number of options', () => {
+  test("should display the correct number of options", () => {
     render(
       <Router>
         <AuthProvider>
@@ -72,10 +71,10 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    expect(screen.getAllByRole('option').length).toBe(2);
+    expect(screen.getAllByRole("option").length).toBe(2);
   });
 
-  test('should allow user to change status', () => {
+  test("should allow user to change status", () => {
     render(
       <Router>
         <AuthProvider>
@@ -83,14 +82,11 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    userEvent.selectOptions(
-      screen.getByRole('combobox'),
-      screen.getByRole('option', {name: 'Bezahlt'}),
-    )
-    expect(screen.getByRole('option', {name: 'Bezahlt'}).selected).toBe(true);
+    userEvent.selectOptions(screen.getByRole("combobox"), screen.getByRole("option", { name: "Bezahlt" }));
+    expect(screen.getByRole("option", { name: "Bezahlt" }).selected).toBe(true);
   });
 
-  test('Title input should change', () => {
+  test("Title input should change", () => {
     render(
       <Router>
         <AuthProvider>
@@ -98,13 +94,13 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    const titleInput = screen.getByLabelText('Titel (Pflichtfeld)');
-    const testValue = 'test';
-    fireEvent.change(titleInput, {target: {value: testValue}});
+    const titleInput = screen.getByLabelText("Titel (Pflichtfeld)");
+    const testValue = "test";
+    fireEvent.change(titleInput, { target: { value: testValue } });
     expect(titleInput.value).toBe(testValue);
   });
 
-  test('Budget input should change', () => {
+  test("Budget input should change", () => {
     render(
       <Router>
         <AuthProvider>
@@ -112,9 +108,9 @@ describe('Edit expense page', () => {
         </AuthProvider>
       </Router>
     );
-    const budgetInput = screen.getByLabelText('Budget (Pflichtfeld)');
-    const testValue = '200';
-    fireEvent.change(budgetInput, {target: {value: testValue}});
+    const budgetInput = screen.getByLabelText("Budget (Pflichtfeld)");
+    const testValue = "200";
+    fireEvent.change(budgetInput, { target: { value: testValue } });
     expect(budgetInput.value).toBe(testValue);
   });
 });

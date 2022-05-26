@@ -79,7 +79,13 @@ const EditTask = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" id="status" value={currentTask.status} onChange={handleTaskChange}>
+          <select
+            className="form-select"
+            name="status"
+            id="status"
+            value={currentTask.status}
+            onChange={handleTaskChange}
+          >
             <option value="Offen">Offen</option>
             <option value="In Arbeit">In Arbeit</option>
             <option value="Erledigt">Erledigt</option>
@@ -95,7 +101,13 @@ const EditTask = () => {
             </div>
           ))}
           <label htmlFor="description">Notiz</label>
-          <textarea name="description" cols="40" rows="5" value={currentTask.description} onChange={handleTaskChange}/>
+          <textarea
+            name="description"
+            cols="40"
+            rows="5"
+            value={currentTask.description}
+            onChange={handleTaskChange}
+          />
           {errors["description"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -105,7 +117,13 @@ const EditTask = () => {
             </div>
           ))}
           <label htmlFor="duedate">Fällig am</label>
-          <input type="date" name="duedate" id="duedate" value={currentTask.duedate ? currentTask.duedate : ""} onChange={handleTaskChange}/>
+          <input
+            type="date"
+            name="duedate"
+            id="duedate"
+            value={currentTask.duedate ? currentTask.duedate : ""}
+            onChange={handleTaskChange}
+          />
           {errors["duedate"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">

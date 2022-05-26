@@ -210,13 +210,7 @@ const EditUser = () => {
             </div>
             <div className="cell small-12 tablet-6">
               <label htmlFor="bride">Braut</label>
-              <input
-                type="text"
-                name="bride"
-                id="bride"
-                value={currentUser.bride}
-                onChange={handleUserChange}
-              />
+              <input type="text" name="bride" id="bride" value={currentUser.bride} onChange={handleUserChange} />
               {errors["bride"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">
@@ -228,13 +222,7 @@ const EditUser = () => {
             </div>
             <div className="cell small-12 tablet-6">
               <label htmlFor="groom">Bräutigam</label>
-              <input
-                type="text"
-                name="groom"
-                id="groom"
-                value={currentUser.groom}
-                onChange={handleUserChange}
-              />
+              <input type="text" name="groom" id="groom" value={currentUser.groom} onChange={handleUserChange} />
               {errors["groom"]?.map((error) => (
                 <div key={error} className="form-error">
                   <svg className="card__status icon small">
