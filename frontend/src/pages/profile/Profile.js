@@ -148,8 +148,6 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="wedding_date">Hochzeitsdatum</label>
               <input
@@ -186,30 +184,30 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <label htmlFor="wedding_budget">Hochzeitsbudget</label>
-          <div className="input-group">
-            <input
-              className="input-group-field"
-              type="number"
-              name="wedding_budget"
-              id="wedding_budget"
-              value={currentUser.wedding_budget}
-              onChange={handleUserChange}
-            />
-            <div className="input-group-icon">
-              <span>CHF</span>
+            <div className="cell small-12">
+              <label htmlFor="wedding_budget">Hochzeitsbudget</label>
+              <div className="input-group">
+                <input
+                  className="input-group-field"
+                  type="number"
+                  name="wedding_budget"
+                  id="wedding_budget"
+                  value={currentUser.wedding_budget}
+                  onChange={handleUserChange}
+                />
+                <div className="input-group-icon">
+                  <span>CHF</span>
+                </div>
+              </div>
+              {errors["wedding_budget"]?.map((error) => (
+                <div key={error} className="form-error">
+                  <svg className="card__status icon small">
+                    <use href={sprite + "#exclamation"} />
+                  </svg>
+                  <span>{error}</span>
+                </div>
+              ))}
             </div>
-          </div>
-          {errors["wedding_budget"]?.map((error) => (
-            <div key={error} className="form-error">
-              <svg className="card__status icon small">
-                <use href={sprite + "#exclamation"} />
-              </svg>
-              <span>{error}</span>
-            </div>
-          ))}
-          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="bride">Braut</label>
               <input
@@ -246,8 +244,6 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="maid_of_honor">Trauzeugin</label>
               <input
@@ -284,12 +280,14 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="form__footer">
-            <div className="button-group">
-              <button type="submit" className="button primary" onClick={updateUser}>
-                Speichern
-              </button>
+            <div className="cell small-12">
+              <div className="form__footer">
+                <div className="button-group">
+                  <button type="submit" className="button primary" onClick={updateUser}>
+                    Speichern
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </form>
