@@ -27,3 +27,9 @@ Create migrations<br>
 
 Apply migrations<br>
 `$ python manage.py migrate`
+
+Run tests
+`$ coverage run manage.py test`
+
+Check test coverage
+`$ coverage report`
