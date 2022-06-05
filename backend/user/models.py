@@ -19,6 +19,11 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         verbose_name='Nachname'
     )
+    cover_image = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='Titelbild'
+    )
     wedding_date = models.DateField(
         blank=True,
         default=datetime.date.today,

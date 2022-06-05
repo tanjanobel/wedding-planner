@@ -26,7 +26,10 @@ const Wedding = () => {
   return (
     <>
       <SubHeader title="Meine Hochzeit" />
-      <section>
+      <section
+        className="section section--image"
+        style={{ backgroundImage: weddingData.cover_image ? `url(${weddingData.cover_image})` : "none" }}
+      >
         <div className="section__container container small">
           <div className="summary grid-x grid-margin-x">
             <div className="card cell small-12 tablet-6">
