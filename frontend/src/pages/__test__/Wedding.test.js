@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
-import Wedding from "../Wedding";
+import Wedding from "../wedding/Wedding";
 
 describe("Wedding page", () => {
   test("Renders wedding", () => {

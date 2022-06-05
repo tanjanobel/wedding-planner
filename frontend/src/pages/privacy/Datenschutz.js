@@ -1,5 +1,5 @@
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
 
 const Datenschutz = () => {
   return (

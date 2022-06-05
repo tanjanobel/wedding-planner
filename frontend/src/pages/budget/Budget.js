@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import useAxios from "../utils/useAxios";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import Expense from "../components/budget/Budget";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
-import Flashmessage from "../components/Flashmessage";
+import useAxios from "../../utils/useAxios";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import Expense from "../../components/budget/Budget";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
+import Flashmessage from "../../components/Flashmessage";
 
 const Expenses = () => {
   const [expenses, setExpenses] = useState([]);

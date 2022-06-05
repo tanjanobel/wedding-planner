@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
-import Budget from "../Budget";
+import Budget from "../budget/Budget";
 import Expense from "../../components/budget/Budget";
 
 describe("Budget page", () => {

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
-import Dashboard from "../Dashboard";
+import Dashboard from "../dashboard/Dashboard";
 
 describe("Dashboard page", () => {
   test("Renders dashboard", () => {

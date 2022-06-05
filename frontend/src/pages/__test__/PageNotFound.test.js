@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import PageNotFound from "../PageNotFound";
+import PageNotFound from "../404/PageNotFound";
 
 describe("404 page", () => {
   test("renders 404", () => {

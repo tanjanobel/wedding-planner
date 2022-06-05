@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
-import Guests from "../Guests";
+import Guests from "../guests/Guests";
 import Guest from "../../components/guests/Guest";
 
 describe("Guests page", () => {

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Datenschutz from "../Datenschutz";
+import Datenschutz from "../privacy/Datenschutz";
 
 describe("Datenschutz page", () => {
   test("renders datenschutz", () => {

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SubHeader from "../components/SubHeader";
-import Section from "../components/Section";
-import sprite from "../icons/wedding-planner-sprite.svg";
+import SubHeader from "../../components/SubHeader";
+import Section from "../../components/Section";
+import sprite from "../../icons/wedding-planner-sprite.svg";
 import React from "react";
 
 const PageNotFound = () => {

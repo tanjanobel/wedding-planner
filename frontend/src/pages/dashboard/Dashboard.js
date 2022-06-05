@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import dashboardMockup from "../images/mockup-dashboard.jpg";
-import heroImage from "../images/hero.jpg";
-import AuthContext from "../context/AuthContext";
-import data from "../data/services.json";
-import useAxios from "../utils/useAxios";
-import Section from "../components/Section";
-import Task from "../components/tasks/Task";
-import SubHeader from "../components/SubHeader";
-import Service from "../components/services/Service";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import dashboardMockup from "../../images/mockup-dashboard.jpg";
+import heroImage from "../../images/hero.jpg";
+import AuthContext from "../../context/AuthContext";
+import data from "../../data/services.json";
+import useAxios from "../../utils/useAxios";
+import Section from "../../components/Section";
+import Task from "../../components/tasks/Task";
+import SubHeader from "../../components/SubHeader";
+import Service from "../../components/services/Service";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);

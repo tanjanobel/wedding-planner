@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Impressum from "../Impressum";
+import Impressum from "../imprint/Impressum";
 
 describe("Impressum page", () => {
   test("renders impressum", () => {
