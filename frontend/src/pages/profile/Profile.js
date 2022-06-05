@@ -14,6 +14,7 @@ const EditUser = () => {
     email: "",
     first_name: "",
     last_name: "",
+    cover_image: "",
     wedding_date: "",
     wedding_city: "",
     wedding_budget: 0,
@@ -47,6 +48,26 @@ const EditUser = () => {
     setCurrentUser({ ...currentUser, [name]: value });
   };
 
+  const handleImageChange = (file) => {
+    getBase64(file).then((base64String) => {
+      setCurrentUser({ ...currentUser, cover_image: base64String });
+    });
+  };
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let baseURL = "";
+      let reader = new FileReader();
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        baseURL = reader.result;
+        // Return base64 String
+        resolve(baseURL);
+      };
+    });
+  };
+
   const retrieveUser = () => {
     api
       .get(`/user`)
@@ -55,6 +76,7 @@ const EditUser = () => {
           email: response.data.email,
           first_name: response.data.first_name,
           last_name: response.data.last_name,
+          cover_image: response.data.cover_image,
           wedding_date: response.data.wedding_date,
           wedding_city: response.data.wedding_city,
           wedding_budget: response.data.wedding_budget,
@@ -75,6 +97,7 @@ const EditUser = () => {
     let data = {
       ...currentUser,
     };
+
     api
       .patch(`/user`, data)
       .then((response) => {
@@ -148,6 +171,32 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
+          </div>
+          <label htmlFor="cover_image">Titelbild</label>
+          <input
+            type="file"
+            name="cover_image"
+            id="cover_image"
+            accept="image/jpeg,image/png,image/gif"
+            onChange={(e) => handleImageChange(e.target.files[0])}
+          />
+          {errors["cover_image"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          {currentUser.cover_image && (
+            <img
+              width="150"
+              style={{ height: 150, objectFit: "cover" }}
+              src={currentUser.cover_image}
+              alt="Titelbild"
+            ></img>
+          )}
+          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="wedding_date">Hochzeitsdatum</label>
               <input
@@ -184,30 +233,30 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-            <div className="cell small-12">
-              <label htmlFor="wedding_budget">Hochzeitsbudget</label>
-              <div className="input-group">
-                <input
-                  className="input-group-field"
-                  type="number"
-                  name="wedding_budget"
-                  id="wedding_budget"
-                  value={currentUser.wedding_budget}
-                  onChange={handleUserChange}
-                />
-                <div className="input-group-icon">
-                  <span>CHF</span>
-                </div>
-              </div>
-              {errors["wedding_budget"]?.map((error) => (
-                <div key={error} className="form-error">
-                  <svg className="card__status icon small">
-                    <use href={sprite + "#exclamation"} />
-                  </svg>
-                  <span>{error}</span>
-                </div>
-              ))}
+          </div>
+          <label htmlFor="wedding_budget">Hochzeitsbudget</label>
+          <div className="input-group">
+            <input
+              className="input-group-field"
+              type="number"
+              name="wedding_budget"
+              id="wedding_budget"
+              value={currentUser.wedding_budget}
+              onChange={handleUserChange}
+            />
+            <div className="input-group-icon">
+              <span>CHF</span>
             </div>
+          </div>
+          {errors["wedding_budget"]?.map((error) => (
+            <div key={error} className="form-error">
+              <svg className="card__status icon small">
+                <use href={sprite + "#exclamation"} />
+              </svg>
+              <span>{error}</span>
+            </div>
+          ))}
+          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="bride">Braut</label>
               <input type="text" name="bride" id="bride" value={currentUser.bride} onChange={handleUserChange} />
@@ -232,6 +281,8 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="grid-x grid-margin-x">
             <div className="cell small-12 tablet-6">
               <label htmlFor="maid_of_honor">Trauzeugin</label>
               <input
@@ -268,14 +319,12 @@ const EditUser = () => {
                 </div>
               ))}
             </div>
-            <div className="cell small-12">
-              <div className="form__footer">
-                <div className="button-group">
-                  <button type="submit" className="button primary" onClick={updateUser}>
-                    Speichern
-                  </button>
-                </div>
-              </div>
+          </div>
+          <div className="form__footer">
+            <div className="button-group">
+              <button type="submit" className="button primary" onClick={updateUser}>
+                Speichern
+              </button>
             </div>
           </div>
         </form>
