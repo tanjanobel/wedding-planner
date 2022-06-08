@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "../../context/AuthContext";
+import { AuthProvider } from "../../../context/AuthContext";
 import Nav from "../Nav";
 import userEvent from "@testing-library/user-event";
 

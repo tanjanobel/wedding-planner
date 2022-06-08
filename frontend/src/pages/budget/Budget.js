@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import Expense from "../../components/budget/Budget";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
+import { getExpenses } from "../../api/Expenses";
+import { getStatistics } from "../../api/Dashboard";
+import { Card } from "../../components/Card";
 
 const Expenses = () => {
+  const api = useAxios();
+
   const [expenses, setExpenses] = useState([]);
   const [expensesOpen, setExpensesOpen] = useState([]);
   const [expensesDone, setExpensesDone] = useState([]);
@@ -21,8 +26,6 @@ const Expenses = () => {
 
   const { state } = useLocation();
 
-  const api = useAxios();
-
   let performedAction = "";
   let isError = "";
   let title = "EXPENSE_TITLE";
@@ -33,8 +36,19 @@ const Expenses = () => {
   }
 
   useEffect(() => {
-    getExpenses();
-    getStatistics();
+    getExpenses(api)
+      .then((response) => {
+        const data = response.data;
+        setExpenses(data);
+      })
+      .catch((err) => console.log(err));
+
+    getStatistics(api)
+      .then((response) => {
+        const data = response.data;
+        setStatistics(data);
+      })
+      .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -43,54 +57,17 @@ const Expenses = () => {
     setExpensesDone(expenses.filter((expense) => expense.status === "Bezahlt"));
   }, [expenses]);
 
-  const getStatistics = () => {
-    api
-      .get("/dashboard")
-      .then((response) => {
-        const data = response.data;
-        setStatistics(data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const getExpenses = () => {
-    api
-      .get("/budget")
-      .then((response) => {
-        const data = response.data;
-        setExpenses(data);
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <>
       <SubHeader title="Mein Budget" />
       <Section>
         <div className="summary grid-x grid-margin-x padding-bottom-2">
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">Budget</h3>
-              <p className="card__summary">{statistics.wedding_budget_total} CHF</p>
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">Ausgaben</h3>
-              {statistics.wedding_budget_spent > 0 ? (
-                <p className="card__summary">{statistics.wedding_budget_spent.toFixed(2)} CHF</p>
-              ) : (
-                <p className="card__summary">0 CHF</p>
-              )}
-              {expenses.budget}
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">Verfügbar</h3>
-              <p className="card__summary">{weddingBudgetAvailable.toFixed(2)} CHF</p>
-            </div>
-          </div>
+          <Card topLabel="Budget" data={`${statistics.wedding_budget_total} CHF`} />
+          <Card
+            topLabel="Ausgaben"
+            data={statistics.wedding_budget_spent > 0 ? statistics.wedding_budget_spent.toFixed(2) + " CHF" : "0 CHF"}
+          />
+          <Card topLabel="Verfügbar" data={`${weddingBudgetAvailable.toFixed(2)} CHF`} />
         </div>
         {performedAction && (
           <Flashmessage

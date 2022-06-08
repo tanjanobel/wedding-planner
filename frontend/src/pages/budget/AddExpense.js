@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { saveExpense } from "../../api/Expenses";
 
 const AddExpense = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [expense, setExpense] = useState({
@@ -16,16 +19,14 @@ const AddExpense = () => {
     budget: "",
   });
 
-  const api = useAxios();
-
-  const handleChange = (e) => {
+  const onHandleExpenseChange = (e) => {
     setExpense({
       ...expense,
       [e.target.name]: e.target.value,
     });
   };
 
-  const addExpense = (e) => {
+  const onSaveClick = (e) => {
     setErrors([]);
 
     e.preventDefault();
@@ -36,8 +37,7 @@ const AddExpense = () => {
       budget: expense.budget,
     };
 
-    api
-      .post("/budget", expenseData)
+    saveExpense(api, expenseData)
       .then((response) => {
         if (response.status === 201) {
           navigate("/budget", { state: { performedAction: "add_expense", title: expense.title } });
@@ -55,12 +55,12 @@ const AddExpense = () => {
       <Section>
         <form>
           <label htmlFor="status">Status</label>
-          <select className="form-select" name="status" id="status" onChange={handleChange}>
+          <select className="form-select" name="status" id="status" onChange={onHandleExpenseChange}>
             <option value="Offen">Offen</option>
             <option value="Bezahlt">Bezahlt</option>
           </select>
           <label htmlFor="title">Titel (Pflichtfeld)</label>
-          <input type="text" name="title" id="title" value={expense.title} onChange={handleChange} />
+          <input type="text" name="title" id="title" value={expense.title} onChange={onHandleExpenseChange} />
           {errors["title"]?.map((error) => (
             <div key={error} className="form-error">
               <svg className="card__status icon small">
@@ -77,7 +77,7 @@ const AddExpense = () => {
               name="budget"
               id="budget"
               value={expense.budget}
-              onChange={handleChange}
+              onChange={onHandleExpenseChange}
             />
             <div className="input-group-icon">
               <span>CHF</span>
@@ -98,7 +98,7 @@ const AddExpense = () => {
             rows="5"
             id="description"
             value={expense.description}
-            onChange={handleChange}
+            onChange={onHandleExpenseChange}
           />
           {errors["description"]?.map((error) => (
             <div key={error} className="form-error">
@@ -113,7 +113,7 @@ const AddExpense = () => {
               <Link to="/budget" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={addExpense}>
+              <button type="submit" className="button primary" onClick={onSaveClick}>
                 Speichern
               </button>
             </div>

@@ -1,21 +1,21 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { deleteTask } from "../../api/Tasks";
 
 const DeleteTask = () => {
-  const navigate = useNavigate();
-  let { id } = useParams();
-
-  const location = useLocation();
-  const { title } = location.state;
-
   const api = useAxios();
 
-  const deleteTask = () => {
-    api
-      .delete(`/tasks/${id}`)
+  const navigate = useNavigate();
+  let { id } = useParams();
+  const location = useLocation();
+
+  const { title } = location.state;
+
+  const onDeleteClick = () => {
+    deleteTask(api, id)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
@@ -44,7 +44,7 @@ const DeleteTask = () => {
               Abbrechen
             </Link>
 
-            <button onClick={() => deleteTask(id)} className="button primary">
+            <button onClick={onDeleteClick} className="button primary">
               Löschen
             </button>
           </div>

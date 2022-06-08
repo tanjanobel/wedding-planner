@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import Task from "../../components/tasks/Task";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
+import { Card } from "../../components/Card";
+import { getTasks } from "../../api/Tasks";
 
 const Tasks = () => {
+  const api = useAxios();
+
+  const { state } = useLocation();
+
   const [tasks, setTasks] = useState([]);
   const [tasksOpen, setTasksOpen] = useState([]);
   const [tasksInProgress, setTasksInProgress] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
-
-  const { state } = useLocation();
-
-  const api = useAxios();
 
   let performedAction = "";
   let isError = "";
@@ -27,7 +29,9 @@ const Tasks = () => {
   }
 
   useEffect(() => {
-    getTasks();
+    getTasks(api)
+      .then((response) => setTasks(response.data))
+      .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,40 +41,16 @@ const Tasks = () => {
     setTasksDone(tasks.filter((task) => task.status === "Erledigt"));
   }, [tasks]);
 
-  const getTasks = () => {
-    api
-      .get("/tasks")
-      .then((response) => {
-        const data = response.data;
-        setTasks(data);
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <>
       <SubHeader title="Meine Aufgaben" />
       <Section>
         <div className="summary grid-x grid-margin-x padding-bottom-2">
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">Offen</h3>
-              <p className="card__summary">{tasksOpen.length}</p>
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">In Arbeit</h3>
-              <p className="card__summary">{tasksInProgress.length}</p>
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__content text-center">
-              <h3 className="card__heading">Erledigt</h3>
-              <p className="card__summary">{tasksDone.length}</p>
-            </div>
-          </div>
+          <Card topLabel="Offen" data={tasksOpen.length}></Card>
+          <Card topLabel="In Arbeit" data={tasksInProgress.length}></Card>
+          <Card topLabel="Erledigt" data={tasksDone.length}></Card>
         </div>
+
         {performedAction && (
           <Flashmessage
             className="success"

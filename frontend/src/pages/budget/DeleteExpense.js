@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { deleteExpense } from "../../api/Expenses";
 
 const DeleteExpense = () => {
   const navigate = useNavigate();
@@ -13,9 +14,8 @@ const DeleteExpense = () => {
 
   const api = useAxios();
 
-  const deleteExpense = () => {
-    api
-      .delete(`/budget/${id}`)
+  const onDeleteClick = () => {
+    deleteExpense(api, id)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
@@ -44,7 +44,7 @@ const DeleteExpense = () => {
               Abbrechen
             </Link>
 
-            <button onClick={() => deleteExpense(id)} className="button primary">
+            <button onClick={onDeleteClick} className="button primary">
               Löschen
             </button>
           </div>

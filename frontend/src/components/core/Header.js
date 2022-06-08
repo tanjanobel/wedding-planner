@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.svg";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import AuthContext from "../context/AuthContext";
+import logo from "../../images/logo.svg";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import AuthContext from "../../context/AuthContext";
 import Nav from "./Nav";
 
 const Header = () => {

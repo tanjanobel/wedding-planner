@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import Guest from "../../components/guests/Guest";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
+import { getGuests } from "../../api/Guests";
+import { Card } from "../../components/Card";
 
 const Guests = () => {
+  const api = useAxios();
+
   const [guests, setGuests] = useState([]);
   const [guestsPending, setGuestsPending] = useState([]);
   const [guestsConfirmed, setGuestsConfirmed] = useState([]);
   const [guestsCancelled, setGuestsCancelled] = useState([]);
 
   const { state } = useLocation();
-
-  const api = useAxios();
 
   let performedAction = "";
   let isError = "";
@@ -28,7 +30,12 @@ const Guests = () => {
   }
 
   useEffect(() => {
-    getGuests();
+    getGuests(api)
+      .then((response) => {
+        const data = response.data;
+        setGuests(data);
+      })
+      .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,40 +45,16 @@ const Guests = () => {
     setGuestsCancelled(guests.filter((guest) => guest.status === "Absage"));
   }, [guests]);
 
-  const getGuests = () => {
-    api
-      .get("/guests")
-      .then((response) => {
-        const data = response.data;
-        setGuests(data);
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <>
       <SubHeader title="Meine Gästeliste" />
       <Section>
         <div className="summary grid-x grid-margin-x padding-bottom-2">
-          <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
-              <h3 className="card__heading">Ausstehend</h3>
-              <p className="card__summary">{guestsPending.length}</p>
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
-              <h3 className="card__heading">Zusagen</h3>
-              <p className="card__summary">{guestsConfirmed.length}</p>
-            </div>
-          </div>
-          <div className="card cell small-12 phablet-4">
-            <div className="card__body text-center">
-              <h3 className="card__heading">Absagen</h3>
-              <p className="card__summary">{guestsCancelled.length}</p>
-            </div>
-          </div>
+          <Card topLabel="Ausstehend" data={guestsPending.length} />
+          <Card topLabel="Zusagen" data={guestsConfirmed.length} />
+          <Card topLabel="Absagen" data={guestsCancelled.length} />
         </div>
+
         {performedAction && (
           <Flashmessage
             className="success"

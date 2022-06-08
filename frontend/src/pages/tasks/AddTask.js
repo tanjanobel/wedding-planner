@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { saveTask } from "../../api/Tasks";
 
 const AddTask = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
-  const [errors, setErrors] = useState([]);
+
   const [task, setTask] = useState({
     status: "Offen",
     title: "",
     description: "",
     duedate: "",
   });
-
-  const api = useAxios();
+  const [errors, setErrors] = useState([]);
 
   const handleChange = (e) => {
     setTask({
@@ -24,10 +26,10 @@ const AddTask = () => {
     });
   };
 
-  const addTask = (e) => {
+  const onSaveClick = (e) => {
     setErrors([]);
-
     e.preventDefault();
+
     const taskData = {
       status: task.status,
       title: task.title,
@@ -35,8 +37,7 @@ const AddTask = () => {
       duedate: task.duedate,
     };
 
-    api
-      .post("/tasks", taskData)
+    saveTask(api, taskData)
       .then((response) => {
         if (response.status === 201) {
           navigate("/tasks", { state: { performedAction: "add_task", title: task.title } });
@@ -94,7 +95,7 @@ const AddTask = () => {
               <Link to="/tasks" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={addTask}>
+              <button type="submit" className="button primary" onClick={onSaveClick}>
                 Speichern
               </button>
             </div>

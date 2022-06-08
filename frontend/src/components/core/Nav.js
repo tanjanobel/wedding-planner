@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import data from "../data/menuItems.json";
-import sprite from "../icons/wedding-planner-sprite.svg";
-import AuthContext from "../context/AuthContext";
+import data from "../../data/menuItems.json";
+import sprite from "../../icons/wedding-planner-sprite.svg";
+import AuthContext from "../../context/AuthContext";
 
 const Nav = () => {
   const { user, logoutUser } = useContext(AuthContext);

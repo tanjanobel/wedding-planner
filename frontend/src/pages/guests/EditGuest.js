@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { getGuestById, updateGuest } from "../../api/Guests";
 
 const EditGuest = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
@@ -21,14 +24,19 @@ const EditGuest = () => {
     description: "",
   };
 
-  const api = useAxios();
-
   let { id } = useParams();
   const [currentGuest, setCurrentGuest] = useState(initialGuestState);
 
   const countRef = useRef(0);
   useEffect(() => {
-    retrieveGuest();
+    getGuestById(api, id)
+      .then((response) => {
+        const guestData = response.data;
+        setCurrentGuest({ ...guestData });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countRef]);
 
@@ -37,47 +45,17 @@ const EditGuest = () => {
     setCurrentGuest({ ...currentGuest, [name]: value });
   };
 
-  const retrieveGuest = () => {
-    api
-      .get(`/guests/${id}`)
-      .then((response) => {
-        setCurrentGuest({
-          status: response.data.status,
-          firstname: response.data.firstname,
-          lastname: response.data.lastname,
-          street: response.data.street,
-          zip: response.data.zip,
-          city: response.data.city,
-          email: response.data.email,
-          phone: response.data.phone,
-          description: response.data.description,
-        });
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  const updateGuest = (e) => {
+  const onUpdateClick = (e) => {
     e.preventDefault();
     setErrors([]);
     let data = {
       ...currentGuest,
     };
-    api
-      .patch(`/guests/${id}`, data)
+
+    updateGuest(api, id, data)
       .then((response) => {
-        setCurrentGuest({
-          status: response.data.status,
-          firstname: response.data.firstname,
-          lastname: response.data.lastname,
-          street: response.data.street,
-          zip: response.data.zip,
-          city: response.data.city,
-          email: response.data.email,
-          phone: response.data.phone,
-          description: response.data.description,
-        });
+        const guestData = response.data;
+        setCurrentGuest({ ...guestData });
         if (response.status === 200) {
           navigate("/guests", {
             state: { performedAction: "edit_guest", name: `${currentGuest.firstname} ${currentGuest.lastname}` },
@@ -230,7 +208,7 @@ const EditGuest = () => {
                   <Link to="/guests" className="button secondary">
                     Abbrechen
                   </Link>
-                  <button type="submit" className="button primary" onClick={updateGuest}>
+                  <button type="submit" className="button primary" onClick={onUpdateClick}>
                     Speichern
                   </button>
                 </div>

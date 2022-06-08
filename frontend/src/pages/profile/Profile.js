@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
 
+import { getUser, updateUser } from "../../api/User";
+
 const EditUser = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
@@ -26,8 +30,6 @@ const EditUser = () => {
 
   const { state } = useLocation();
 
-  const api = useAxios();
-
   let performedAction = "";
   let isError = "";
   if (state) {
@@ -39,7 +41,14 @@ const EditUser = () => {
 
   const countRef = useRef(0);
   useEffect(() => {
-    retrieveUser();
+    getUser(api)
+      .then((response) => {
+        const userData = response.data;
+        setCurrentUser({ ...userData });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countRef]);
 
@@ -68,38 +77,14 @@ const EditUser = () => {
     });
   };
 
-  const retrieveUser = () => {
-    api
-      .get(`/user`)
-      .then((response) => {
-        setCurrentUser({
-          email: response.data.email,
-          first_name: response.data.first_name,
-          last_name: response.data.last_name,
-          cover_image: response.data.cover_image,
-          wedding_date: response.data.wedding_date,
-          wedding_city: response.data.wedding_city,
-          wedding_budget: response.data.wedding_budget,
-          bride: response.data.bride,
-          groom: response.data.groom,
-          maid_of_honor: response.data.maid_of_honor,
-          best_man: response.data.best_man,
-        });
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  const updateUser = (e) => {
+  const onUpdateClick = (e) => {
     e.preventDefault();
     setErrors([]);
     let data = {
       ...currentUser,
     };
 
-    api
-      .patch(`/user`, data)
+    updateUser(api, data)
       .then((response) => {
         if (response.status === 200) {
           navigate("/profile", {
@@ -322,7 +307,7 @@ const EditUser = () => {
           </div>
           <div className="form__footer">
             <div className="button-group">
-              <button type="submit" className="button primary" onClick={updateUser}>
+              <button type="submit" className="button primary" onClick={onUpdateClick}>
                 Speichern
               </button>
             </div>

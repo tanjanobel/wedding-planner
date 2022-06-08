@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export default AuthContext;
 
+// Authentication Provider that delivers currently logged in user and Authentication methods
 export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens") ? JSON.parse(localStorage.getItem("authTokens")) : null

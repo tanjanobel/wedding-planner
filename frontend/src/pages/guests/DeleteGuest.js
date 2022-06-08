@@ -1,21 +1,21 @@
 import React from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { deleteGuest } from "../../api/Guests";
 
 const DeleteGuest = () => {
-  const navigate = useNavigate();
-  let { id } = useParams();
-
-  const location = useLocation();
-  const { firstname, lastname } = location.state;
-
   const api = useAxios();
 
-  const deleteGuest = () => {
-    api
-      .delete(`/guests/${id}`)
+  const navigate = useNavigate();
+  let { id } = useParams();
+  const location = useLocation();
+
+  const { firstname, lastname } = location.state;
+
+  const onDeleteClick = () => {
+    deleteGuest(api, id)
       .then((response) => {
         if (response.status.toString().startsWith("4")) {
           console.error(response.data);
@@ -52,7 +52,7 @@ const DeleteGuest = () => {
               Abbrechen
             </Link>
 
-            <button onClick={() => deleteGuest(id)} className="button primary">
+            <button onClick={() => onDeleteClick(id)} className="button primary">
               Löschen
             </button>
           </div>

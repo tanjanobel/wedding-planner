@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import sprite from "../../icons/wedding-planner-sprite.svg";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { saveGuest } from "../../api/Guests";
 
 const AddGuest = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [guest, setGuest] = useState({
@@ -20,8 +23,6 @@ const AddGuest = () => {
     description: "",
   });
 
-  const api = useAxios();
-
   const handleChange = (e) => {
     setGuest({
       ...guest,
@@ -29,23 +30,13 @@ const AddGuest = () => {
     });
   };
 
-  const addGuest = (e) => {
+  const onSaveClick = (e) => {
     setErrors([]);
     e.preventDefault();
-    const guestData = {
-      status: guest.status,
-      firstname: guest.firstname,
-      lastname: guest.lastname,
-      street: guest.street,
-      zip: guest.zip,
-      city: guest.city,
-      email: guest.email,
-      phone: guest.phone,
-      description: guest.description,
-    };
 
-    api
-      .post("/guests", guestData)
+    const guestData = { ...guest };
+
+    saveGuest(api, guestData)
       .then((response) => {
         if (response.status === 201) {
           navigate("/guests", {
@@ -175,7 +166,7 @@ const AddGuest = () => {
                   <Link to="/guests" className="button secondary">
                     Abbrechen
                   </Link>
-                  <button type="submit" className="button primary" onClick={addGuest}>
+                  <button type="submit" className="button primary" onClick={onSaveClick}>
                     Speichern
                   </button>
                 </div>

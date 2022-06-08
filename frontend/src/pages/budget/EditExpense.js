@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { getExpenseById, updateExpense } from "../../api/Expenses";
 
 const EditExpense = () => {
+  const api = useAxios();
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 
@@ -15,8 +18,6 @@ const EditExpense = () => {
     description: "",
     budget: "",
   };
-
-  const api = useAxios();
 
   let { id } = useParams();
   const [currentExpense, setCurrentExpense] = useState(initialExpenseState);
@@ -33,29 +34,24 @@ const EditExpense = () => {
   };
 
   const retrieveExpense = () => {
-    api
-      .get(`/budget/${id}`)
+    getExpenseById(api, id)
       .then((response) => {
-        setCurrentExpense({
-          status: response.data.status,
-          title: response.data.title,
-          description: response.data.description,
-          budget: response.data.budget,
-        });
+        const expenseData = response.data;
+        setCurrentExpense({ ...expenseData });
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
-  const updateExpense = (e) => {
+  const onUpdateClick = (e) => {
     e.preventDefault();
     setErrors([]);
     let data = {
       ...currentExpense,
     };
-    api
-      .patch(`/budget/${id}`, data)
+
+    updateExpense(api, id, data)
       .then((response) => {
         setCurrentExpense({
           status: response.data.status,
@@ -142,7 +138,7 @@ const EditExpense = () => {
               <Link to="/budget" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={updateExpense}>
+              <button type="submit" className="button primary" onClick={onUpdateClick}>
                 Speichern
               </button>
             </div>

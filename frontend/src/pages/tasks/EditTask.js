@@ -1,40 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import sprite from "../../icons/wedding-planner-sprite.svg";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
+import { getTaskById, updateTask } from "../../api/Tasks";
 
 const EditTask = () => {
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState([]);
+  const api = useAxios();
 
-  const initialTaskState = {
+  const navigate = useNavigate();
+  let { id } = useParams();
+  const countRef = useRef(0);
+
+  const [currentTask, setCurrentTask] = useState({
     status: "",
     title: "",
     description: "",
     duedate: "",
-  };
+  });
+  const [errors, setErrors] = useState([]);
 
-  const api = useAxios();
-
-  let { id } = useParams();
-  const [currentTask, setCurrentTask] = useState(initialTaskState);
-
-  const countRef = useRef(0);
   useEffect(() => {
-    retrieveTask();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countRef]);
-
-  const handleTaskChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentTask({ ...currentTask, [name]: value });
-  };
-
-  const retrieveTask = () => {
-    api
-      .get(`/tasks/${id}`)
+    getTaskById(api, id)
       .then((response) => {
         setCurrentTask({
           status: response.data.status,
@@ -46,23 +34,25 @@ const EditTask = () => {
       .catch((e) => {
         console.error(e);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countRef]);
+
+  const handleTaskChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentTask({ ...currentTask, [name]: value });
   };
 
-  const updateTask = (e) => {
+  const onUpdateClick = (e) => {
     e.preventDefault();
     setErrors([]);
     let data = {
       ...currentTask,
     };
-    api
-      .patch(`/tasks/${id}`, data)
+
+    updateTask(api, id, data)
       .then((response) => {
-        setCurrentTask({
-          status: response.data.status,
-          title: response.data.title,
-          description: response.data.description,
-          duedate: response.data.duedate,
-        });
+        const task = response.data;
+        setCurrentTask({ ...task });
         if (response.status === 200) {
           navigate("/tasks", { state: { performedAction: "edit_task", title: currentTask.title } });
         }
@@ -137,7 +127,7 @@ const EditTask = () => {
               <Link to="/tasks" className="button secondary">
                 Abbrechen
               </Link>
-              <button type="submit" className="button primary" onClick={updateTask}>
+              <button type="submit" className="button primary" onClick={onUpdateClick}>
                 Speichern
               </button>
             </div>

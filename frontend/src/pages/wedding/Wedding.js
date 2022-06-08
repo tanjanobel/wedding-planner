@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import SubHeader from "../../components/SubHeader";
-import useAxios from "../../utils/useAxios";
+import useAxios from "../../api/useAxios";
+import { Card } from "../../components/Card";
 
 const Wedding = () => {
   const [weddingData, setWeddingData] = useState([]);
@@ -32,50 +33,29 @@ const Wedding = () => {
       >
         <div className="section__container container small">
           <div className="summary grid-x grid-margin-x">
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Wann</h3>
-                <p className="card__summary">{moment(weddingData.wedding_date).format("DD.MM.YYYY")}</p>
-              </div>
-            </div>
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Wo</h3>
-                <p className="card__summary">{weddingData.wedding_city}</p>
-              </div>
-            </div>
+            <Card
+              topLabel="Wann"
+              data={moment(weddingData.wedding_date).format("DD.MM.YYYY")}
+              containerClass="card cell small-12 tablet-6"
+            />
+            <Card topLabel="Wo" data={weddingData.wedding_city} containerClass="card cell small-12 tablet-6" />
           </div>
         </div>
       </section>
       <section className="bg-white">
         <div className="section__container container small">
           <div className="summary grid-x grid-margin-x">
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Braut</h3>
-                <p className="card__summary">{weddingData.bride}</p>
-              </div>
-            </div>
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Bräutigam</h3>
-                <p className="card__summary">{weddingData.groom}</p>
-              </div>
-            </div>
+            <Card topLabel="Braut" data={weddingData.bride} containerClass="card cell small-12 tablet-6" />
+            <Card topLabel="Bräutigam" data={weddingData.groom} containerClass="card cell small-12 tablet-6" />
           </div>
+
           <div className="summary grid-x grid-margin-x padding-bottom-2">
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Trauzeugin</h3>
-                <p className="card__summary">{weddingData.maid_of_honor}</p>
-              </div>
-            </div>
-            <div className="card cell small-12 tablet-6">
-              <div className="card__content text-center">
-                <h3 className="card__heading">Trauzeuge</h3>
-                <p className="card__summary">{weddingData.best_man}</p>
-              </div>
-            </div>
+            <Card
+              topLabel="Trauzeugin"
+              data={weddingData.maid_of_honor}
+              containerClass="card cell small-12 tablet-6"
+            />
+            <Card topLabel="Trauzeuge" data={weddingData.best_man} containerClass="card cell small-12 tablet-6" />
           </div>
         </div>
       </section>
