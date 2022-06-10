@@ -10,6 +10,8 @@ import Flashmessage from "../../components/Flashmessage";
 import { getExpenses } from "../../api/Expenses";
 import { getStatistics } from "../../api/Dashboard";
 import { Card } from "../../components/Card";
+import Filter from "../../components/Filter";
+import FilterItem from "../../components/FilterItem";
 
 const Expenses = () => {
   const api = useAxios();
@@ -21,6 +23,8 @@ const Expenses = () => {
     wedding_budget_total: "",
     wedding_budget_spent: "",
   });
+  const [statusFilter, setStatusFilter] = useState("Alle");
+  const [active, setActive] = useState("all");
 
   const weddingBudgetAvailable = statistics.wedding_budget_total - statistics.wedding_budget_spent;
 
@@ -57,6 +61,12 @@ const Expenses = () => {
     setExpensesDone(expenses.filter((expense) => expense.status === "Bezahlt"));
   }, [expenses]);
 
+  const handleFilterClick = (e) => {
+    e.preventDefault();
+    setStatusFilter(e.target.value);
+    setActive(e.target.id);
+  };
+
   return (
     <>
       <SubHeader title="Mein Budget" />
@@ -69,6 +79,7 @@ const Expenses = () => {
           />
           <Card topLabel="Verfügbar" data={`${weddingBudgetAvailable.toFixed(2)} CHF`} />
         </div>
+
         {performedAction && (
           <Flashmessage
             className="success"
@@ -79,13 +90,39 @@ const Expenses = () => {
             duration={3000}
           />
         )}
-        <div className="card__button text-right padding-bottom-2">
-          <Link to="/budget/add" className="button primary">
-            <svg className="icon small">
-              <use href={sprite + "#plus"} />
-            </svg>
-            <span>Ausgabe hinzufügen</span>
-          </Link>
+
+        <div className="action-bar grid-x">
+          <Filter>
+            <FilterItem
+              className={active === "all" ? "active" : undefined}
+              id="all"
+              value="Alle"
+              handleFilterClick={handleFilterClick}
+              text="Alle"
+            ></FilterItem>
+            <FilterItem
+              className={active === "open" ? "active" : undefined}
+              id="open"
+              value="Offen"
+              handleFilterClick={handleFilterClick}
+              text="Offen"
+            ></FilterItem>
+            <FilterItem
+              className={active === "done" ? "active" : undefined}
+              id="done"
+              value="Bezahlt"
+              handleFilterClick={handleFilterClick}
+              text="Bezahlt"
+            ></FilterItem>
+          </Filter>
+          <div className="card__button cell small-12 tablet-shrink text-right">
+            <Link to="/budget/add" className="button primary">
+              <svg className="icon small">
+                <use href={sprite + "#plus"} />
+              </svg>
+              <span>Ausgabe hinzufügen</span>
+            </Link>
+          </div>
         </div>
 
         {expenses.length === 0 && (
@@ -99,7 +136,7 @@ const Expenses = () => {
         )}
 
         {/* Expenses open */}
-        {expensesOpen &&
+        {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
           expensesOpen.map((expense) => (
             <Expense
               key={expense.id}
@@ -112,7 +149,7 @@ const Expenses = () => {
           ))}
 
         {/* Expenses done */}
-        {expensesDone &&
+        {["Alle", "Bezahlt"].indexOf(statusFilter) >= 0 &&
           expensesDone.map((expense) => (
             <Expense
               key={expense.id}

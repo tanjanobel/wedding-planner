@@ -8,16 +8,20 @@ import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
 import { Card } from "../../components/Card";
 import { getTasks } from "../../api/Tasks";
+import Filter from "../../components/Filter";
+import FilterItem from "../../components/FilterItem";
 
 const Tasks = () => {
   const api = useAxios();
-
-  const { state } = useLocation();
 
   const [tasks, setTasks] = useState([]);
   const [tasksOpen, setTasksOpen] = useState([]);
   const [tasksInProgress, setTasksInProgress] = useState([]);
   const [tasksDone, setTasksDone] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("Alle");
+  const [active, setActive] = useState("all");
+
+  const { state } = useLocation();
 
   let performedAction = "";
   let isError = "";
@@ -41,6 +45,12 @@ const Tasks = () => {
     setTasksDone(tasks.filter((task) => task.status === "Erledigt"));
   }, [tasks]);
 
+  const handleFilterClick = (e) => {
+    e.preventDefault();
+    setStatusFilter(e.target.value);
+    setActive(e.target.id);
+  };
+
   return (
     <>
       <SubHeader title="Meine Aufgaben" />
@@ -61,13 +71,46 @@ const Tasks = () => {
             duration={3000}
           />
         )}
-        <div className="card__button text-right padding-bottom-2">
-          <Link to="/tasks/add" className="button primary">
-            <svg className="icon small">
-              <use href={sprite + "#plus"} />
-            </svg>
-            <span>Aufgabe hinzufügen</span>
-          </Link>
+
+        <div className="action-bar grid-x">
+          <Filter>
+            <FilterItem
+              className={active === "all" ? "active" : undefined}
+              id="all"
+              value="Alle"
+              handleFilterClick={handleFilterClick}
+              text="Alle"
+            ></FilterItem>
+            <FilterItem
+              className={active === "open" ? "active" : undefined}
+              id="open"
+              value="Offen"
+              handleFilterClick={handleFilterClick}
+              text="Offen"
+            ></FilterItem>
+            <FilterItem
+              className={active === "in progress" ? "active" : undefined}
+              id="in progress"
+              value="In Arbeit"
+              handleFilterClick={handleFilterClick}
+              text="In Arbeit"
+            ></FilterItem>
+            <FilterItem
+              className={active === "done" ? "active" : undefined}
+              id="done"
+              value="Erledigt"
+              handleFilterClick={handleFilterClick}
+              text="Erledigt"
+            ></FilterItem>
+          </Filter>
+          <div className="card__button cell small-12 tablet-shrink text-right">
+            <Link to="/tasks/add" className="button primary">
+              <svg className="icon small">
+                <use href={sprite + "#plus"} />
+              </svg>
+              <span>Aufgabe hinzufügen</span>
+            </Link>
+          </div>
         </div>
 
         {tasks.length === 0 && (
@@ -81,7 +124,7 @@ const Tasks = () => {
         )}
 
         {/* Tasks open */}
-        {tasksOpen &&
+        {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
           tasksOpen.map((task) => (
             <Task
               key={task.id}
@@ -94,7 +137,7 @@ const Tasks = () => {
           ))}
 
         {/* Tasks in progress*/}
-        {tasksInProgress &&
+        {["Alle", "In Arbeit"].indexOf(statusFilter) >= 0 &&
           tasksInProgress.map((task) => (
             <Task
               key={task.id}
@@ -107,7 +150,7 @@ const Tasks = () => {
           ))}
 
         {/* Tasks done */}
-        {tasksDone &&
+        {["Alle", "Erledigt"].indexOf(statusFilter) >= 0 &&
           tasksDone.map((task) => (
             <Task
               key={task.id}
