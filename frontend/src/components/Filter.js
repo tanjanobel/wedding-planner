@@ -1,5 +1,3 @@
-import React from "react";
-
 const Filter = (props) => {
   return (
     <nav className="cell small-12 tablet-auto">

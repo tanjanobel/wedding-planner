@@ -11,7 +11,7 @@ import Task from "../../components/tasks/Task";
 import SubHeader from "../../components/SubHeader";
 import Service from "../../components/services/Service";
 import { getStatistics } from "../../api/Dashboard";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 
 const Dashboard = () => {
   const api = useAxios();

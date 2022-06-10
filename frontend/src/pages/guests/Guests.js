@@ -7,7 +7,7 @@ import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
 import { getGuests } from "../../api/Guests";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 import Filter from "../../components/Filter";
 import FilterItem from "../../components/FilterItem";
 

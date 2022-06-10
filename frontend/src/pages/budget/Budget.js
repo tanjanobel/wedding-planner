@@ -9,7 +9,7 @@ import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
 import { getExpenses } from "../../api/Expenses";
 import { getStatistics } from "../../api/Dashboard";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 import Filter from "../../components/Filter";
 import FilterItem from "../../components/FilterItem";
 

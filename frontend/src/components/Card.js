@@ -1,6 +1,4 @@
-import React from "react";
-
-export const Card = ({ topLabel, bottomLabel, data, containerClass = "card cell small-12 phablet-4" }) => {
+const Card = ({ topLabel, bottomLabel, data, containerClass = "card cell small-12 phablet-4" }) => {
   return (
     <div className={containerClass}>
       <div className="card__content text-center">
@@ -11,3 +9,5 @@ export const Card = ({ topLabel, bottomLabel, data, containerClass = "card cell 
     </div>
   );
 };
+
+export default Card;

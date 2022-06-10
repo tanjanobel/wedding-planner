@@ -1,5 +1,3 @@
-import React from "react";
-
 const FilterItem = ({ id, value, text, className = "", handleFilterClick }) => {
   return (
     <li className="filter__item">

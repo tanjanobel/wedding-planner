@@ -6,7 +6,7 @@ import Task from "../../components/tasks/Task";
 import SubHeader from "../../components/SubHeader";
 import Section from "../../components/Section";
 import Flashmessage from "../../components/Flashmessage";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 import { getTasks } from "../../api/Tasks";
 import Filter from "../../components/Filter";
 import FilterItem from "../../components/FilterItem";

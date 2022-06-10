@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import SubHeader from "../../components/SubHeader";
 import useAxios from "../../api/useAxios";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 
 const Wedding = () => {
   const [weddingData, setWeddingData] = useState([]);
