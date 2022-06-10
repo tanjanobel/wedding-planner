@@ -1,0 +1,29 @@
+.filter {
+  font-size: rem-calc(14px);
+  list-style-type: none;
+  padding-bottom: $global-padding;
+  margin: 0;
+
+  @include breakpoint(tablet) {
+    padding-bottom: 0;
+  }
+
+  &__item {
+    display: inline-flex;
+    margin-right: $global-margin;
+
+    @include breakpoint(tablet) {
+      margin-right: 2 * $global-margin;
+    }
+
+    button {
+      padding: 0.5 * $global-padding 0;
+      transition: border-color 0.22s ease-in-out, color 0.22s ease-in-out;
+
+      &.active {
+        border-bottom: 2px solid color(primary);
+        color: color(primary);
+      }
+    }
+  }
+}
