@@ -126,44 +126,44 @@ const Tasks = () => {
             )}
           </div>
 
-        {/* Tasks open */}
-        {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
-          tasksOpen.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              status={task.status}
-              description={task.description}
-              duedate={task.duedate}
-            />
-          ))}
+          {/* Tasks open */}
+          {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
+            tasksOpen.map((task) => (
+              <Task
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                status={task.status}
+                description={task.description}
+                duedate={task.duedate}
+              />
+            ))}
 
-        {/* Tasks in progress*/}
-        {["Alle", "In Arbeit"].indexOf(statusFilter) >= 0 &&
-          tasksInProgress.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              status={task.status}
-              description={task.description}
-              duedate={task.duedate}
-            />
-          ))}
+          {/* Tasks in progress*/}
+          {["Alle", "In Arbeit"].indexOf(statusFilter) >= 0 &&
+            tasksInProgress.map((task) => (
+              <Task
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                status={task.status}
+                description={task.description}
+                duedate={task.duedate}
+              />
+            ))}
 
-        {/* Tasks done */}
-        {["Alle", "Erledigt"].indexOf(statusFilter) >= 0 &&
-          tasksDone.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              status={task.status}
-              description={task.description}
-              duedate={task.duedate}
-            />
-          ))}
+          {/* Tasks done */}
+          {["Alle", "Erledigt"].indexOf(statusFilter) >= 0 &&
+            tasksDone.map((task) => (
+              <Task
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                status={task.status}
+                description={task.description}
+                duedate={task.duedate}
+              />
+            ))}
         </div>
       </Section>
     </>

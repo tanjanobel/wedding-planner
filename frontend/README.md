@@ -27,8 +27,8 @@ leonie.zimmermann@gmail.com<br>
 password:
 12345678!
 
-
 ## Important commands
+
 Run tests<br>
 `$ yarn test`
 
