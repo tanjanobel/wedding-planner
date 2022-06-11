@@ -59,7 +59,7 @@ const Guests = () => {
     <>
       <SubHeader title="Meine Gästeliste" />
       <Section>
-        <div className="summary grid-x grid-margin-x padding-bottom-2">
+        <div className="summary grid-x grid-margin-x grid-margin-y margin-bottom-2">
           <Card topLabel="Ausstehend" data={guestsPending.length} />
           <Card topLabel="Zusagen" data={guestsConfirmed.length} />
           <Card topLabel="Absagen" data={guestsCancelled.length} />
@@ -117,69 +117,73 @@ const Guests = () => {
           </div>
         </div>
 
-        {guests.length === 0 && (
-          <div className="text-center">
-            <svg className="icon xlarge padding-bottom-2">
-              <use href={sprite + "#file"} />
-            </svg>
-            <h3>Keine Einträge vorhanden.</h3>
-            <p>Füge jetzt deinen ersten Gast hinzu.</p>
+        <div className="grid-x grid-margin-x grid-margin-y">
+          <div className="cell small-12">
+            {guests.length === 0 && (
+              <div className="text-center padding-top-3">
+                <svg className="icon xlarge padding-bottom-2">
+                  <use href={sprite + "#file"} />
+                </svg>
+                <h3>Keine Einträge vorhanden.</h3>
+                <p>Füge jetzt deinen ersten Gast hinzu.</p>
+              </div>
+            )}
           </div>
-        )}
 
-        {/* Guests pending */}
-        {["Alle", "Ausstehend"].indexOf(statusFilter) >= 0 &&
-          guestsPending.map((guest) => (
-            <Guest
-              key={guest.id}
-              id={guest.id}
-              firstname={guest.firstname}
-              lastname={guest.lastname}
-              status={guest.status}
-              street={guest.street}
-              zip={guest.zip}
-              city={guest.city}
-              email={guest.email}
-              phone={guest.phone}
-              description={guest.description}
-            />
-          ))}
+          {/* Guests pending */}
+          {["Alle", "Ausstehend"].indexOf(statusFilter) >= 0 &&
+            guestsPending.map((guest) => (
+              <Guest
+                key={guest.id}
+                id={guest.id}
+                firstname={guest.firstname}
+                lastname={guest.lastname}
+                status={guest.status}
+                street={guest.street}
+                zip={guest.zip}
+                city={guest.city}
+                email={guest.email}
+                phone={guest.phone}
+                description={guest.description}
+              />
+            ))}
 
-        {/* Guests confirmed */}
-        {["Alle", "Zusage"].indexOf(statusFilter) >= 0 &&
-          guestsConfirmed.map((guest) => (
-            <Guest
-              key={guest.id}
-              id={guest.id}
-              firstname={guest.firstname}
-              lastname={guest.lastname}
-              status={guest.status}
-              street={guest.street}
-              zip={guest.zip}
-              city={guest.city}
-              email={guest.email}
-              phone={guest.phone}
-              description={guest.description}
-            />
-          ))}
+          {/* Guests confirmed */}
+          {["Alle", "Zusage"].indexOf(statusFilter) >= 0 &&
+            guestsConfirmed.map((guest) => (
+              <Guest
+                key={guest.id}
+                id={guest.id}
+                firstname={guest.firstname}
+                lastname={guest.lastname}
+                status={guest.status}
+                street={guest.street}
+                zip={guest.zip}
+                city={guest.city}
+                email={guest.email}
+                phone={guest.phone}
+                description={guest.description}
+              />
+            ))}
 
-        {/* Guests cancelled */}
-        {["Alle", "Absage"].indexOf(statusFilter) >= 0 &&
-          guestsCancelled.map((guest) => (
-            <Guest
-              key={guest.id}
-              id={guest.id}
-              firstname={guest.firstname}
-              lastname={guest.lastname}
-              status={guest.status}
-              street={guest.street}
-              zip={guest.zip}
-              city={guest.city}
-              email={guest.email}
-              phone={guest.phone}
-              description={guest.description}
-            />
-          ))}
+          {/* Guests cancelled */}
+          {["Alle", "Absage"].indexOf(statusFilter) >= 0 &&
+            guestsCancelled.map((guest) => (
+              <Guest
+                key={guest.id}
+                id={guest.id}
+                firstname={guest.firstname}
+                lastname={guest.lastname}
+                status={guest.status}
+                street={guest.street}
+                zip={guest.zip}
+                city={guest.city}
+                email={guest.email}
+                phone={guest.phone}
+                description={guest.description}
+              />
+            ))}
+        </div>
       </Section>
     </>
   );

@@ -8,7 +8,7 @@ const Service = ({ title, description, icon }) => {
           <use href={`${sprite}#${icon}`} />
         </svg>
       </div>
-      <h3 className="service__heading">{title}</h3>
+      <h2 className="service__heading">{title}</h2>
       <p className="service__text">{description}</p>
     </div>
   );

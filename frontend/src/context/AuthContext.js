@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  // Login user with email and password, store tokens(access & refresh) in local storage
   const loginUser = async (email, password) => {
     const response = await fetch("http://localhost:8000/api/token/", {
       method: "POST",
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  // Register user with email, password and password2
   const registerUser = async (email, password, password2) => {
     const response = await fetch("http://127.0.0.1:8000/api/register/", {
       method: "POST",
@@ -57,10 +59,11 @@ export const AuthProvider = ({ children }) => {
     if (response.status === 201) {
       navigate("/");
     } else {
-      alert("Something went wrong!");
+      alert("Etwas ist schiefgelaufen. Bitte versuche es nochmals!");
     }
   };
 
+  // Logout user and clear the local storage
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);

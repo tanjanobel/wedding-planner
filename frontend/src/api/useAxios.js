@@ -10,17 +10,20 @@ const baseURL = "http://localhost:8000/api";
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
+  // Create axios instance with authentication headers for private routes
   const axiosInstance = axios.create({
     baseURL,
     headers: { Authorization: `Bearer ${authTokens?.access}` },
   });
 
+  // Decode access token
   axiosInstance.interceptors.request.use(async (req) => {
     const user = jwt_decode(authTokens.access);
+    // Check if token ist expired
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
 
     if (!isExpired) return req;
-
+    // Get new access token
     const response = await axios.post(`${baseURL}/token/refresh/`, {
       refresh: authTokens.refresh,
     });

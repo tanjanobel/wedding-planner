@@ -175,6 +175,7 @@ const EditUser = () => {
           ))}
           {currentUser.cover_image && (
             <img
+              className="margin-bottom-1"
               width="150"
               style={{ height: 150, objectFit: "cover" }}
               src={currentUser.cover_image}

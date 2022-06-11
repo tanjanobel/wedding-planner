@@ -26,13 +26,13 @@ const Wedding = () => {
 
   return (
     <>
-      <SubHeader title="Meine Hochzeit" />
+      <SubHeader title="Meine Hochzeit" className="margin-bottom-2"/>
       <section
         className="section section--image"
         style={{ backgroundImage: weddingData.cover_image ? `url(${weddingData.cover_image})` : "none" }}
       >
         <div className="section__container container small">
-          <div className="summary grid-x grid-margin-x">
+          <div className="summary grid-x grid-margin-x grid-margin-y">
             <Card
               topLabel="Wann"
               data={moment(weddingData.wedding_date).format("DD.MM.YYYY")}
@@ -44,12 +44,9 @@ const Wedding = () => {
       </section>
       <section className="bg-white">
         <div className="section__container container small">
-          <div className="summary grid-x grid-margin-x">
+          <div className="summary grid-x grid-margin-x grid-margin-y">
             <Card topLabel="Braut" data={weddingData.bride} containerClass="card cell small-12 tablet-6" />
             <Card topLabel="Bräutigam" data={weddingData.groom} containerClass="card cell small-12 tablet-6" />
-          </div>
-
-          <div className="summary grid-x grid-margin-x padding-bottom-2">
             <Card
               topLabel="Trauzeugin"
               data={weddingData.maid_of_honor}

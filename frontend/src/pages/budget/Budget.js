@@ -71,7 +71,7 @@ const Expenses = () => {
     <>
       <SubHeader title="Mein Budget" />
       <Section>
-        <div className="summary grid-x grid-margin-x padding-bottom-2">
+        <div className="summary grid-x grid-margin-x grid-margin-y margin-bottom-2">
           <Card topLabel="Budget" data={`${statistics.wedding_budget_total} CHF`} />
           <Card
             topLabel="Ausgaben"
@@ -125,41 +125,45 @@ const Expenses = () => {
           </div>
         </div>
 
-        {expenses.length === 0 && (
-          <div className="text-center">
-            <svg className="icon xlarge padding-bottom-2">
-              <use href={sprite + "#file"} />
-            </svg>
-            <h3>Keine Einträge vorhanden.</h3>
-            <p>Füge jetzt deine erste Ausgabe hinzu.</p>
+        <div className="grid-x grid-margin-x grid-margin-y">
+          <div className="cell small-12">
+            {expenses.length === 0 && (
+              <div className="text-center padding-top-3">
+                <svg className="icon xlarge padding-bottom-2">
+                  <use href={sprite + "#file"} />
+                </svg>
+                <h3>Keine Einträge vorhanden.</h3>
+                <p>Füge jetzt deine erste Ausgabe hinzu.</p>
+              </div>
+            )}
           </div>
-        )}
 
-        {/* Expenses open */}
-        {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
-          expensesOpen.map((expense) => (
-            <Expense
-              key={expense.id}
-              id={expense.id}
-              title={expense.title}
-              status={expense.status}
-              description={expense.description}
-              budget={expense.budget}
-            />
-          ))}
+          {/* Expenses open */}
+          {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
+            expensesOpen.map((expense) => (
+              <Expense
+                key={expense.id}
+                id={expense.id}
+                title={expense.title}
+                status={expense.status}
+                description={expense.description}
+                budget={expense.budget}
+              />
+            ))}
 
-        {/* Expenses done */}
-        {["Alle", "Bezahlt"].indexOf(statusFilter) >= 0 &&
-          expensesDone.map((expense) => (
-            <Expense
-              key={expense.id}
-              id={expense.id}
-              title={expense.title}
-              status={expense.status}
-              description={expense.description}
-              budget={expense.budget}
-            />
-          ))}
+          {/* Expenses done */}
+          {["Alle", "Bezahlt"].indexOf(statusFilter) >= 0 &&
+            expensesDone.map((expense) => (
+              <Expense
+                key={expense.id}
+                id={expense.id}
+                title={expense.title}
+                status={expense.status}
+                description={expense.description}
+                budget={expense.budget}
+              />
+            ))}
+        </div>
       </Section>
     </>
   );

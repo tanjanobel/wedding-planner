@@ -7,7 +7,7 @@
   flex: 1 1 auto;
   flex-direction: column;
   font-family: $body-font-family;
-  margin-bottom: $global-margin;
+  margin-bottom: 0;
   padding: $global-padding;
 
   @include breakpoint(tablet) {
@@ -75,6 +75,9 @@
     font-family: $body-font-family;
     font-size: rem-calc(16px);
     font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+    word-spacing: normal;
 
     @include breakpoint(tablet) {
       font-size: rem-calc(18px);
@@ -104,7 +107,7 @@
   &__buttons {
     display: flex;
     flex: 1 1 100%;
-    padding-top: $global-padding;
+    padding-top: 0.5 * $global-padding;
 
     & > :first-child {
       padding-right: $global-padding;
@@ -130,9 +133,13 @@
   }
 
   &__summary {
-    font-size: rem-calc(26px);
+    font-size: rem-calc(23px);
     font-weight: 600;
     margin-bottom: 0;
+
+    @include breakpoint(tablet) {
+      font-size: rem-calc(26px);
+    }
   }
 
   &__description {

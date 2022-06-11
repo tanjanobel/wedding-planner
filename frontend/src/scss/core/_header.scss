@@ -201,8 +201,9 @@
     color: color(black);
     display: table-cell;
     letter-spacing: 1px;
+    padding: 0.5 * $global-padding 0;
     position: relative;
-    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: border-color 0.22s ease-in-out, color 0.22s ease-in-out;
     vertical-align: middle;
 
     &::after {
@@ -232,6 +233,7 @@
     }
 
     &.active {
+      border-bottom: 2px solid color(primary);
       color: color(primary);
     }
   }

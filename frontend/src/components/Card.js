@@ -2,7 +2,7 @@ const Card = ({ topLabel, bottomLabel, data, containerClass = "card cell small-1
   return (
     <div className={containerClass}>
       <div className="card__content text-center">
-        <h3 className="card__heading">{topLabel}</h3>
+        <h2 className="card__heading">{topLabel}</h2>
         <p className="card__summary">{data}</p>
         {bottomLabel ? <p className="card__description">{bottomLabel}</p> : null}
       </div>

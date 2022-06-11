@@ -5,7 +5,7 @@ import sprite from "../../icons/wedding-planner-sprite.svg";
 const Task = ({ id, title, status, description, duedate }) => {
   return (
     <>
-      <div className="card" key={id} id={id} title={title}>
+      <div className="card cell small-12" key={id} id={id} title={title}>
         <div className="card__meta">
           {(() => {
             switch (status) {
@@ -33,7 +33,7 @@ const Task = ({ id, title, status, description, duedate }) => {
         <div className="card__content">
           <div className="card__header">
             <div className="card__title">
-              <h3 className="card__heading">{title}</h3>
+              <h2 className="card__heading">{title}</h2>
             </div>
           </div>
           <div className="card__body">

@@ -1,6 +1,7 @@
 .footer {
   color: color(black);
   font-size: rem-calc(14px);
+  padding-top: 2 * $global-padding;
 
   @include breakpoint(tablet) {
     height: $footer-height;

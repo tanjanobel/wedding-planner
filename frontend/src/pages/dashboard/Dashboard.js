@@ -50,7 +50,7 @@ const Dashboard = () => {
         <>
           <SubHeader title="Mein grosser Tag" />
           <Section>
-            <div className="summary grid-x grid-margin-x padding-bottom-3">
+            <div className="summary grid-x grid-margin-x grid-margin-y padding-bottom-3">
               <Card
                 topLabel="Meine Hochzeit"
                 data={statistics.days_until_wedding}
@@ -78,18 +78,20 @@ const Dashboard = () => {
             </div>
 
             {statistics.next_tasks.length > 0 && (
-              <div className="padding-top-2">
+              <section className="padding-top-2">
                 <h2 className="section__heading">Nächste Aufgaben</h2>
-                {statistics.next_tasks.slice(0, 3).map((task, index) => (
-                  <Task
-                    key={task.id}
-                    id={task.id}
-                    title={task.title}
-                    status={task.status}
-                    description={task.description}
-                    duedate={task.duedate}
-                  />
-                ))}
+                <div className="grid-x grid-margin-x grid-margin-y">
+                  {statistics.next_tasks.slice(0, 3).map((task, index) => (
+                    <Task
+                      key={task.id}
+                      id={task.id}
+                      title={task.title}
+                      status={task.status}
+                      description={task.description}
+                      duedate={task.duedate}
+                    />
+                  ))}
+                </div>
                 <div className="section__footer">
                   <Link to="/tasks" className="card__button button clear black">
                     <svg className="icon medium">
@@ -98,7 +100,7 @@ const Dashboard = () => {
                     <span>Zu den Aufgaben</span>
                   </Link>
                 </div>
-              </div>
+              </section>
             )}
           </Section>
         </>

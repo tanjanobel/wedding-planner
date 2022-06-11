@@ -45,10 +45,10 @@ const Login = () => {
             duration={6000}
           />
         )}
-        <div className="grid-x grid-margin-x align-top">
+        <div className="grid-x grid-margin-x grid-margin-y align-top">
           <div className="card cell small-12 tablet-6">
             <div className="card__body">
-              <h3 className="card__heading text-center padding-bottom-2">Mit Kundenkonto anmelden</h3>
+              <h2 className="card__heading text-center padding-bottom-2">Mit Kundenkonto anmelden</h2>
               <p className="text-center padding-bottom-1">
                 Du hast schon ein Kundenkonto?
                 <br />
@@ -98,7 +98,7 @@ const Login = () => {
           </div>
           <div className="card cell small-12 tablet-6">
             <div className="card__body">
-              <h3 className="card__heading text-center padding-bottom-2">Ich habe noch kein Konto</h3>
+              <h2 className="card__heading text-center padding-bottom-2">Ich habe noch kein Konto</h2>
               <p className="text-center padding-bottom-1">Lege jetzt in wenigen Schritten ein Kundenkonto an.</p>
               <Link to="/register" className="button hollow expanded">
                 Jetzt registrieren

@@ -1,7 +1,7 @@
 .filter {
   font-size: rem-calc(14px);
   list-style-type: none;
-  padding-bottom: $global-padding;
+  padding-bottom: 2 * $global-padding;
   margin: 0;
 
   @include breakpoint(tablet) {

@@ -4,7 +4,7 @@ import sprite from "../../icons/wedding-planner-sprite.svg";
 const Expense = ({ id, title, status, budget, description }) => {
   return (
     <>
-      <div className="card" key={id} id={id} title={title}>
+      <div className="card cell small-12" key={id} id={id} title={title}>
         <div className="card__meta">
           {(() => {
             switch (status) {
@@ -26,7 +26,7 @@ const Expense = ({ id, title, status, budget, description }) => {
         <div className="card__content">
           <div className="card__header">
             <div className="card__title">
-              <h3 className="card__heading">{title}</h3>
+              <h2 className="card__heading">{title}</h2>
             </div>
             <div className="card__budget tablet-text-right">
               <span className="card__heading">{budget} CHF</span>

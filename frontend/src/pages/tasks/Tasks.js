@@ -55,7 +55,7 @@ const Tasks = () => {
     <>
       <SubHeader title="Meine Aufgaben" />
       <Section>
-        <div className="summary grid-x grid-margin-x padding-bottom-2">
+        <div className="summary grid-x grid-margin-x grid-margin-y margin-bottom-2">
           <Card topLabel="Offen" data={tasksOpen.length}></Card>
           <Card topLabel="In Arbeit" data={tasksInProgress.length}></Card>
           <Card topLabel="Erledigt" data={tasksDone.length}></Card>
@@ -113,15 +113,18 @@ const Tasks = () => {
           </div>
         </div>
 
-        {tasks.length === 0 && (
-          <div className="text-center">
-            <svg className="icon xlarge padding-bottom-2">
-              <use href={sprite + "#file"} />
-            </svg>
-            <h3>Keine Einträge vorhanden.</h3>
-            <p>Füge jetzt deine erste Aufgabe hinzu.</p>
+        <div className="grid-x grid-margin-x grid-margin-y">
+          <div className="cell small-12">
+            {tasks.length === 0 && (
+              <div className="text-center padding-top-3">
+                <svg className="icon xlarge padding-bottom-2">
+                  <use href={sprite + "#file"} />
+                </svg>
+                <h3>Keine Einträge vorhanden.</h3>
+                <p>Füge jetzt deine erste Aufgabe hinzu.</p>
+              </div>
+            )}
           </div>
-        )}
 
         {/* Tasks open */}
         {["Alle", "Offen"].indexOf(statusFilter) >= 0 &&
@@ -161,6 +164,7 @@ const Tasks = () => {
               duedate={task.duedate}
             />
           ))}
+        </div>
       </Section>
     </>
   );
