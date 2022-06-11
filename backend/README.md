@@ -28,8 +28,8 @@ Create migrations<br>
 Apply migrations<br>
 `$ python manage.py migrate`
 
-Run tests
+Run tests<br>
 `$ coverage run manage.py test`
 
-Check test coverage
+Check test coverage<br>
 `$ coverage report`
